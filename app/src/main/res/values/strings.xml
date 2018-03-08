@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Sattvik Mess</string>
+    <string name="workers_title">Sattvik Family</string>
+    <string name="offline_text">Please follow the Instructions given below:\n\n1.You have received an online ID on your mail\n2.You need to fill the Offline Registration form(From Mess).\n3.Get it signed by respective Hostel Warden and then
+submit it at the Sattvik Mess desk along with the Mess Advance Receipt.\n\n<b>You will get a notification once your account gets activated</b></string>
+    <string name="title_activity_dashboard">Dashboard</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="spinner_title">Select Category</string>
+
+    <string-array name="countries_array">
+        <item>Aryabhatta</item>
+        <item>Vishveshvaryya</item>
+        <item>Ramanujan</item>
+        <item>CV Raman</item>
+        <item>Morvi</item>
+        <item>SC DE</item>
+        <item>SN Bose</item>
+        <item>GSMC</item>
+        <item>Dhanraj Giri</item>
+        <item>Vishvakarma</item>
+        <item>Vivekanand</item>
+        <item>Limbdi</item>
+        <item>Rajputana</item>
+
+
+    </string-array>
+
+    <string name="title_1"> "Today's Menu" </string>
+    <string name="title_2"> "Tomorrow's Menu" </string>
+    <string name="title_3"> Next Menu </string>
+    <string name="title_4"> Title 4 </string>
+    <string name="text_1"> <b>Breakfast</b> bla bla\n<b>Lunch</b> bla bla\n<b>Dinner</b> bla bla</string>
+    <string name="text_2"> <b>Breakfast</b> bla bla\n<b>Lunch</b> bla bla\n<b>Dinner</b> bla bla</string>
+    <string name="text_3"> <b>Breakfast</b> bla bla\n<b>Lunch</b> bla bla\n<b>Dinner</b> bla bla </string>
+    <string name="text_4"> Text 4 </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="info_vision"> In contemporary era of diverse religious beliefs, living styles and liberal outlooks, it becomes pertinent for systems to cater diverse groups as per their needs and justified preferences.
+People from western India, Jainism and many other parts of India, particularly with a spiritual inclination, have profound researched belief system which gives much importance to food.
+
+In Hindi, it’s said Jaisa Ann, Vaisa Mann. Sattvik aims to cater food which keeps lightness in the mind, agility in the body and is conducive for people to meditate and pursue self enquiry.
+</string>
+    <string name="info_history">On 26th Aug 2012, three boys were hustling room to room and were inviting hostlers at IIT for a lunch which was being served without onion and Garlic. 24 students came up and were served delicious vegetarian food without onion garlic and they loved it.
+These were the first twenty four customers who registered themselves at the GRTA Apartments common room which was turned into a dining hall. People used to eat while sitting cross legged at floor and were served at their place.
+Three months Later Sattvik served about 600 meals a day and there used to be long queues during lunch time as all students used to come at one particular time. Sattvik later opened its doors for girls as well and now runs into two branches catering ..... meals a day!
+</string>
+    <string name="info_registration_procedure">
+        <b>a) Registration for IIT BHU students:</b>
+\n1. An Invitation mail would be forwarded by CoW to the student body having registration link atleast 5 days before the starting of ODD Semester.
+Note: Students taking meal in November will be directly registered for even semester.
+\n2. Online SMID generated will be mailed to the respective student, and the student has to fill the generated SMID in the offline registration form.
+\n3. Along with Mess advance receipt student would have to submit offline registration form forwarded by Warden of the respective hostel to the mess registration desk and would get an mess ID No.
+\n4. The offline Registration form will be accepted within starting five days of every month.
+\n<b>b) Registration for Non-IIT(BHU) Students:</b>
+\n1. Students must have to submit an Application requesting for permission to join Sattvik Mess duly forwarded by their HOD/ DEAN, and that must be forwarded by faculty coordinator of Sattvik Mess to the COW Office.
+\n2. Students must have to scan QR code for online registration  then proceeding to fill offline form available in mess and submit the form along with the fee receipt at the desk.
+\n3. They should have a minimum balance of 3000 Rs at the starting of every month. eg: If a student has a balance of 1000 Rs at end of September so he has to deposit 2000 Rs at the starting of October.
+\n4. Atmost 20 Non-IITian students are allowed to join Sattvik mess.
+</string>
+    <string name="info_general_rules">
+        1.) <b>Mess Timings :Students have to follow mess timings strictly,</b>
+\n<b>Breakfast:</b> 7.30 AM- 9.30 AM
+\n<b>Lunch:</b> 12.00 PM -2.00 PM
+\n<b>Dinner:</b> 8.00 PM - 9.45 PM
+\nNote:- A little change be there in timings according to the weather.
+\n2.)<b>Mess Off Policy</b> :
+\nStudents who want to skip a meal should inform 12 hrs. prior to the mess maharaj and also have to fill mess cancellation form
+\n3.)<b>Menu should be changed regularly.</b>
+\n4.)<b>Leaving form</b>: \nStudents who want to leave sattvik mess have to fill mess leaving form  at the end of the month .
+\nNote: If students leave the mess without giving any prior information then service charge (350/- rs.) will be charged..
+\n5)<b> Saturday Lunch </b>:
+\nSpecial diet would be given which is equal to 1.5 diet money.
+\n6) It would be compulsory for all the students to sign the bill after it has been published
+\n7.)<b>Extra policy:</b> (to be edit further)
+\na) If someone does not consume dairy products and extras are being charged on the dairy products
+then he has to give an application addressing
+Mess Maharaj for stopping the dairy items so that
+extra charges will not be added.
+\nb) If someone is not interested in taking sweets on which extras are charged then he should inform the Mess Maharaj 24 hrs.  Prior, Otherwise, extra charges will be added.
+Items for which extra amount will be added no matter he eats or not.
+</string>
+    <string name="nameerror">Enter a valid name</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="mobileerror">Enter a valid mobile</string>
+    <string name="dateerror">Enter a valid date</string>
+    <string name="ageerror">Enter a valid age</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_add_favourite">Add to Favourites</string>
+    <string name="action_play_next">Play Next</string>
+    <string name="backdrop_title">Sattvik Family</string>
+    <string name="backdrop_subtitle">The Only Pure Veg Mess</string>
+</resources>

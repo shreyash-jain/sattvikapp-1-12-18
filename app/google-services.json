@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "316803986136",
+    "firebase_url": "https://sattvik-mess.firebaseio.com",
+    "project_id": "sattvik-mess",
+    "storage_bucket": "sattvik-mess.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316803986136:android:feb5e00febfcf1bc",
+        "android_client_info": {
+          "package_name": "com.example.shreyash.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316803986136-apc9eb17n3q3fenbp0r07dlajqvbj4gh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxsdcJL1WOIMR1DUSlgsh5VWRmHy5en70"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

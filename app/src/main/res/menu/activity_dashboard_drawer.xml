@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/board"
+            android:icon="@drawable/board_icon"
+            android:title="Dashboard" />
+        <item
+            android:id="@+id/cancel"
+            android:icon="@drawable/cancel_icon"
+            android:title="Meals Cancellation" />
+        <item
+            android:id="@+id/bill"
+            android:icon="@drawable/bill_icon"
+            android:title="Diet Bill" />
+        <item
+            android:id="@+id/feedback"
+            android:icon="@drawable/feedback_icon"
+            android:title="Feedback" />
+    </group>
+
+    <item android:title="Additional Info.">
+        <menu>
+            <item
+                android:id="@+id/about"
+                android:icon="@drawable/ic_about"
+                android:title="About Sattvik" />
+            <item
+                android:id="@+id/workers"
+                android:icon="@drawable/ic_worker"
+                android:title="Mess Workers" />
+        </menu>
+    </item>
+
+</menu>

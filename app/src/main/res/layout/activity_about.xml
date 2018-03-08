@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/mybg"
+    android:orientation="vertical"
+    android:padding="20dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="जैसा खाओ अन्न, वैसा होए मन \n जैसा पियो पानी वैसी होगी वाणी"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:paddingBottom="10dp"/>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_main_vision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:padding="8dp"
+
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_vision_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Vision"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/text_vision_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="@string/info_vision"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:padding=".01dp"/>
+        <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:elevation="6dp"
+        app:cardCornerRadius="4dp"
+
+        android:id="@+id/card_main_history">
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:text="History"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textSize="25sp"
+                android:clickable="true"
+                android:id="@+id/text_history_title"/>
+                <TextView  android:id="@+id/text_history_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:layout_width="match_parent"
+                android:padding="10dp"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:text="@string/info_history"/>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:padding=".01dp"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_main_regestration_procedure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:padding="8dp"
+
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_registration_procedure_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Registration Procedure"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/text_registration_procedure_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="@string/info_registration_procedure"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:padding=".01dp"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_main_general_rules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="6dp"
+            android:padding="8dp"
+
+            app:cardCornerRadius="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_general_rules_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="General Rules"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/text_general_rules_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:gravity="left"
+                    android:padding="10dp"
+                    android:text="@string/info_general_rules"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

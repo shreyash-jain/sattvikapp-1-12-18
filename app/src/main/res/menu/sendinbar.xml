@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".FragmentFeedback">
+
+    <item
+        android:id="@+id/action_custom_button"
+        android:title="Custom Button"
+        android:icon="@drawable/ic_send_white"
+
+        app:showAsAction="always" />
+
+</menu>

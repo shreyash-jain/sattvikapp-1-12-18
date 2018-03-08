@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="12dp"
+        android:text="I'm telling you about"
+        android:textColor="@color/album_title"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+
+
+        android:prompt="@string/spinner_title"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="How are we doing?"
+        android:textSize="18dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="10dp"/>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:rating="3.5"
+        android:stepSize=".5"
+        android:theme="@style/RatingBar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:text="Description"
+        android:textColor="@color/album_title"
+        android:textSize="18sp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/username_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp">
+
+        <EditText
+            android:id="@+id/discription"
+            android:layout_width="match_parent"
+            android:layout_height="150sp"
+
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+
+            android:ems="10"
+            android:textColor="@android:color/black"
+            android:gravity="top"
+            android:hint="Please Elaborate"
+             />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
