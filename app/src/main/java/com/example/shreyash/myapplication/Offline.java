@@ -13,6 +13,7 @@ public class Offline extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline);
         Button b1=(Button)findViewById(R.id.continued);
+        //TODO: Check online if form filled. Enable button
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,9 +1,5 @@
 package com.example.shreyash.myapplication;
 
-/**
- * Created by Shreyash on 17-02-2018.
- */
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 public class FragmentBoard extends Fragment  {
     private ViewPager mViewPager;
@@ -26,21 +23,21 @@ public class FragmentBoard extends Fragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
-    View rootview= inflater.inflate(R.layout.fragment_board, container, false);
+        View rootview= inflater.inflate(R.layout.fragment_board, container, false);
+
         mViewPager = (ViewPager) rootview.findViewById(R.id.viewPager);
-
-
-
-
+        TextView notice_text=(TextView)rootview.findViewById(R.id.text_notice);
+        //TODO: Get data from firebase for notice board
+        String notice = "1.Now Enjoy Extra Items on demand in your daily meals." + "\n\n"+
+                "2.You can ask for Namkeen, Milk, Butter, Sweets and many more items." + "\n\n"+
+                "3.With the motto to serve pure vegetarian food in the institute, we start with the registration procedure for another session.";
+        notice_text.setText(notice);
+        //TODO:get data from firebase for each day meal and use it below
         mCardAdapter = new CardPagerAdapter();
-        mCardAdapter.addCardItem(new CardItem(R.string.title_1, R.string.text_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_2, R.string.text_1));
-        mCardAdapter.addCardItem(new CardItem(R.string.title_3, R.string.text_1));
-
-
-
+        mCardAdapter.addCardItem(new CardItem("yo yo","lo lo"));
+        mCardAdapter.addCardItem(new CardItem("yo yo","lo lo"));
+        mCardAdapter.addCardItem(new CardItem("yo yo","lo lo"));
         mViewPager.setAdapter(mCardAdapter);
-
         mViewPager.setOffscreenPageLimit(3);
 
     return rootview;}

@@ -5,30 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!-- place your view here -->
     <ScrollView
-
-
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-
         android:background="@drawable/mybg"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:visibility="visible">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-`   `
-
-
-            <android.support.v4.view.ViewPager
+               <android.support.v4.view.ViewPager
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="260dp"
                 android:layout_gravity="top"
                 android:clipToPadding="false"
                 android:layout_margin="-10dp"
@@ -88,9 +80,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1.Now Enjoy Extra Items on demand in your daily meals.\n\n
-2.You can ask for Namkeen, Milk, Butter, Sweets and many more items.\n\n
-3.With the motto to serve pure vegetarian food in the institute, we start with the registration procedure for another session."
+                        android:id="@+id/text_notice"
                         android:textSize="18sp" />
 
 

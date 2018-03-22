@@ -15,9 +15,10 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, Registration.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //TODO: check if already login from local database. If data present go to Dashboard Else go to LoginActivity
+                Intent i = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(i);
+                finish();
             }
         }, 3000);
     }

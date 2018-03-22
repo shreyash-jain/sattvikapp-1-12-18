@@ -128,6 +128,7 @@ public class Dashboard extends AppCompatActivity
             Intent i = new Intent(Dashboard.this, ActivityWorkers.class);
             startActivity(i);
         }
+        //TODO: Add Logout Button and delete data in app as well as local database
         else{
         displaySelectedScreen(item.getItemId());}
         return true;

@@ -19,24 +19,16 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.common.collect.Range;
 
-
 import java.util.List;
 import java.util.regex.Matcher;
-
-
-
 
 public class Registration extends AppCompatActivity  implements View.OnClickListener   {
     private EditText editTextName, editTextEmail, editTextMobile,
             editTextyear, editTextdu;
-    private  AutoCompleteTextView editTextHostel,editTextBranch;
+    private AutoCompleteTextView editTextHostel,editTextBranch;
     private Button buttonSubmit;
     private AwesomeValidation awesomeValidation;
 
-
-    EditText editText;
-    String[] branches = { "Electrical","Electronics","Computer Science","Civil","Chemical","Engineering Physics","Biomedical","Biochemical","SMST","Mining","Mechanical","Industrial Chemistry","Metallurgy","Ceramic","Pharmaceutics","Mathematics & Computing" };
-   // String [] hostels= {"Aryabhatta","Vishveshvaryya","Ramanujan","CV Raman","Morvi","SC DE","SN Bose","GSMC","Dhanraj Giri","Vishvakarma","Vivekanand","Limbdi","Rajputana"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +41,7 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
                 startActivity(i);
             }
         });
+
         awesomeValidation = new AwesomeValidation(ValidationStyle.UNDERLABEL);
         awesomeValidation.setContext(this);
         editTextName = (EditText) findViewById(R.id.input_name);
@@ -64,47 +57,34 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         awesomeValidation.addValidation(this, R.id.input_name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.input_phone, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
-       // awesomeValidation.addValidation(this, R.id.editTextDob, "^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_year, Range.closed(1, 6), R.string.ageerror);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, branches);
+        String[] clg_branches = getResources().getStringArray(R.array.branches);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, clg_branches);
         //Find TextView control
-
         AutoCompleteTextView acTextView = (AutoCompleteTextView) findViewById(R.id.input_department);
-
         //Set the number of characters the user must type before the drop down list is shown
         acTextView.setThreshold(1);
         //Set the adapter
         acTextView.setAdapter(adapter);
         final AutoCompleteTextView textView = findViewById(R.id.input_hostel);
         // Get the string array
-        String[] countries = getResources().getStringArray(R.array.countries_array);
+        String[] clg_hostels = getResources().getStringArray(R.array.hostel_array);
         // Create the adapter and set it to the AutoCompleteTextView
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, clg_hostels);
         textView.setAdapter(adapter2);
         awesomeValidation.addValidation(this, R.id.input_hostel, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_department, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-
-
-        // AutoCompleteTextView acTextView2 = (AutoCompleteTextView) findViewById(R.id.input_hostel);
-      //  acTextView2.setThreshold(1);
-      //  ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this,android.R.layout.select_dialog_singlechoice, hostels);
-       // acTextView.setAdapter(adapter2);
         buttonSubmit.setOnClickListener(this);
-        Button b = (Button) findViewById(R.id.button);
-
     }
 
     private void submitForm() {
-        //first validate the form then move ahead
-        //if this becomes true that means validation is successfull
         if (awesomeValidation.validate()) {
-            Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
-            //TODO: Send all data to database
-            //TODO: Check if all entries have been added and then enable the button
+            Toast.makeText(this, "Validation Successful", Toast.LENGTH_LONG).show();
+            //TODO: Send all data to database and store in local database if possible
             Intent i = new Intent(Registration.this, Offline.class);
             startActivity(i);
-            //process the data further
+            finish();
         }
     }
 
