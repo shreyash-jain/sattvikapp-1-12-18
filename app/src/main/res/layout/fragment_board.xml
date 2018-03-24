@@ -1,95 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:background="@drawable/mybg"
+android:paddingLeft="12dp"
+android:paddingRight="12dp"
+android:visibility="visible">
+
+    <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/mybg"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:visibility="visible">
+       <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_gravity="top"
+        android:clipToPadding="false"
+        android:layout_margin="-10dp"
+        android:paddingTop="-10dp"
+        android:overScrollMode="never"
+        android:paddingBottom="-10dp"
 
-        <LinearLayout
+        android:paddingEnd="@dimen/card_padding"
+        android:paddingLeft="@dimen/card_padding"
+        android:paddingRight="@dimen/card_padding"
+        android:paddingStart="@dimen/card_padding" />
+
+        <android.support.v7.widget.CardView
+        android:id="@+id/card_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/foreground"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="10dp"
+        app:contentPadding="10dp"
+        app:contentPaddingBottom="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-               <android.support.v4.view.ViewPager
-                android:id="@+id/viewPager"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
-                android:layout_gravity="top"
-                android:clipToPadding="false"
-                android:layout_margin="-10dp"
-                android:paddingTop="-10dp"
-                android:overScrollMode="never"
-                android:paddingBottom="-10dp"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-                android:paddingEnd="@dimen/card_padding"
-                android:paddingLeft="@dimen/card_padding"
-                android:paddingRight="@dimen/card_padding"
-                android:paddingStart="@dimen/card_padding" />
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/card_notice"
+                <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                app:cardBackgroundColor="@color/foreground"
-                app:cardCornerRadius="0dp"
-                app:cardMaxElevation="1dp"
-                app:cardElevation="0.7dp"
-                app:contentPadding="10dp"
-                app:contentPaddingBottom="0dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true">
+                android:orientation="horizontal"
+                android:paddingBottom="8dp"
+                android:paddingTop="2dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:orientation="horizontal"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="2dp">
-
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/ic_notice" />
-
-                        <TextView
-                            android:paddingTop="-4dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-
-                            android:paddingLeft="12dp"
-                            android:text="Notice Board"
-                            android:textSize="24sp" />
-                    </LinearLayout>
+                    <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_notice" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_notice"
-                        android:textSize="18sp" />
+                    android:paddingTop="-4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
 
-
+                    android:paddingLeft="12dp"
+                    android:text="Notice Board"
+                    android:textSize="24sp" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text_notice"
+                    android:textSize="18sp" />
 
-
-    </ScrollView>
-
-</LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</ScrollView>

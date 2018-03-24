@@ -106,7 +106,7 @@ Items for which extra amount will be added no matter he eats or not.
     <string name="emailerror">Enter a valid email</string>
     <string name="mobileerror">Enter a valid mobile</string>
     <string name="dateerror">Enter a valid date</string>
-    <string name="ageerror">Enter a valid age</string>
+    <string name="ageerror">Enter your current year of study</string>
     <string name="action_settings">Settings</string>
     <string name="action_add_favourite">Add to Favourites</string>
     <string name="action_play_next">Play Next</string>

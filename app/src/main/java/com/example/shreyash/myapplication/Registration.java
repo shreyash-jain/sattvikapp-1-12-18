@@ -65,12 +65,12 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         AutoCompleteTextView acTextView = (AutoCompleteTextView) findViewById(R.id.input_department);
         //Set the number of characters the user must type before the drop down list is shown
         acTextView.setThreshold(1);
-        //Set the adapter
+        //Set the card_adapter_menulbd
         acTextView.setAdapter(adapter);
         final AutoCompleteTextView textView = findViewById(R.id.input_hostel);
         // Get the string array
         String[] clg_hostels = getResources().getStringArray(R.array.hostel_array);
-        // Create the adapter and set it to the AutoCompleteTextView
+        // Create the card_adapter_menulbd and set it to the AutoCompleteTextView
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, clg_hostels);
         textView.setAdapter(adapter2);
         awesomeValidation.addValidation(this, R.id.input_hostel, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);

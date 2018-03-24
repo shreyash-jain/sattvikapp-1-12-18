@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,12 +53,21 @@ public class Dashboard extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View header=navigationView.getHeaderView(0);
+        TextView name = (TextView)header.findViewById(R.id.main_name);
+        TextView id = (TextView)header.findViewById(R.id.main_sattvikId);
+        //TODO: CHange name and sattvik id of person from here. Can change image also.
+//        String personName = "Abhinav Dangi";
+//        String personEmail = "2";
+//        name.setText(personName);
+//        id.setText(personEmail);
+
         Fragment myFragment=new FragmentBoard();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame,  myFragment, "MY_FRAGMENT");
         ft.commit();
     }
-
 
     @Override
     public void onBackPressed() {
@@ -120,17 +133,19 @@ public class Dashboard extends AppCompatActivity
         // Handle navigation view item clicks here.
 
 
-        if(item.getItemId()==R.id.about){
+        if (item.getItemId() == R.id.about) {
             Intent i = new Intent(Dashboard.this, ActivityAbout.class);
             startActivity(i);
-        }
-        else if(item.getItemId()==R.id.workers){
+        } else if (item.getItemId() == R.id.workers) {
             Intent i = new Intent(Dashboard.this, ActivityWorkers.class);
             startActivity(i);
         }
         //TODO: Add Logout Button and delete data in app as well as local database
-        else{
-        displaySelectedScreen(item.getItemId());}
+        else {
+            displaySelectedScreen(item.getItemId());
+        }
         return true;
     }
+
 }
+

@@ -73,7 +73,7 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // handle item selection
+        //TODO:Send feedback here
         Toast.makeText(getActivity(),"Thanks for your Feedback",Toast.LENGTH_SHORT).show();
         return  true;
     }
@@ -82,7 +82,7 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
         String item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
     }
 
     @Override

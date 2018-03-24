@@ -19,6 +19,7 @@ public class Offline extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(Offline.this,Dashboard.class);
                 startActivity(i);
+                finish();
             }
         });
     }
