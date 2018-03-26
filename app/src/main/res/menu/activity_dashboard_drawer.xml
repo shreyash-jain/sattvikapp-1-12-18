@@ -13,10 +13,6 @@
             android:icon="@drawable/cancel_icon"
             android:title="Meals Cancellation" />
         <item
-            android:id="@+id/bill"
-            android:icon="@drawable/bill_icon"
-            android:title="Diet Bill" />
-        <item
             android:id="@+id/feedback"
             android:icon="@drawable/feedback_icon"
             android:title="Feedback" />
@@ -32,6 +28,11 @@
                 android:id="@+id/workers"
                 android:icon="@drawable/ic_worker"
                 android:title="Mess Workers" />
+            <item
+                android:id="@+id/logout"
+                android:icon="@drawable/ic_send_black"
+                android:title="Logout"/>
+            <!-- TODO: Change icon-->
         </menu>
     </item>
 

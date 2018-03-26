@@ -58,28 +58,28 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this,
-                R.style.Theme_AppCompat_Dialog);
+        final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyAlertDialogStyle);
 
         //TODO: USe an appropriate style
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setTitle("Authenticating...");
+        progressDialog.setMessage("loading");
         progressDialog.show();
 
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
         new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onLoginSuccess or onLoginFailed
-                        //TODO: Check data from database and proceed accordingly
-                        onLoginSuccess();
-                        //If no data call function below
-                        // onLoginFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+            new Runnable() {
+                public void run() {
+                    // On complete call either onLoginSuccess or onLoginFailed
+                    //TODO: Check data from database and proceed accordingly
+                    onLoginSuccess();
+                    //If no data call function below
+                    // onLoginFailed();
+                    progressDialog.dismiss();
+                }
+            }, 3000);
     }
 
     @Override

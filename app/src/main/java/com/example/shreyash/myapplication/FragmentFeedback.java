@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class FragmentFeedback extends Fragment implements AdapterView.OnItemSelectedListener {
+public class FragmentFeedback extends Fragment implements OnItemSelectedListener {
 
 
 
@@ -38,7 +38,6 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         setHasOptionsMenu(true);
-
         List categories = new ArrayList<>();
         categories.add("Over All");
         categories.add("Bills Issue");
@@ -53,10 +52,7 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
         ArrayAdapter dataAdapter = new ArrayAdapter (getActivity(), android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
-
-
         return view;
-
     }
 
     @Override
@@ -68,7 +64,6 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Feedback and Suggestions");
     }
     @Override
@@ -80,7 +75,6 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         String item = parent.getItemAtPosition(position).toString();
         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
     }
@@ -89,9 +83,5 @@ public class FragmentFeedback extends Fragment implements AdapterView.OnItemSele
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
-
-
 }
 

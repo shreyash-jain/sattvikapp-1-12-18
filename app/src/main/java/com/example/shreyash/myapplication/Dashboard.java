@@ -1,6 +1,8 @@
 package com.example.shreyash.myapplication;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -33,18 +35,6 @@ public class Dashboard extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment feedback_page=new FragmentFeedback();
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame,  feedback_page);
-                ft.commit();
-                fab.hide();
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -67,6 +57,7 @@ public class Dashboard extends AppCompatActivity
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.content_frame,  myFragment, "MY_FRAGMENT");
         ft.commit();
+
     }
 
     @Override
@@ -84,7 +75,6 @@ public class Dashboard extends AppCompatActivity
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame,  home_fragment, "MY_FRAGMENT");
                 ft.commit();
-                fab.show();
             }
         }
     }
@@ -102,15 +92,9 @@ public class Dashboard extends AppCompatActivity
             case R.id.cancel:
                 fragment = new FragmentCancel();
                 break;
-            case R.id.bill:
-                fragment = new FragmentBill();
-                break;
             case R.id.feedback:
                 fragment = new FragmentFeedback();
                 break;
-
-
-
         }
 
         //replacing the fragment
@@ -119,33 +103,44 @@ public class Dashboard extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
-        if(fragment instanceof FragmentBoard){
-            fab.show();
-        } else {
-            fab.hide();
-        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
-
         if (item.getItemId() == R.id.about) {
             Intent i = new Intent(Dashboard.this, ActivityAbout.class);
             startActivity(i);
         } else if (item.getItemId() == R.id.workers) {
             Intent i = new Intent(Dashboard.this, ActivityWorkers.class);
             startActivity(i);
+        } else if(item.getItemId()== R.id.logout){
+            AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+            builder.setMessage("Confirm Logout?");
+            builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    //TODO: Delete data from shared preferences
+                    Intent i = new Intent(Dashboard.this,LoginActivity.class);
+                    startActivity(i);
+                    finishAffinity();
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
         }
-        //TODO: Add Logout Button and delete data in app as well as local database
         else {
             displaySelectedScreen(item.getItemId());
         }
         return true;
     }
-
 }
 
+//TODO: Add back button on each page
+//TODO: Change highlight of drawer
+//TODO: Add notifications 1.Offline complete 2.Monthly notify 3.Meal Cancellation accept 4.Notice Board

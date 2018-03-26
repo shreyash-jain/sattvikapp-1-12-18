@@ -14,4 +14,15 @@
         android:gravity="center"
         android:id="@+id/text_datepicker"/>
 
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diets remaining to Cancel"
+            android:textSize="20sp"
+            android:id="@+id/diets_cancel"
+            android:gravity="center"/>
+
+
+
 </LinearLayout>

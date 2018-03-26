@@ -103,34 +103,34 @@ public class ActivityWorkers extends AppCompatActivity {
                 R.drawable.shrivastava,
                 R.drawable.arvind};
 
-        Album a = new Album("Maharaj Ji", 75, covers[0]);
+        Album a = new Album("Maharaj Ji", "Maharaj Ji", covers[0]);
         albumList.add(a);
 
-        a = new Album("Sanjeet", 21, covers[1]);
+        a = new Album("Sanjeet","Account Manager", covers[1]);
         albumList.add(a);
 
-        a = new Album("Bhandari Ji", 52, covers[2]);
+        a = new Album("Bhandari Ji", "Cook", covers[2]);
         albumList.add(a);
 
-        a = new Album("Heera Ji", 48, covers[3]);
+        a = new Album("Heera Ji", "Service", covers[3]);
         albumList.add(a);
 
-        a = new Album("Prem Ji", 46, covers[4]);
+        a = new Album("Prem Ji","Service", covers[4]);
         albumList.add(a);
 
-        a = new Album("Sintoo", 20, covers[5]);
+        a = new Album("Sintoo", "Service", covers[5]);
         albumList.add(a);
 
-        a = new Album("Rajesh Ji", 39, covers[6]);
+        a = new Album("Rajesh Ji","Service", covers[6]);
         albumList.add(a);
 
-        a = new Album("Shusheel", 19, covers[7]);
+        a = new Album("Shusheel","Service", covers[7]);
         albumList.add(a);
 
-        a = new Album("Shashi", 17, covers[8]);
+        a = new Album("Shashi","Service", covers[8]);
         albumList.add(a);
 
-        a = new Album("Shrivastava Ji", 48, covers[9]);
+        a = new Album("Shrivastava Ji","Service", covers[9]);
         albumList.add(a);
 
         adapter.notifyDataSetChanged();

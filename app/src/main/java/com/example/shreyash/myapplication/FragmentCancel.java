@@ -4,7 +4,9 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 17-02-2018.
  */
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -18,6 +20,8 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -29,17 +33,16 @@ public class FragmentCancel extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //returning our layout file
-        //change R.layout.yourlayoutfilename for each of your fragments
         final View rootview = inflater.inflate(R.layout.fragment_cancel, container, false);
+        Calendar calendar = Calendar.getInstance();
+        final int year = calendar.get(Calendar.YEAR);
+        final int month = calendar.get(Calendar.MONTH);
+        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
         displayDate = rootview.findViewById(R.id.text_datepicker);
         displayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
                 DatePickerDialog dialog = new DatePickerDialog(getContext(),mDateSetListener,year,month,day);
                 dialog.show();
             }
@@ -54,18 +57,50 @@ public class FragmentCancel extends Fragment {
                 try {
                     Date dateSelected = format.parse(dateString);
                     Date dateCurrent = Calendar.getInstance().getTime();
+                    //TODO: get current date from backend
                     if(dateSelected.after(dateCurrent)){
-                        Toast.makeText(getContext(),"DATE after current",Toast.LENGTH_SHORT).show();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                        builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
+                                null, new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                //TODO:get values and store in a variable
+                                String s = "which:"+which+",isChecked:"+isChecked;
+                                Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //TODO: use the stored value to send in database
+                                Toast.makeText(getContext(),"Clicked OK",Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+
                     }
                     else{
-                        Toast.makeText(getContext(),"DATE selected is before current",Toast.LENGTH_SHORT).show();
+                        //TODO: Get data from backend and display it here by toast
                     }
                 } catch (ParseException e) {
                     e.printStackTrace();
+                    Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
                 }
             }
         };
-
+        DatePickerDialog dialog1 = new DatePickerDialog(getContext(),mDateSetListener,year,month,day);
+        dialog1.show();
+        TextView diets_cancel = (TextView) rootview.findViewById(R.id.diets_cancel);
+        //TODO: Get number online
+        int number =0;
+        String s = "Diets remaining to Cancel:"+number;
+        diets_cancel.setText(s);
         return rootview;
     }
     @Override

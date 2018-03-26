@@ -5,8 +5,6 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:background="@drawable/mybg"
-android:paddingLeft="12dp"
-android:paddingRight="12dp"
 android:visibility="visible">
 
     <LinearLayout
@@ -14,31 +12,13 @@ android:visibility="visible">
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-       <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        android:layout_gravity="top"
-        android:clipToPadding="false"
-        android:layout_margin="-10dp"
-        android:paddingTop="-10dp"
-        android:overScrollMode="never"
-        android:paddingBottom="-10dp"
-
-        android:paddingEnd="@dimen/card_padding"
-        android:paddingLeft="@dimen/card_padding"
-        android:paddingRight="@dimen/card_padding"
-        android:paddingStart="@dimen/card_padding" />
-
         <android.support.v7.widget.CardView
         android:id="@+id/card_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/foreground"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="10dp"
-        app:contentPadding="10dp"
-        app:contentPaddingBottom="10dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
 
@@ -63,10 +43,9 @@ android:visibility="visible">
                     android:src="@drawable/ic_notice" />
 
                     <TextView
-                    android:paddingTop="-4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-
+                    android:gravity="center_vertical"
                     android:paddingLeft="12dp"
                     android:text="Notice Board"
                     android:textSize="24sp" />
@@ -76,9 +55,254 @@ android:visibility="visible">
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_notice"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <android.support.v7.widget.CardView
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:gravity="center"
+                            android:text="Today's Menu"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:padding="10dp"
+                            android:id="@+id/text_menu_today"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:gravity="center"
+                            android:text="Tomorrow"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:padding="10dp"
+                            android:id="@+id/text_menu_tom"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+                <android.support.v7.widget.CardView
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="3dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="24sp"
+                            android:gravity="center"
+                            android:text="Next Day"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:padding="10dp"
+                            android:id="@+id/text_menu_next"/>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:cardElevation="5dp"
+            app:cardCornerRadius="3dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:text="Total Previous Expense:"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textSize="20sp"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:padding="10dp"
+                    android:id="@+id/text_bill_amount_prev"/>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="3dp"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="10dp"
+                        android:paddingBottom="2dp"
+                        android:paddingTop="2dp"
+                        android:text="This Month:"
+                        android:textSize="20sp"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:paddingLeft="8dp"
+                            android:text="Breakfast:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:id="@+id/text_bill_amount_b"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:paddingLeft="8dp"
+                            android:text="Lunch:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:id="@+id/text_bill_amount_l"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:paddingLeft="8dp"
+                            android:text="Dinner:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:text="0"
+                            android:id="@+id/text_bill_amount_d"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:paddingLeft="8dp"
+                            android:text="Extras:"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:text="0"
+                            android:id="@+id/text_bill_amount_ex"/>
+                    </LinearLayout>
+                    </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="5dp"
+                app:cardCornerRadius="3dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Estimated Cost:"
+                        android:textSize="24sp"
+                        android:padding="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="10000"
+                        android:textSize="50sp"
+                        android:padding="10dp"
+                        android:id="@+id/text_bill_amount_estimated"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
     </LinearLayout>
 </ScrollView>

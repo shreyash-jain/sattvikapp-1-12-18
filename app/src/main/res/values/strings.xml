@@ -44,9 +44,13 @@ submit it at the Sattvik Mess desk along with the Mess Advance Receipt.\n\n<b>Yo
         <item>Vivekanand</item>
         <item>Limbdi</item>
         <item>Rajputana</item>
-
-
     </string-array>
+    <string-array name="mealsCancel">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+    </string-array>
+
 
     <string name="title_1"> "Today's Menu" </string>
     <string name="title_2"> "Tomorrow's Menu" </string>
@@ -125,5 +129,11 @@ Items for which extra amount will be added no matter he eats or not.
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
+    </string>
+    <string name="err_password">
+        Password should be correct
+    </string>
+    <string name="err_password_confirmation">
+        Password does not match
     </string>
 </resources>

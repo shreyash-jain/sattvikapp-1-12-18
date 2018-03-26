@@ -18,9 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class FragmentBoard extends Fragment  {
-    private ViewPager mViewPager;
-
-    private CardPagerAdapter mCardAdapter;
 
     @Nullable
     @Override
@@ -28,21 +25,25 @@ public class FragmentBoard extends Fragment  {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
         View rootview= inflater.inflate(R.layout.fragment_board, container, false);
-        setHasOptionsMenu(true);
-        mViewPager = (ViewPager) rootview.findViewById(R.id.viewPager);
         TextView notice_text=(TextView)rootview.findViewById(R.id.text_notice);
+        TextView amount_prev = (TextView) rootview.findViewById(R.id.text_bill_amount_prev);
+        TextView amount_b = (TextView) rootview.findViewById(R.id.text_bill_amount_b);
+        TextView amount_l = (TextView) rootview.findViewById(R.id.text_bill_amount_l);
+        TextView amount_d = (TextView) rootview.findViewById(R.id.text_bill_amount_d);
+        TextView amount_ex = (TextView) rootview.findViewById(R.id.text_bill_amount_ex);
+        TextView amount_es = (TextView) rootview.findViewById(R.id.text_bill_amount_estimated);
+        TextView menu_today = (TextView) rootview.findViewById(R.id.text_menu_today);
+        TextView menu_tom = (TextView) rootview.findViewById(R.id.text_menu_tom);
+        TextView menu_next = (TextView) rootview.findViewById(R.id.text_menu_next);
+
+        //TODO: Set text of all amount textviews here
+        amount_prev.setText("450");
         //TODO: Get data from firebase for notice board
         String notice = "1.Now Enjoy Extra Items on demand in your daily meals." + "\n\n"+
                 "2.You can ask for Namkeen, Milk, Butter, Sweets and many more items." + "\n\n"+
                 "3.With the motto to serve pure vegetarian food in the institute, we start with the registration procedure for another session.";
         notice_text.setText(notice);
         //TODO:get data from firebase for each day meal and use it below
-        mCardAdapter = new CardPagerAdapter();
-        mCardAdapter.addCardItem(new CardItem("Today","Breakfast:\nLunch:\nDinner"));
-        mCardAdapter.addCardItem(new CardItem("Tomorrow","Breakfast:\nLunch:\nDinner"));
-        mCardAdapter.addCardItem(new CardItem("Next Day","Breakfast:\nLunch:\nDinner"));
-        mViewPager.setAdapter(mCardAdapter);
-        mViewPager.setOffscreenPageLimit(3);
 
     return rootview;
     }
@@ -51,22 +52,6 @@ public class FragmentBoard extends Fragment  {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Dashboard");
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.dashboard,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.action_refresh){
-            //TODO: Refresh data
-            Toast.makeText(getActivity(),"Refreshed!",Toast.LENGTH_SHORT).show();
-        }
-        return true;
     }
 }
 

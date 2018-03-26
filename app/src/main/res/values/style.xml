@@ -31,5 +31,8 @@
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/foreground</item>
     </style>
-
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@android:color/holo_green_dark</item>
+        <item name = "android:textColor">@android:color/black</item>
+    </style>
 </resources>

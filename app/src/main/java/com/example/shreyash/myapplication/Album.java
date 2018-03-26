@@ -6,13 +6,13 @@ package com.example.shreyash.myapplication;
 
 public class Album {
     private String name;
-    private int numOfSongs;
+    private String numOfSongs;
     private int thumbnail;
 
     public Album() {
     }
 
-    public Album(String name, int numOfSongs, int thumbnail) {
+    public Album(String name, String numOfSongs, int thumbnail) {
         this.name = name;
         this.numOfSongs = numOfSongs;
         this.thumbnail = thumbnail;
@@ -26,11 +26,11 @@ public class Album {
         this.name = name;
     }
 
-    public int getNumOfSongs() {
+    public String getNumOfSongs() {
         return numOfSongs;
     }
 
-    public void setNumOfSongs(int numOfSongs) {
+    public void setNumOfSongs(String numOfSongs) {
         this.numOfSongs = numOfSongs;
     }
 

@@ -7,6 +7,8 @@ package com.example.shreyash.myapplication;
 
 
         import android.content.Context;
+        import android.content.Intent;
+        import android.support.v4.app.FragmentTransaction;
         import android.support.v7.widget.PopupMenu;
         import android.support.v7.widget.RecyclerView;
         import android.view.LayoutInflater;
@@ -17,6 +19,8 @@ package com.example.shreyash.myapplication;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
+        import android.support.v4.app.Fragment;
+        import android.support.v4.app.FragmentTransaction;
 
         import com.bumptech.glide.Glide;
 
@@ -61,7 +65,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         Album album = albumList.get(position);
         holder.title.setText(album.getName());
-        holder.count.setText("Age " + album.getNumOfSongs() );
+        holder.count.setText( album.getNumOfSongs() );
 
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
@@ -98,11 +102,11 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
                 case R.id.action_add_favourite:
+//                    Intent i = new Intent(mContext,Dashboard.class);
+//                    mContext.startActivity(i);
                     Toast.makeText(mContext, "Register a Complaint", Toast.LENGTH_SHORT).show();
                     return true;
-                case R.id.action_play_next:
-                    Toast.makeText(mContext, "More Info", Toast.LENGTH_SHORT).show();
-                    return true;
+
                 default:
             }
             return false;
