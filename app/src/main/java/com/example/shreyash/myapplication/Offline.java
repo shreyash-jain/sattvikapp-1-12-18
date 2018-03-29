@@ -11,14 +11,14 @@ import android.widget.Toast;
 
 public class Offline extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-    String abhinav = "mypref";
+    String mypref = "mypref";
     String Name = "nameKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline);
         Button b1=(Button)findViewById(R.id.continued);
-        sharedPreferences = getSharedPreferences(abhinav, Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
         sharedPreferences.getString(Name,"");
         String s = "Name:"+sharedPreferences.getString(Name,"")+",Email:"+",Password";
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();

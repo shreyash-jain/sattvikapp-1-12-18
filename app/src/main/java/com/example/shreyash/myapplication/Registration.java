@@ -10,15 +10,12 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.app.Activity;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.CheckBox;
+
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.google.common.collect.Range;
@@ -30,9 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Matcher;
 
 public class Registration extends AppCompatActivity  implements View.OnClickListener   {
     private EditText editTextName, editTextEmail, editTextMobile,
@@ -40,6 +34,9 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     private AutoCompleteTextView editTextHostel,editTextBranch;
     private Button buttonSubmit;
     private AwesomeValidation awesomeValidation;
+    String name;
+    String password;
+    String email;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("student_sheet");
     SharedPreferences sharedpreferences;
@@ -47,7 +44,6 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     public static final String Name = "nameKey";
     public static final String Email = "emailKey";
     public static final String Password = "passwordKey";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,29 +94,34 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         textView.setAdapter(adapter2);
         awesomeValidation.addValidation(this, R.id.input_hostel, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_department, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+
         buttonSubmit.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == buttonSubmit) {
+            submitForm();
+        }
+    }
+
+
     private void submitForm() {
-       // if (awesomeValidation.validate()) {
-//            Toast.makeText(this, "Validation Successful", Toast.LENGTH_LONG).show();
-
-
             //TODO: Check for internet connectivity
             //If no error continue else prompt user to start internet
-
-            //Starting Progress Dialog
             final ProgressDialog progressDialog = new ProgressDialog(Registration.this, R.style.MyAlertDialogStyle);
             progressDialog.setIndeterminate(true);
             progressDialog.setTitle("Authenticating...");
             progressDialog.setMessage("loading");
             progressDialog.show();
+            /*new android.os.Handler().postDelayed(
+                    new Runnable() {
+                        public void run() {
+                            progressDialog.dismiss();
+                        }
+                    }, 2000);*/
 
-
-            //Fetching Internet time and local time
-//            Date currentTime = Calendar.getInstance().getTime();
-//            Log.d("local",""+currentTime);
-
+            buttonSubmit.setEnabled(false);
             final Calendar calendar = Calendar.getInstance();
             DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
             offsetRef.addValueEventListener(new ValueEventListener() {
@@ -138,29 +139,30 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
             });
 
             //Fetch email
-            final String email = editTextEmail.getText().toString();
+            email = editTextEmail.getText().toString();
+            name = editTextName.getText().toString();
+            password = editTextPass.getText().toString();
             final String email_refined = email.replaceAll("\\W+","");
-            //Toast.makeText(this, ""+email, Toast.LENGTH_SHORT).show();
             FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
             DatabaseReference mPostReference = PostReference.getReference("student_sheet");
             mPostReference.child("students").child(email_refined).
                     addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            Create_record create_record2 = dataSnapshot.getValue(Create_record.class);
+                            Person_Details personDetails2 = dataSnapshot.getValue(Person_Details.class);
                             try {
-                                //checking if already registred or not
-                                Toast.makeText(Registration.this, "You are already registered "+create_record2.name , Toast.LENGTH_SHORT).show();
+                                //checking if already registered or not
+                                Toast.makeText(Registration.this, "You are already registered "+ personDetails2.name , Toast.LENGTH_SHORT).show();
+                                Log.d("registered already", personDetails2.name);
+                                progressDialog.dismiss();
+                                buttonSubmit.setEnabled(true);
                             }
                             catch (Exception e){
                                 //Creating record to Firebase
                                 SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d h:mm:ss a");
                                 //Toast.makeText(Registration.this, ""+format.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
 
-                                String name = editTextName.getText().toString();
-                                String email = editTextEmail.getText().toString();
-                                String password = editTextPass.getText().toString();
-                                Create_record create_record = new Create_record(
+                                Person_Details personDetails = new Person_Details(
                                         format.format(calendar.getTime()),
                                         editTextName.getText().toString(),
                                         editTextBranch.getText().toString(),
@@ -171,46 +173,33 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
                                         editTextEmail.getText().toString(),
                                         editTextdu.getText().toString(),
                                         editTextPass.getText().toString());
-                                myRef.child("students").child(email_refined).setValue(create_record);
-                                Intent i = new Intent(Registration.this, Offline.class);
+                                myRef.child("students").child(email_refined).setValue(personDetails);
+                                //Log.d("flag in registering",flag)
                                 sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
                                 editor.putString(Name, name);
                                 editor.putString(Email, email);
                                 editor.putString(Password,password);
                                 editor.apply();
+                                progressDialog.dismiss();
+                                Intent i = new Intent(Registration.this, Offline.class);
                                 startActivity(i);
-                                finish();
-                                Toast.makeText(Registration.this,  "Welcome "+editTextName.getText(), Toast.LENGTH_SHORT).show();
-                                //Toast.makeText(Registration.this, ""+e, Toast.LENGTH_SHORT).show();
-                                //Todo Detach listener (very important)
-                                //Todo
-                                //Todo
-                                //Todo
-                                //Todo
+                                finishAffinity();
+                                Toast.makeText(Registration.this,  "Welcome "+name, Toast.LENGTH_SHORT).show();
                             }
                         }
                         @Override
                         public void onCancelled(DatabaseError databaseError) {
+                            progressDialog.dismiss();
                             Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
                         }
                     });
-
-            new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            progressDialog.dismiss();
-                        }
-                    }, 2000);
-        }
-  //  }
-
-    @Override
-    public void onClick(View v) {
-        if (v == buttonSubmit) {
-            submitForm();
-        }
-
+            //progressDialog.dismiss();
+            //Todo Detach listener (very important)
+            //Todo
+            //Todo
+            //Todo
+            //Todo
     }
 }
 

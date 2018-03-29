@@ -1,144 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="fill_parent"
-android:layout_height="fill_parent"
-android:background="@drawable/mybg"
-android:visibility="visible">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mybg"
+    android:visibility="visible">
 
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-        <android.support.v7.widget.CardView
-        android:id="@+id/card_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/foreground"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        android:padding="8sp">
 
-            <LinearLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="8dp">
+            app:cardBackgroundColor="#e4bfef"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="5dp"
+            app:cardPreventCornerOverlap="false">
+            <!--app:cardUseCompatPadding="true">-->
 
-                <LinearLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                android:orientation="horizontal"
-                android:paddingBottom="8dp"
-                android:paddingTop="2dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="2dp">
 
                     <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_notice" />
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_notice" />
 
                     <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="12dp"
-                    android:text="Notice Board"
-                    android:textSize="24sp" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="12dp"
+                        android:paddingStart="12dp"
+                        android:text="Notice Board"
+                        android:textSize="24sp" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/text_notice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_notice"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <android.support.v7.widget.CardView
                     android:layout_width="320dp"
                     android:layout_height="match_parent"
-                    app:cardElevation="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="-5dp"
+                    app:cardBackgroundColor="#b4cde8"
                     app:cardCornerRadius="3dp"
-                    app:cardPreventCornerOverlap="true"
+                    app:cardElevation="5dp"
                     app:cardUseCompatPadding="true">
+                    <!--app:cardUseCompatPadding="true">-->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
                             android:gravity="center"
-                            android:text="Today's Menu"/>
+                            android:text="Today's Menu"
+                            android:textSize="24sp" />
+
                         <TextView
+                            android:id="@+id/text_menu_today"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
                             android:padding="10dp"
-                            android:id="@+id/text_menu_today"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
                     android:layout_width="320dp"
                     android:layout_height="match_parent"
-                    app:cardElevation="5dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="4dp"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="#cddff2"
                     app:cardCornerRadius="3dp"
-                    app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
                             android:gravity="center"
-                            android:text="Tomorrow"/>
+                            android:text="Tomorrow"
+                            android:textSize="24sp" />
+
                         <TextView
+                            android:id="@+id/text_menu_tom"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
                             android:padding="10dp"
-                            android:id="@+id/text_menu_tom"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
                     android:layout_width="320dp"
                     android:layout_height="match_parent"
-                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="#b4cde8"
                     app:cardCornerRadius="3dp"
-                    app:cardPreventCornerOverlap="true"
+
+
+                    app:cardElevation="5dp"
                     app:cardUseCompatPadding="true">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textSize="24sp"
                             android:gravity="center"
-                            android:text="Next Day"/>
+                            android:text="Next Day"
+                            android:textSize="24sp" />
+
                         <TextView
+                            android:id="@+id/text_menu_next"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="18sp"
                             android:padding="10dp"
-                            android:id="@+id/text_menu_next"/>
+                            android:textSize="18sp" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
@@ -147,74 +171,85 @@ android:visibility="visible">
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="5dp"
-            app:cardCornerRadius="3dp">
+            app:cardBackgroundColor="#dbeda3"
+
+            app:cardCornerRadius="3dp"
+            app:cardElevation="5dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="20sp"
                     android:padding="10dp"
                     android:text="Total Previous Expense:"
-                    />
+                    android:textSize="20sp" />
+
                 <TextView
+                    android:id="@+id/text_bill_amount_prev"
                     android:layout_width="wrap_content"
-                    android:textSize="20sp"
                     android:layout_height="wrap_content"
-                    android:text="0"
                     android:padding="10dp"
-                    android:id="@+id/text_bill_amount_prev"/>
+                    android:text="0"
+                    android:textSize="20sp" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:weightSum="2">
+
             <android.support.v7.widget.CardView
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="5dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="-4dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#edc3a3"
                 app:cardCornerRadius="3dp"
-                android:layout_height="match_parent">
+                app:cardElevation="5dp"
+                app:cardPreventCornerOverlap="false"
+                app:cardUseCompatPadding="true">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp">
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
                         android:paddingBottom="2dp"
+                        android:paddingLeft="10dp"
                         android:paddingTop="2dp"
                         android:text="This Month:"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="2dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:paddingLeft="8dp"
-                            android:text="Breakfast:"/>
+                            android:text="Breakfast:"
+                            android:textSize="20sp" />
+
                         <TextView
+                            android:id="@+id/text_bill_amount_b"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textSize="20sp"
-                            android:id="@+id/text_bill_amount_b"/>
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -222,18 +257,20 @@ android:visibility="visible">
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="2dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:paddingLeft="8dp"
-                            android:text="Lunch:"/>
+                            android:text="Lunch:"
+                            android:textSize="20sp" />
+
                         <TextView
+                            android:id="@+id/text_bill_amount_l"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="0"
-                            android:textSize="20sp"
-                            android:id="@+id/text_bill_amount_l"/>
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -241,18 +278,20 @@ android:visibility="visible">
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="2dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:paddingLeft="8dp"
-                            android:text="Dinner:"/>
+                            android:text="Dinner:"
+                            android:textSize="20sp" />
+
                         <TextView
+                            android:id="@+id/text_bill_amount_d"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:text="0"
-                            android:id="@+id/text_bill_amount_d"/>
+                            android:textSize="20sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -260,46 +299,52 @@ android:visibility="visible">
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:padding="2dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:paddingLeft="8dp"
-                            android:text="Extras:"/>
+                            android:text="Extras:"
+                            android:textSize="20sp" />
+
                         <TextView
+                            android:id="@+id/text_bill_amount_ex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="20sp"
                             android:text="0"
-                            android:id="@+id/text_bill_amount_ex"/>
+                            android:textSize="20sp" />
                     </LinearLayout>
-                    </LinearLayout>
+                </LinearLayout>
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="true"
+                android:layout_weight="1"
+                app:cardBackgroundColor="#cbd4d6"
+                app:cardCornerRadius="3dp"
                 app:cardElevation="5dp"
-                app:cardCornerRadius="3dp">
+                app:cardUseCompatPadding="true">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
+
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Estimated Cost:"
-                        android:textSize="24sp"
-                        android:padding="10dp"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="10000"
-                        android:textSize="50sp"
                         android:padding="10dp"
-                        android:id="@+id/text_bill_amount_estimated"/>
+                        android:text="Estimated Cost:"
+                        android:textSize="24sp" />
+
+                    <TextView
+                        android:id="@+id/text_bill_amount_estimated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:text="10000"
+                        android:textSize="50sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>

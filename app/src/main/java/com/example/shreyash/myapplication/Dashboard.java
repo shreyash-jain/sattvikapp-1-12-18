@@ -2,8 +2,10 @@ package com.example.shreyash.myapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -27,6 +29,11 @@ import org.w3c.dom.Text;
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    SharedPreferences sharedpreferences;
+    public static final String myPreference = "mypref";
+    public static final String Name = "nameKey";
+    public static final String Email = "emailKey";
+    public static final String Password = "passwordKey";
     FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +128,13 @@ public class Dashboard extends AppCompatActivity
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     //TODO: Delete data from shared preferences
+                    sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
+                    editor.remove(Name);
+                    editor.remove(Email);
+                    editor.remove(Password);
+                    editor.apply();
+
                     Intent i = new Intent(Dashboard.this,LoginActivity.class);
                     startActivity(i);
                     finishAffinity();

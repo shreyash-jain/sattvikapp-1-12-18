@@ -1,6 +1,8 @@
 package com.example.shreyash.myapplication;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +14,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -20,6 +28,11 @@ public class LoginActivity extends AppCompatActivity {
     EditText _passwordText;
     Button _loginButton;
     TextView _signupLink;
+    SharedPreferences sharedpreferences;
+    public static final String myPreference = "mypref";
+    public static final String Name = "nameKey";
+    public static final String Email = "emailKey";
+    public static final String Password = "passwordKey";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +79,53 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("loading");
         progressDialog.show();
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String password = _passwordText.getText().toString();
+        final String email_refined = _emailText.getText().toString().replaceAll("\\W+","");
 
-        new android.os.Handler().postDelayed(
+        FirebaseDatabase LoginReference = FirebaseDatabase.getInstance();
+        DatabaseReference mLoginReference = LoginReference.getReference("student_sheet");
+        mLoginReference.child("students").child(email_refined).
+                addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Person_Details personDetails2 = dataSnapshot.getValue(Person_Details.class);
+                        try {
+                            //checking if already registered or not
+                            if(personDetails2.email.equals(email) && personDetails2.password.equals(password) )
+                            {
+                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedpreferences.edit();
+                                editor.putString(Name, personDetails2.name);
+                                editor.putString(Email, email);
+                                editor.putString(Password,password);
+                                editor.apply();
+                                progressDialog.dismiss();
+                                onLoginSuccess();
+                            }
+                            else {
+                                Toast.makeText(LoginActivity.this, "Incorrect Credentials", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                onLoginFailed();
+                            }
+                        }
+                        catch (Exception e){
+                            Toast.makeText(LoginActivity.this, "You are not registered with this email id", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            onLoginFailed();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(LoginActivity.this, "Check Internet Connection", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        onLoginFailed();
+                        Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
+
+        /*new android.os.Handler().postDelayed(
             new Runnable() {
                 public void run() {
                     // On complete call either onLoginSuccess or onLoginFailed
@@ -77,9 +133,9 @@ public class LoginActivity extends AppCompatActivity {
                     onLoginSuccess();
                     //If no data call function below
                     // onLoginFailed();
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
                 }
-            }, 3000);
+            }, 3000);*/
     }
 
     @Override
