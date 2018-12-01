@@ -125,7 +125,7 @@ public class Dashboard extends AppCompatActivity
             builder.setMessage("Confirm Logout?");
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    //TODO: Delete data from shared preferences
+                    // Delete data from shared preferences
                     sharedpreferences = getSharedPreferences(Constants.MYPREFERENCE, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedpreferences.edit();
                     editor.remove(Constants.NAME);
@@ -153,6 +153,5 @@ public class Dashboard extends AppCompatActivity
     }
 }
 
-//TODO: Add back button on each page
 //TODO: Change highlight of drawer
 //TODO: Add notifications 1.Offline complete 2.Monthly notify 3.Meal Cancellation accept 4.Notice Board

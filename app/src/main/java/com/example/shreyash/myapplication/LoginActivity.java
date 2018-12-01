@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
-        //TODO: Check if complete registration or not. Proceed accordingly
+        //TODO: Check if offline registration or not. Proceed accordingly
         //If complete
         Intent i = new Intent(LoginActivity.this, Dashboard.class);
         startActivity(i);
