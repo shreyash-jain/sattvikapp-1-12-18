@@ -39,6 +39,8 @@
             android:label="@string/title_activity_dashboard"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityAbout" />
+        <activity android:name=".ActivityWorkers"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>
 
