@@ -12,69 +12,32 @@ public class ActivityAbout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-        final ScrollView scroll = (ScrollView)findViewById(R.id.scroll_about);
 
-        final TextView text_vision = (TextView)findViewById(R.id.text_vision_content);
-        TextView title_vision = (TextView) findViewById(R.id.text_vision_title);
-        title_vision.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(text_vision.isShown()){
-                    text_vision.setVisibility(View.GONE);
-                }
-                else{
-                    text_vision.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        final TextView text_history = (TextView)findViewById(R.id.text_history_content);
-        final TextView title_history = (TextView) findViewById(R.id.text_history_title);
+        final TextView text_vision = findViewById(R.id.text_vision_content);
+        final TextView title_vision =  findViewById(R.id.text_vision_title);
+        expandCollapseText(title_vision,text_vision);
+        final TextView text_history = findViewById(R.id.text_history_content);
+        final TextView title_history =  findViewById(R.id.text_history_title);
         text_history.setVisibility(View.GONE);
-        title_history.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(text_history.isShown()){
-                    text_history.setVisibility(View.GONE);
-                }
-                else{
-                    text_history.setVisibility(View.VISIBLE);
-                    int[] location = new int[2];
-                    title_history.getLocationOnScreen(location);
-                    scroll.smoothScrollTo(location[0],location[1]);
-                }
-            }
-        });
-        final TextView text_registration = (TextView)findViewById(R.id.text_registration_procedure_content);
-        final TextView title_registration = (TextView) findViewById(R.id.text_registration_procedure_title);
+        expandCollapseText(title_history,text_history);
+        final TextView text_registration = findViewById(R.id.text_registration_procedure_content);
+        final TextView title_registration =  findViewById(R.id.text_registration_procedure_title);
         text_registration.setVisibility(View.GONE);
-        title_registration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(text_registration.isShown()){
-                    text_registration.setVisibility(View.GONE);
-                }
-                else{
-                    text_registration.setVisibility(View.VISIBLE);
-                    int[] location = new int[2];
-                    title_history.getLocationOnScreen(location);
-                    scroll.smoothScrollTo(location[0],location[1]);
-                }
-            }
-        });
-        final TextView text_general = (TextView)findViewById(R.id.text_general_rules_content);
-        final TextView title_general = (TextView) findViewById(R.id.text_general_rules_title);
+        expandCollapseText(title_registration,text_registration);
+        final TextView text_general = findViewById(R.id.text_general_rules_content);
+        final TextView title_general =  findViewById(R.id.text_general_rules_title);
         text_general.setVisibility(View.GONE);
-        title_general.setOnClickListener(new View.OnClickListener() {
+        expandCollapseText(title_general,text_general);
+    }
+    void expandCollapseText(final TextView title,final TextView text){
+        title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(text_general.isShown()){
-                    text_general.setVisibility(View.GONE);
+                if(text.isShown()){
+                    text.setVisibility(View.GONE);
                 }
                 else{
-                    text_general.setVisibility(View.VISIBLE);
-                    int[] location = new int[2];
-                    title_history.getLocationOnScreen(location);
-                    scroll.smoothScrollTo(location[0],location[1]);
+                    text.setVisibility(View.VISIBLE);
                 }
             }
         });

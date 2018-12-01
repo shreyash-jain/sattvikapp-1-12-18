@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.example.shreyash.utils.Constants;
 import com.google.common.collect.Range;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -40,35 +41,21 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("student_sheet");
     SharedPreferences sharedpreferences;
-    public static final String myPreference = "mypref";
-    public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
-    public static final String Password = "passwordKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
-        TextView t1=(TextView) findViewById(R.id.secret);
-        t1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i=new Intent(Registration.this,Offline.class);
-                startActivity(i);
-            }
-        });
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.UNDERLABEL);
         awesomeValidation.setContext(this);
-        editTextName = (EditText) findViewById(R.id.input_name);
-        editTextEmail = (EditText) findViewById(R.id.input_email);
-        editTextMobile = (EditText) findViewById(R.id.input_phone);
+        editTextName =  findViewById(R.id.input_name);
+        editTextEmail =  findViewById(R.id.input_email);
+        editTextMobile =  findViewById(R.id.input_phone);
         editTextRoom = findViewById(R.id.input_room);
-        editTextdu = (EditText) findViewById(R.id.input_du_no);
-        editTextyear = (EditText) findViewById(R.id.input_year);
+        editTextdu =  findViewById(R.id.input_du_no);
+        editTextyear =  findViewById(R.id.input_year);
         editTextPass = findViewById(R.id.input_password);
-        buttonSubmit = (Button) findViewById(R.id.button);
-        editTextHostel =(AutoCompleteTextView) findViewById(R.id.input_hostel);
-        editTextBranch=(AutoCompleteTextView) findViewById(R.id.input_department);
+        buttonSubmit = findViewById(R.id.button);
 
         awesomeValidation.addValidation(this, R.id.input_name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
@@ -77,24 +64,21 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
         awesomeValidation.addValidation(this, R.id.input_password, regexPassword, R.string.err_password);
         //awesomeValidation.addValidation(this, R.id.input_confirm_password,editTextPass.getText().toString(), R.string.err_password_confirmation);
+
         String[] clg_branches = getResources().getStringArray(R.array.branches);
-        //TODO: awesome validation for confirm password and du number
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, clg_branches);
-        //Find TextView control
-        AutoCompleteTextView acTextView = (AutoCompleteTextView) findViewById(R.id.input_department);
-        //Set the number of characters the user must type before the drop down list is shown
-        acTextView.setThreshold(1);
-        //Set the card_adapter_menulbd
-        acTextView.setAdapter(adapter);
-        final AutoCompleteTextView textView = findViewById(R.id.input_hostel);
-        // Get the string array
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, clg_branches);
+        editTextBranch = findViewById(R.id.input_department);
+        editTextBranch.setThreshold(1);
+        editTextBranch.setAdapter(adapter);
+
+        editTextHostel = findViewById(R.id.input_hostel);
         String[] clg_hostels = getResources().getStringArray(R.array.hostel_array);
-        // Create the card_adapter_menulbd and set it to the AutoCompleteTextView
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, clg_hostels);
-        textView.setAdapter(adapter2);
+        editTextHostel.setAdapter(adapter2);
+
         awesomeValidation.addValidation(this, R.id.input_hostel, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_department, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-
+        //TODO: awesome validation for confirm password and du number
         buttonSubmit.setOnClickListener(this);
     }
 
@@ -175,11 +159,11 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
                                         editTextPass.getText().toString());
                                 myRef.child("students").child(email_refined).setValue(personDetails);
                                 //Log.d("flag in registering",flag)
-                                sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                                sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(Name, name);
-                                editor.putString(Email, email);
-                                editor.putString(Password,password);
+                                editor.putString(Constants.Name, name);
+                                editor.putString(Constants.Email, email);
+                                editor.putString(Constants.Password,password);
                                 editor.apply();
                                 progressDialog.dismiss();
                                 Intent i = new Intent(Registration.this, Offline.class);
@@ -194,7 +178,6 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
                             Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
                         }
                     });
-            //progressDialog.dismiss();
             //Todo Detach listener (very important)
             //Todo
             //Todo
