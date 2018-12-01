@@ -12,5 +12,5 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="false"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/titlepage2" />
+        app:srcCompat="@drawable/title_page_3" />
 </android.support.constraint.ConstraintLayout>
