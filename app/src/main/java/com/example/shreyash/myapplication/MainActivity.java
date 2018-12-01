@@ -7,13 +7,12 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import utils.Constants;
+
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
-    public static final String myPreference = "mypref";
-    public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
-    public static final String Password = "passwordKey";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                //TODO: check if already login from local database. If data present go to Dashboard Else go to LoginActivity
-                sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
-                String s =sharedpreferences.getString(Name,"");
+                sharedpreferences = getSharedPreferences(Constants.MYPREFERENCE, Context.MODE_PRIVATE);
+                String s =sharedpreferences.getString(Constants.NAME,"");
                 if(s.equals("")) {
                     Intent i = new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(i);

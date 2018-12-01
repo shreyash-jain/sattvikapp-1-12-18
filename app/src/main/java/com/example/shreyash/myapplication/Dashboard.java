@@ -26,14 +26,12 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import utils.Constants;
+
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreferences sharedpreferences;
-    public static final String myPreference = "mypref";
-    public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
-    public static final String Password = "passwordKey";
     FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,11 +126,11 @@ public class Dashboard extends AppCompatActivity
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     //TODO: Delete data from shared preferences
-                    sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                    sharedpreferences = getSharedPreferences(Constants.MYPREFERENCE, Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.remove(Name);
-                    editor.remove(Email);
-                    editor.remove(Password);
+                    editor.remove(Constants.NAME);
+                    editor.remove(Constants.EMAIL);
+                    editor.remove(Constants.PASSWORD);
                     editor.apply();
 
                     Intent i = new Intent(Dashboard.this,LoginActivity.class);

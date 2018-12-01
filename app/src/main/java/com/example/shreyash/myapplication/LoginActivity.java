@@ -20,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import utils.Constants;
+
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -29,10 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     TextView _signupLink;
     SharedPreferences sharedpreferences;
-    public static final String myPreference = "mypref";
-    public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
-    public static final String Password = "passwordKey";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,11 +93,11 @@ public class LoginActivity extends AppCompatActivity {
                             if(personDetails2.email.equals(email) && personDetails2.password.equals(password) )
                             {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                                sharedpreferences = getSharedPreferences(Constants.MYPREFERENCE, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(Name, personDetails2.name);
-                                editor.putString(Email, email);
-                                editor.putString(Password,password);
+                                editor.putString(Constants.NAME, personDetails2.name);
+                                editor.putString(Constants.EMAIL, email);
+                                editor.putString(Constants.PASSWORD,password);
                                 editor.apply();
                                 progressDialog.dismiss();
                                 onLoginSuccess();
@@ -124,18 +122,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
                     }
                 });
-
-        /*new android.os.Handler().postDelayed(
-            new Runnable() {
-                public void run() {
-                    // On complete call either onLoginSuccess or onLoginFailed
-                    //TODO: Check data from database and proceed accordingly
-                    onLoginSuccess();
-                    //If no data call function below
-                    // onLoginFailed();
-                    //progressDialog.dismiss();
-                }
-            }, 3000);*/
     }
 
     @Override
