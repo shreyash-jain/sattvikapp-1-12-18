@@ -35,4 +35,7 @@
         <item name="colorAccent">@android:color/holo_green_dark</item>
         <item name = "android:textColor">@android:color/black</item>
     </style>
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">11sp</item>
+    </style>
 </resources>
