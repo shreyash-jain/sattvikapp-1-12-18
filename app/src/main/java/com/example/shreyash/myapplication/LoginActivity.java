@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shreyash.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,10 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     Button _loginButton;
     TextView _signupLink;
     SharedPreferences sharedpreferences;
-    public static final String myPreference = "mypref";
-    public static final String Name = "nameKey";
-    public static final String Email = "emailKey";
-    public static final String Password = "passwordKey";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,11 +92,11 @@ public class LoginActivity extends AppCompatActivity {
                             if(personDetails2.email.equals(email) && personDetails2.password.equals(password) )
                             {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                sharedpreferences = getSharedPreferences(myPreference, Context.MODE_PRIVATE);
+                                sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(Name, personDetails2.name);
-                                editor.putString(Email, email);
-                                editor.putString(Password,password);
+                                editor.putString(Constants.Name, personDetails2.name);
+                                editor.putString(Constants.Email, email);
+                                editor.putString(Constants.Password,password);
                                 editor.apply();
                                 progressDialog.dismiss();
                                 onLoginSuccess();
