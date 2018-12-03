@@ -26,7 +26,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("student_sheet");
-    SharedPreferences sharedpreferences;
+    SharedPreferences sharedPreferences;
     TextView textName,textEmail,textPhone,textAddress,textYear,textDepartment,textDU;
     String email,name,password,phone,room,hostel,year,dept,du;
     Button confirm;
@@ -44,9 +44,9 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         textDU = findViewById(R.id.text_view_du);
         confirm = findViewById(R.id.confirm);
         Intent i = getIntent();
-        name = i.getStringExtra("Name");
-        email = i.getStringExtra("Email");
-        password = i.getStringExtra("Password");
+        name = i.getStringExtra("name");
+        email = i.getStringExtra("email");
+        password = i.getStringExtra("password");
         phone = i.getStringExtra("Phone");
         room = i.getStringExtra("Room");
         hostel = i.getStringExtra("Hostel");
@@ -54,13 +54,14 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         dept = i.getStringExtra("Department");
         du = i.getStringExtra("DU");
 
-        textName.setText("Name: "+name);
-        textEmail.setText("Email: "+email);
+        textName.setText("name: "+name);
+        textEmail.setText("email: "+email);
         textPhone.setText("Phone No.: "+phone);
         textAddress.setText("Address: "+room+", "+hostel);
         textYear.setText("Current Year: " +year);
         textDepartment.setText("Department: "+dept);
         textDU.setText("DU Number: "+du);
+        confirm.setOnClickListener(this);
 
     }
     private void submitForm() {
@@ -104,7 +105,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                 addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Person_Details personDetails2 = dataSnapshot.getValue(Person_Details.class);
+                        PersonDetails personDetails2 = dataSnapshot.getValue(PersonDetails.class);
                         try {
                             //checking if already registered or not
                             Toast.makeText(RegistrationConfirmation.this, "You are already registered "+ personDetails2.name , Toast.LENGTH_SHORT).show();
@@ -117,7 +118,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                             SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d h:mm:ss a");
                             //Toast.makeText(Registration.this, ""+format.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
 
-                            Person_Details personDetails = new Person_Details(
+                            PersonDetails personDetails = new PersonDetails(
                                     format.format(calendar.getTime()),
                                     name,
                                     dept,
@@ -130,11 +131,11 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                                     password);
                             myRef.child("students").child(email_refined).setValue(personDetails);
                             //Log.d("flag in registering",flag)
-                            sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString(Constants.Name, name);
-                            editor.putString(Constants.Email, email);
-                            editor.putString(Constants.Password,password);
+                            sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(Constants.name, name);
+                            editor.putString(Constants.email, email);
+                            editor.putString(Constants.password,password);
                             editor.apply();
                             progressDialog.dismiss();
                             Intent i = new Intent(RegistrationConfirmation.this, Offline.class);

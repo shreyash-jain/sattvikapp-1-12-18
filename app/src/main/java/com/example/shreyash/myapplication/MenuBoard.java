@@ -4,14 +4,14 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 29-03-2018.
  */
 
-public class Menu_Board {
+public class MenuBoard {
     private String breakfast;
     private String lunch;
     private String dinner;
 
-    public  Menu_Board(){
+    public MenuBoard(){
     }
-    public Menu_Board(String breakfast, String lunch, String dinner) {
+    public MenuBoard(String breakfast, String lunch, String dinner) {
         this.breakfast = breakfast;
         this.lunch = lunch;
         this.dinner = dinner;

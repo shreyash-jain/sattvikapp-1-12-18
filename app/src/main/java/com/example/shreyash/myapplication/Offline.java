@@ -9,18 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.shreyash.utils.Constants;
+
 public class Offline extends AppCompatActivity {
     SharedPreferences sharedPreferences;
-    String mypref = "mypref";
-    String Name = "nameKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offline);
-        Button b1=(Button)findViewById(R.id.continued);
-        sharedPreferences = getSharedPreferences(mypref, Context.MODE_PRIVATE);
-        sharedPreferences.getString(Name,"");
-        String s = "Name:"+sharedPreferences.getString(Name,"")+",Email:"+",Password";
+        Button b1=findViewById(R.id.continued);
+        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        String s = "name:"+sharedPreferences.getString(Constants.name,"")+",email:"+",password";
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
         //TODO: Check online if form filled. Enable button
         b1.setOnClickListener(new View.OnClickListener() {

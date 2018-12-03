@@ -80,15 +80,15 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     public void onClick(View v) {
         if (v == buttonSubmit) {
             Intent i = new Intent(Registration.this, RegistrationConfirmation.class);
-            i.putExtra("Name",editTextName.getText().toString());
-            i.putExtra("Email",editTextEmail.getText().toString());
+            i.putExtra("name",editTextName.getText().toString());
+            i.putExtra("email",editTextEmail.getText().toString());
             i.putExtra("Phone",editTextMobile.getText().toString());
             i.putExtra("Room",editTextRoom.getText().toString());
             i.putExtra("Hostel",editTextHostel.getText().toString());
             i.putExtra("Year",editTextyear.getText().toString());
             i.putExtra("Department",editTextBranch.getText().toString());
             i.putExtra("DU",editTextdu.getText().toString());
-            i.putExtra("Password",editTextPass.getText().toString());
+            i.putExtra("password",editTextPass.getText().toString());
             startActivity(i);
         }
     }

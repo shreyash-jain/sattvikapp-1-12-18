@@ -1,18 +1,13 @@
 package com.example.shreyash.myapplication;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,38 +15,35 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.shreyash.utils.Constants;
 
-import org.w3c.dom.Text;
-
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    SharedPreferences sharedpreferences;
-    FloatingActionButton fab;
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         View header=navigationView.getHeaderView(0);
-        TextView name = (TextView)header.findViewById(R.id.main_name);
-        TextView id = (TextView)header.findViewById(R.id.main_sattvikId);
+        TextView name = header.findViewById(R.id.main_name);
+        TextView id = header.findViewById(R.id.main_sattvikId);
         //TODO: CHange name and sattvik id of person from here. Can change image also.
 //        String personName = "Abhinav Dangi";
 //        String personEmail = "2";
@@ -67,8 +59,8 @@ public class Dashboard extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        FragmentBoard myFragment = (FragmentBoard) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");;
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        FragmentBoard myFragment = (FragmentBoard) getSupportFragmentManager().findFragmentByTag("MY_FRAGMENT");
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -108,7 +100,7 @@ public class Dashboard extends AppCompatActivity
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
     }
     @SuppressWarnings("StatementWithEmptyBody")
@@ -126,11 +118,11 @@ public class Dashboard extends AppCompatActivity
             builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     //TODO: Delete data from shared preferences
-                    sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedpreferences.edit();
-                    editor.remove(Constants.Name);
-                    editor.remove(Constants.Email);
-                    editor.remove(Constants.Password);
+                    sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove(Constants.name);
+                    editor.remove(Constants.email);
+                    editor.remove(Constants.password);
                     editor.apply();
 
                     Intent i = new Intent(Dashboard.this,LoginActivity.class);

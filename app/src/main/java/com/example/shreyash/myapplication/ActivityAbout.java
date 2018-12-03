@@ -13,21 +13,21 @@ public class ActivityAbout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        final TextView text_vision = findViewById(R.id.text_vision_content);
-        final TextView title_vision =  findViewById(R.id.text_vision_title);
-        expandCollapseText(title_vision,text_vision);
-        final TextView text_history = findViewById(R.id.text_history_content);
-        final TextView title_history =  findViewById(R.id.text_history_title);
-        text_history.setVisibility(View.GONE);
-        expandCollapseText(title_history,text_history);
-        final TextView text_registration = findViewById(R.id.text_registration_procedure_content);
-        final TextView title_registration =  findViewById(R.id.text_registration_procedure_title);
-        text_registration.setVisibility(View.GONE);
-        expandCollapseText(title_registration,text_registration);
-        final TextView text_general = findViewById(R.id.text_general_rules_content);
-        final TextView title_general =  findViewById(R.id.text_general_rules_title);
-        text_general.setVisibility(View.GONE);
-        expandCollapseText(title_general,text_general);
+        final TextView textVision = findViewById(R.id.text_vision_content);
+        final TextView titleVision =  findViewById(R.id.text_vision_title);
+        expandCollapseText(titleVision,textVision);
+        final TextView textHistory = findViewById(R.id.text_history_content);
+        final TextView titleHistory =  findViewById(R.id.text_history_title);
+        textHistory.setVisibility(View.GONE);
+        expandCollapseText(titleHistory,textHistory);
+        final TextView textRegistration = findViewById(R.id.text_registration_procedure_content);
+        final TextView titleRegistration =  findViewById(R.id.text_registration_procedure_title);
+        textRegistration.setVisibility(View.GONE);
+        expandCollapseText(titleRegistration,textRegistration);
+        final TextView textGeneral = findViewById(R.id.text_general_rules_content);
+        final TextView titleGeneral =  findViewById(R.id.text_general_rules_title);
+        textGeneral.setVisibility(View.GONE);
+        expandCollapseText(titleGeneral,textGeneral);
     }
     void expandCollapseText(final TextView title,final TextView text){
         title.setOnClickListener(new View.OnClickListener() {

@@ -25,21 +25,21 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
-    EditText _emailText;
-    EditText _passwordText;
-    Button _loginButton;
-    TextView _signupLink;
-    SharedPreferences sharedpreferences;
+    EditText emailText;
+    EditText passwordText;
+    Button loginButton;
+    TextView signupLink;
+    SharedPreferences sharedPreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        _emailText = findViewById(R.id.text_email);
-        _passwordText = findViewById(R.id.text_password);
-        _loginButton = findViewById(R.id.btn_login);
-        _signupLink = findViewById(R.id.text_signup);
-        _loginButton.setOnClickListener(new View.OnClickListener() {
+        emailText = findViewById(R.id.text_email);
+        passwordText = findViewById(R.id.text_password);
+        loginButton = findViewById(R.id.btn_login);
+        signupLink = findViewById(R.id.text_signup);
+        loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        _signupLink.setOnClickListener(new View.OnClickListener() {
+        signupLink.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        _loginButton.setEnabled(false);
+        loginButton.setEnabled(false);
 
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyAlertDialogStyle);
 
@@ -76,27 +76,27 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("loading");
         progressDialog.show();
 
-        final String email = _emailText.getText().toString();
-        final String password = _passwordText.getText().toString();
-        final String email_refined = _emailText.getText().toString().replaceAll("\\W+","");
+        final String email = emailText.getText().toString();
+        final String password = passwordText.getText().toString();
+        final String emailRefined = emailText.getText().toString().replaceAll("\\W+","");
 
         FirebaseDatabase LoginReference = FirebaseDatabase.getInstance();
         DatabaseReference mLoginReference = LoginReference.getReference("student_sheet");
-        mLoginReference.child("students").child(email_refined).
+        mLoginReference.child("students").child(emailRefined).
                 addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        Person_Details personDetails2 = dataSnapshot.getValue(Person_Details.class);
+                        PersonDetails personDetails2 = dataSnapshot.getValue(PersonDetails.class);
                         try {
                             //checking if already registered or not
                             if(personDetails2.email.equals(email) && personDetails2.password.equals(password) )
                             {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(Constants.Name, personDetails2.name);
-                                editor.putString(Constants.Email, email);
-                                editor.putString(Constants.Password,password);
+                                sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString(Constants.name, personDetails2.name);
+                                editor.putString(Constants.email, email);
+                                editor.putString(Constants.password,password);
                                 editor.apply();
                                 progressDialog.dismiss();
                                 onLoginSuccess();
@@ -121,18 +121,6 @@ public class LoginActivity extends AppCompatActivity {
                         Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
                     }
                 });
-
-        /*new android.os.Handler().postDelayed(
-            new Runnable() {
-                public void run() {
-                    // On complete call either onLoginSuccess or onLoginFailed
-                    //TODO: Check data from database and proceed accordingly
-                    onLoginSuccess();
-                    //If no data call function below
-                    // onLoginFailed();
-                    //progressDialog.dismiss();
-                }
-            }, 3000);*/
     }
 
     @Override
@@ -142,8 +130,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        _loginButton.setEnabled(true);
-        //TODO: Check if complete registration or not. Proceed accordingly
+        loginButton.setEnabled(true);
+        //TODO: Check if offline registration complete or not. Proceed accordingly
         //If complete
         Intent i = new Intent(LoginActivity.this, Dashboard.class);
         startActivity(i);
@@ -155,27 +143,27 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
-        _loginButton.setEnabled(true);
+        loginButton.setEnabled(true);
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            emailText.setError("enter a valid email address");
             valid = false;
         } else {
-            _emailText.setError(null);
+            emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+            passwordText.setError("between 4 and 10 alphanumeric characters");
             valid = false;
         } else {
-            _passwordText.setError(null);
+            passwordText.setError(null);
         }
 
         return valid;

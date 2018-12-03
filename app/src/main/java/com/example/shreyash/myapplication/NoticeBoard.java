@@ -4,13 +4,13 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 29-03-2018.
  */
 
-public class Notice_Board {
+public class NoticeBoard {
     public String message;
-    public Notice_Board() {
+    public NoticeBoard() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Notice_Board(String message) {
+    public NoticeBoard(String message) {
         this.message = message;
     }
 
