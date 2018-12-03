@@ -8,6 +8,13 @@
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#4c4c4c</color>
     <color name="transparent_white">#cccccc</color>
+    <color name="firstpage">#975ff7</color>
+    <color name="secondpage">#608c50</color>
+    <color name="thirdpage">#166afc</color>
+    <color name="buttonintro">#4bc949</color>
+    <color name="yellowvla">#fae64e</color>
+    <color name="tabtext">#fff</color>
+    <color name="tab_indicator">#2d2d2d</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
