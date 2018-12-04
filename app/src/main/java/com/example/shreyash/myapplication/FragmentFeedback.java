@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.util.Log;
@@ -51,7 +52,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
     private EditText disctext;
     private RatingBar ratingBar;
-    private  String discriptionhai;
+    private  String field;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("feedback_sheet");
@@ -104,12 +105,12 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
         //TODO:Send feedback here
 
-        Toast.makeText(getActivity(),"Thanks for your Feedback "+ discriptionhai + " "+ratingBar.getRating() +" "+ disctext.getText(),Toast.LENGTH_SHORT).show();
+
 
         //Submit feedback
-        sharedpreferences = getActivity().getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
-        final String name =sharedpreferences.getString(Constants.Name,"");
-        final String email = sharedpreferences.getString(Constants.Email,"");
+        sharedpreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        final String name =sharedpreferences.getString(Constants.name,"");
+        final String email = sharedpreferences.getString(Constants.email,"");
         final String rating= String.valueOf(ratingBar.getRating());
         final String destxt = disctext.getText().toString();
         //TODO: Check for internet connectivity
@@ -151,7 +152,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
                         feedbackDetails = new Feedback_Details(
                                 format.format(calendar.getTime()),
                                 name,
-                                discriptionhai,
+                                field,
                                 rating,
                                 destxt,
                                 email
@@ -159,9 +160,11 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
                         myRef.child("feedbacks").child(key).setValue(feedbackDetails);
                         //Log.d("flag in registering",flag)
                         progressDialog.dismiss();
-                        /*Intent i = new Intent(Registration.this, Offline.class);
-                        startActivity(i);
-                        finishAffinity();*/
+                        Toast.makeText(getActivity(),"Thanks for your Feedback ",Toast.LENGTH_SHORT).show();
+                        Fragment myFragment=new FragmentBoard();
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.content_frame,  myFragment, "MY_FRAGMENT");
+                        ft.commit();
                         //Toast.makeText(Registration.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
                     }
                     @Override
@@ -177,8 +180,8 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        discriptionhai = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + discriptionhai, Toast.LENGTH_SHORT).show();
+        field = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), "Selected: " + field, Toast.LENGTH_SHORT).show();
     }
 
     @Override

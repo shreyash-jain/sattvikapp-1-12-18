@@ -35,12 +35,6 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     private AutoCompleteTextView editTextHostel,editTextBranch;
     private Button buttonSubmit;
     private AwesomeValidation awesomeValidation;
-    String name;
-    String password;
-    String email;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("student_sheet");
-    SharedPreferences sharedpreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,104 +79,18 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == buttonSubmit) {
-            submitForm();
+            Intent i = new Intent(Registration.this, RegistrationConfirmation.class);
+            i.putExtra("name",editTextName.getText().toString());
+            i.putExtra("email",editTextEmail.getText().toString());
+            i.putExtra("Phone",editTextMobile.getText().toString());
+            i.putExtra("Room",editTextRoom.getText().toString());
+            i.putExtra("Hostel",editTextHostel.getText().toString());
+            i.putExtra("Year",editTextyear.getText().toString());
+            i.putExtra("Department",editTextBranch.getText().toString());
+            i.putExtra("DU",editTextdu.getText().toString());
+            i.putExtra("password",editTextPass.getText().toString());
+            startActivity(i);
         }
-    }
-
-
-    private void submitForm() {
-            //TODO: Check for internet connectivity
-            //If no error continue else prompt user to start internet
-            final ProgressDialog progressDialog = new ProgressDialog(Registration.this, R.style.MyAlertDialogStyle);
-            progressDialog.setIndeterminate(true);
-            progressDialog.setTitle("Authenticating...");
-            progressDialog.setMessage("loading");
-            progressDialog.show();
-            /*new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            progressDialog.dismiss();
-                        }
-                    }, 2000);*/
-
-            buttonSubmit.setEnabled(false);
-            final Calendar calendar = Calendar.getInstance();
-            DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
-            offsetRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot snapshot) {
-                    double offset = snapshot.getValue(Double.class);
-                    double estimatedServerTimeMs = System.currentTimeMillis() + offset;
-                    calendar.setTimeInMillis(((long) estimatedServerTimeMs));
-                    Log.d("inter",""+calendar.getTime());
-                }
-                @Override
-                public void onCancelled(DatabaseError error) {
-                    System.err.println("Listener was cancelled");
-                }
-            });
-
-            //Fetch email
-            email = editTextEmail.getText().toString();
-            name = editTextName.getText().toString();
-            password = editTextPass.getText().toString();
-            final String email_refined = email.replaceAll("\\W+","");
-            FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
-            DatabaseReference mPostReference = PostReference.getReference("student_sheet");
-            mPostReference.child("students").child(email_refined).
-                    addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            Person_Details personDetails2 = dataSnapshot.getValue(Person_Details.class);
-                            try {
-                                //checking if already registered or not
-                                Toast.makeText(Registration.this, "You are already registered "+ personDetails2.name , Toast.LENGTH_SHORT).show();
-                                Log.d("registered already", personDetails2.name);
-                                progressDialog.dismiss();
-                                buttonSubmit.setEnabled(true);
-                            }
-                            catch (Exception e){
-                                //Creating record to Firebase
-                                SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d h:mm:ss a");
-                                //Toast.makeText(Registration.this, ""+format.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
-
-                                Person_Details personDetails = new Person_Details(
-                                        format.format(calendar.getTime()),
-                                        editTextName.getText().toString(),
-                                        editTextBranch.getText().toString(),
-                                        editTextyear.getText().toString(),
-                                        editTextRoom.getText().toString(),
-                                        editTextHostel.getText().toString(),
-                                        editTextMobile.getText().toString(),
-                                        editTextEmail.getText().toString(),
-                                        editTextdu.getText().toString(),
-                                        editTextPass.getText().toString());
-                                myRef.child("students").child(email_refined).setValue(personDetails);
-                                //Log.d("flag in registering",flag)
-                                sharedpreferences = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedpreferences.edit();
-                                editor.putString(Constants.Name, name);
-                                editor.putString(Constants.Email, email);
-                                editor.putString(Constants.Password,password);
-                                editor.apply();
-                                progressDialog.dismiss();
-                                Intent i = new Intent(Registration.this, Offline.class);
-                                startActivity(i);
-                                finishAffinity();
-                                Toast.makeText(Registration.this,  "Welcome "+name, Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            progressDialog.dismiss();
-                            Log.w("registered or not", "loadPost:onCancelled", databaseError.toException());
-                        }
-                    });
-            //Todo Detach listener (very important)
-            //Todo
-            //Todo
-            //Todo
-            //Todo
     }
 }
 

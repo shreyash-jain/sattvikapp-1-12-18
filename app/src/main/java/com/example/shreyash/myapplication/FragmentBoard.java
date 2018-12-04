@@ -40,14 +40,7 @@ public class FragmentBoard extends Fragment  {
         View rootview= inflater.inflate(R.layout.fragment_board, container, false);
         final TextView notice_text=(TextView)rootview.findViewById(R.id.notice_board_text);
         TextView amount_prev = (TextView) rootview.findViewById(R.id.notice_board_text);
-        /*TextView amount_b = (TextView) rootview.findViewById(R.id.notice_board_text);
-        TextView amount_l = (TextView) rootview.findViewById(R.id.notice_board_text);
-        TextView amount_d = (TextView) rootview.findViewById(R.id.notice_board_text);
-        TextView amount_ex = (TextView) rootview.findViewById(R.id.notice_board_text);
-        TextView amount_es = (TextView) rootview.findViewById(R.id.notice_board_text);
-        final TextView menu_today = (TextView) rootview.findViewById(R.id.notice_board_text);
-        final TextView menu_tom = (TextView) rootview.findViewById(R.id.notice_board_text);
-        final TextView menu_next = (TextView) rootview.findViewById(R.id.notice_board_text);*/
+
         tabLayout=rootview.findViewById(R.id.tab_id);
         appBarLayout=rootview.findViewById(R.id.appboard);
         viewPager=rootview.findViewById(R.id.view_pager);
@@ -64,7 +57,7 @@ public class FragmentBoard extends Fragment  {
         viewPager.setCurrentItem(currentweekday-1);
         //displaySelectedScreen(item.getItemId());
         //TODO: Set text of all amount textviews here
-        amount_prev.setText("450");
+       // amount_prev.setText("450");
 
         FirebaseDatabase BoardReference = FirebaseDatabase.getInstance();
         DatabaseReference mBoardReference = BoardReference.getReference("board_sheet");
@@ -72,7 +65,7 @@ public class FragmentBoard extends Fragment  {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.d("background run","hohoho");
-                Notice_Board message = dataSnapshot.getValue(Notice_Board.class);
+                NoticeBoard message = dataSnapshot.getValue(NoticeBoard.class);
                 notice_text.setText(message.message);
             }
 

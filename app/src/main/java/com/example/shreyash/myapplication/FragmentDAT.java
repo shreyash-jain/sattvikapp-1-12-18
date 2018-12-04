@@ -32,7 +32,7 @@ public class FragmentDAT extends Fragment {
         mBoardReference.child("menu_board").child("next").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Menu_Board message = dataSnapshot.getValue(Menu_Board.class);
+                MenuBoard message = dataSnapshot.getValue(MenuBoard.class);
                 //String msg = "Breakfast: "+message.getBreakfast()+"\nLunch: "+message.getLunch()+"\nDinner: "+message.getDinner();
                 //menu_today.setText(msg);
                 datbft.setText(message.getBreakfast());

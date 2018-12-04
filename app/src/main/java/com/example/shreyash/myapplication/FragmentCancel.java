@@ -96,11 +96,11 @@ public class FragmentCancel extends Fragment {
         };
         DatePickerDialog dialog1 = new DatePickerDialog(getContext(),mDateSetListener,year,month,day);
         dialog1.show();
-        TextView diets_cancel = (TextView) rootview.findViewById(R.id.diets_cancel);
+        TextView dietsCancel = (TextView) rootview.findViewById(R.id.diets_cancel);
         //TODO: Get number online
         int number =0;
         String s = "Diets remaining to Cancel:"+number;
-        diets_cancel.setText(s);
+        dietsCancel.setText(s);
         return rootview;
     }
     @Override

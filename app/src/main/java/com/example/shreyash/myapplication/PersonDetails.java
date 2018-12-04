@@ -4,7 +4,7 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 26-03-2018.
  */
 
-public class Person_Details {
+public class PersonDetails {
     public String name;
     public String branch;
     public String year;
@@ -13,13 +13,13 @@ public class Person_Details {
     public String mobile;
     public String du;
     public String email;
-    public String registration_date;
+    public String registrationDate;
     public  String password;
-    public Person_Details() {
+    public PersonDetails() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public Person_Details(String registration_date, String name, String branch, String year, String room, String hostel, String mobile, String email, String du , String password ){
-        this.registration_date =registration_date;
+    public PersonDetails(String registrationDate, String name, String branch, String year, String room, String hostel, String mobile, String email, String du , String password ){
+        this.registrationDate = registrationDate;
         this.name = name;
         this.branch = branch;
         this.year = year;
