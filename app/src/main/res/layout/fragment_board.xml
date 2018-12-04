@@ -358,6 +358,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
 
     tools:context="com.example.shreyash.myapplication.FragmentBoard">
 
@@ -366,12 +367,13 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+android:background="@color/background"
         android:orientation="vertical">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/appboard"
             android:layout_width="match_parent"
+            android:background="@color/background"
 
 
             android:layout_height="wrap_content"
@@ -415,7 +417,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textStyle="bold"
-                        android:id="@+id/textcheck"
+                        android:id="@+id/notice_board_text"
 
 
 
@@ -447,11 +449,11 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="@color/background"
             android:orientation="vertical">
             <View
                 android:layout_width="match_parent"
-                android:background="#7ccbef"
+                android:background="#233e23"
                 android:elevation="4dp"
                 android:fadingEdge="vertical"
                 android:requiresFadingEdge="vertical"

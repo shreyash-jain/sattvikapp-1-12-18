@@ -4,10 +4,16 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 17-02-2018.
  */
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,19 +22,43 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.RatingBar.OnRatingBarChangeListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.widget.AdapterView;
+
+import java.util.Calendar;
 import java.util.List;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 
+import com.example.shreyash.utils.Constants;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class FragmentFeedback extends Fragment implements OnItemSelectedListener {
 
+    private EditText disctext;
+    private RatingBar ratingBar;
+    private  String discriptionhai;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("feedback_sheet");
+    SharedPreferences sharedpreferences;// = getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
+
+    FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
+    DatabaseReference mPostReference = PostReference.getReference("feedback_sheet");
 
 
     @Nullable
@@ -52,6 +82,9 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         ArrayAdapter dataAdapter = new ArrayAdapter (getActivity(), android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+        disctext=view.findViewById(R.id.discription);
+        ratingBar = (RatingBar) view.findViewById(R.id.rating_bar);
+
         return view;
     }
 
@@ -68,20 +101,90 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         //TODO:Send feedback here
-        Toast.makeText(getActivity(),"Thanks for your Feedback",Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getActivity(),"Thanks for your Feedback "+ discriptionhai + " "+ratingBar.getRating() +" "+ disctext.getText(),Toast.LENGTH_SHORT).show();
+
+        //Submit feedback
+        sharedpreferences = getActivity().getSharedPreferences(Constants.myPreference, Context.MODE_PRIVATE);
+        final String name =sharedpreferences.getString(Constants.Name,"");
+        final String email = sharedpreferences.getString(Constants.Email,"");
+        final String rating= String.valueOf(ratingBar.getRating());
+        final String destxt = disctext.getText().toString();
+        //TODO: Check for internet connectivity
+        //If no error continue else prompt user to start internet
+
+        final ProgressDialog progressDialog = new ProgressDialog(getActivity(), R.style.MyAlertDialogStyle);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setTitle("Submitting...");
+        progressDialog.setMessage("loading");
+        progressDialog.show();
+
+        final Calendar calendar = Calendar.getInstance();
+        DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
+        offsetRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                double offset = snapshot.getValue(Double.class);
+                double estimatedServerTimeMs = System.currentTimeMillis() + offset;
+                calendar.setTimeInMillis(((long) estimatedServerTimeMs));
+                Log.d("inter",""+calendar.getTime());
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                System.err.println("Listener was cancelled");
+            }
+        });
+
+
+        final String key = myRef.child("feedbacks").push().getKey();
+        mPostReference.child("feedbacks").
+                addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Feedback_Details feedbackDetails;
+                        //Creating record to Firebase
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy/M/d h:mm:ss a");
+                        //Toast.makeText(Registration.this, ""+format.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
+
+                        feedbackDetails = new Feedback_Details(
+                                format.format(calendar.getTime()),
+                                name,
+                                discriptionhai,
+                                rating,
+                                destxt,
+                                email
+                        );
+                        myRef.child("feedbacks").child(key).setValue(feedbackDetails);
+                        //Log.d("flag in registering",flag)
+                        progressDialog.dismiss();
+                        /*Intent i = new Intent(Registration.this, Offline.class);
+                        startActivity(i);
+                        finishAffinity();*/
+                        //Toast.makeText(Registration.this, "Welcome " + name, Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        progressDialog.dismiss();
+                        Log.w("feedback submit or not", "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
+
+
         return  true;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String item = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_SHORT).show();
+        discriptionhai = parent.getItemAtPosition(position).toString();
+        Toast.makeText(parent.getContext(), "Selected: " + discriptionhai, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
 }
 

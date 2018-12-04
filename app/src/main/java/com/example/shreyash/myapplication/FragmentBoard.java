@@ -38,23 +38,23 @@ public class FragmentBoard extends Fragment  {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
         View rootview= inflater.inflate(R.layout.fragment_board, container, false);
-        final TextView notice_text=(TextView)rootview.findViewById(R.id.textcheck);
-        TextView amount_prev = (TextView) rootview.findViewById(R.id.textcheck);
-        TextView amount_b = (TextView) rootview.findViewById(R.id.textcheck);
-        TextView amount_l = (TextView) rootview.findViewById(R.id.textcheck);
-        TextView amount_d = (TextView) rootview.findViewById(R.id.textcheck);
-        TextView amount_ex = (TextView) rootview.findViewById(R.id.textcheck);
-        TextView amount_es = (TextView) rootview.findViewById(R.id.textcheck);
-        final TextView menu_today = (TextView) rootview.findViewById(R.id.textcheck);
-        final TextView menu_tom = (TextView) rootview.findViewById(R.id.textcheck);
-        final TextView menu_next = (TextView) rootview.findViewById(R.id.textcheck);
+        final TextView notice_text=(TextView)rootview.findViewById(R.id.notice_board_text);
+        TextView amount_prev = (TextView) rootview.findViewById(R.id.notice_board_text);
+        /*TextView amount_b = (TextView) rootview.findViewById(R.id.notice_board_text);
+        TextView amount_l = (TextView) rootview.findViewById(R.id.notice_board_text);
+        TextView amount_d = (TextView) rootview.findViewById(R.id.notice_board_text);
+        TextView amount_ex = (TextView) rootview.findViewById(R.id.notice_board_text);
+        TextView amount_es = (TextView) rootview.findViewById(R.id.notice_board_text);
+        final TextView menu_today = (TextView) rootview.findViewById(R.id.notice_board_text);
+        final TextView menu_tom = (TextView) rootview.findViewById(R.id.notice_board_text);
+        final TextView menu_next = (TextView) rootview.findViewById(R.id.notice_board_text);*/
         tabLayout=rootview.findViewById(R.id.tab_id);
         appBarLayout=rootview.findViewById(R.id.appboard);
         viewPager=rootview.findViewById(R.id.view_pager);
         ViewPagerAdapter adapter= new ViewPagerAdapter(getFragmentManager());
-        adapter.AddFragment(new FragmentBreakfast(),"Today");
-        adapter.AddFragment(new FragmentLunch(),"Tomorrow");
-        adapter.AddFragment(new FragmentDinner(),"Next");
+        adapter.AddFragment(new FragmentToday(),"Today");
+        adapter.AddFragment(new FragmentTomorrow(),"Tomorrow");
+        adapter.AddFragment(new FragmentDAT(),"Next");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -83,7 +83,7 @@ public class FragmentBoard extends Fragment  {
         });
 
 
-        mBoardReference.child("menu_board").child("today").addValueEventListener(new ValueEventListener() {
+     /*   mBoardReference.child("menu_board").child("today").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Menu_Board message = dataSnapshot.getValue(Menu_Board.class);
@@ -123,7 +123,7 @@ public class FragmentBoard extends Fragment  {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
     return rootview;
     }
