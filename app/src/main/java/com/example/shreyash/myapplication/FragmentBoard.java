@@ -1,5 +1,7 @@
 package com.example.shreyash.myapplication;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -20,6 +22,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.shreyash.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,8 +41,6 @@ public class FragmentBoard extends Fragment  {
         //returning our layout file
         //change R.layout.yourlayoutfilename for each of your fragments
         View rootview= inflater.inflate(R.layout.fragment_board, container, false);
-        final TextView notice_text=(TextView)rootview.findViewById(R.id.notice_board_text);
-        TextView amount_prev = (TextView) rootview.findViewById(R.id.notice_board_text);
 
         tabLayout=rootview.findViewById(R.id.tab_id);
         appBarLayout=rootview.findViewById(R.id.appboard);
@@ -51,20 +52,61 @@ public class FragmentBoard extends Fragment  {
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        Calendar calendar = Calendar.getInstance();
-        int currentweekday = calendar.get(Calendar.DAY_OF_WEEK);
-//
-        viewPager.setCurrentItem(currentweekday-1);
-        //displaySelectedScreen(item.getItemId());
-        //TODO: Set text of all amount textviews here
-       // amount_prev.setText("450");
+
+
+        final TextView notice_text=(TextView)rootview.findViewById(R.id.notice_board_text);
+        final TextView amount_prev = (TextView) rootview.findViewById(R.id.notice_board_text);
+        final TextView diet_break = rootview.findViewById(R.id.diet_break);
+        final TextView diet_lunch = rootview.findViewById(R.id.diet_lunch);
+        final TextView diet_dinner = rootview.findViewById(R.id.diet_dinner);
+        final TextView total_diets = rootview.findViewById(R.id.total_diets);
+        final TextView eta_expense = rootview.findViewById(R.id.eta_expense);
+
+        SharedPreferences sharedPreferences;
+        sharedPreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        String email = sharedPreferences.getString(Constants.email,"");
+        String refinedEmail =  email.replaceAll("\\W+","");
+
 
         FirebaseDatabase BoardReference = FirebaseDatabase.getInstance();
+
+        //Set text of all amount textviews here
+        DatabaseReference mExpenseReference = BoardReference.getReference("expense_sheet");
+        try {
+            mExpenseReference.child("bills").child(refinedEmail).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                try {
+                        ExpenseBoard bill = dataSnapshot.getValue(ExpenseBoard.class);
+                        if(bill != null) {
+                            amount_prev.setText("" + bill.previous_cost);
+                            diet_break.setText(("" + bill.diet_break));
+                            diet_lunch.setText(("" + bill.diet_lunch));
+                            diet_dinner.setText(("" + bill.diet_dinner));
+                            total_diets.setText("" + bill.total_diets);
+                            eta_expense.setText("" + bill.eta_cost);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        //Toast.makeText(getActivity(), "Data Unavailable", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(getActivity(), "Data Unavailable", Toast.LENGTH_SHORT).show();
+        }
+
+        //Notice Message
         DatabaseReference mBoardReference = BoardReference.getReference("board_sheet");
         mBoardReference.child("notice_board").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("background run","hohoho");
                 NoticeBoard message = dataSnapshot.getValue(NoticeBoard.class);
                 notice_text.setText(message.message);
             }
@@ -74,49 +116,6 @@ public class FragmentBoard extends Fragment  {
 
             }
         });
-
-
-     /*   mBoardReference.child("menu_board").child("today").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Menu_Board message = dataSnapshot.getValue(Menu_Board.class);
-                String msg = "Breakfast: "+message.getBreakfast()+"\nLunch: "+message.getLunch()+"\nDinner: "+message.getDinner();
-                menu_today.setText(msg);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mBoardReference.child("menu_board").child("tomorrow").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Menu_Board message = dataSnapshot.getValue(Menu_Board.class);
-                String msg = "Breakfast: "+message.getBreakfast()+"\nLunch: "+message.getLunch()+"\nDinner: "+message.getDinner();
-                menu_tom.setText(msg);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mBoardReference.child("menu_board").child("next").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Menu_Board message = dataSnapshot.getValue(Menu_Board.class);
-                String msg = "Breakfast: "+message.getBreakfast()+"\nLunch: "+message.getLunch()+"\nDinner: "+message.getDinner();
-                menu_next.setText(msg);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
 
     return rootview;
     }

@@ -516,10 +516,11 @@ android:background="@color/background"
                                 android:layout_width="match_parent"
                                 android:gravity="end"
                                 android:textStyle="bold"
+                                android:id="@+id/diet_break"
                                 android:textSize="18dp"
                                 android:textColor="@android:color/holo_green_dark"
                                 android:layout_height="wrap_content"
-                                android:text="15"/>
+                                android:text="NA"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -539,9 +540,10 @@ android:background="@color/background"
                                 android:gravity="end"
                                 android:textStyle="bold"
                                 android:textSize="18dp"
+                                android:id="@+id/diet_lunch"
                                 android:textColor="@android:color/holo_green_dark"
                                 android:layout_height="wrap_content"
-                                android:text="15"/>
+                                android:text="NA"/>
 
                         </LinearLayout>
                         <LinearLayout
@@ -561,9 +563,10 @@ android:background="@color/background"
                                 android:gravity="end"
                                 android:textStyle="bold"
                                 android:textSize="18dp"
+                                android:id="@+id/diet_dinner"
                                 android:textColor="@android:color/holo_green_dark"
                                 android:layout_height="wrap_content"
-                                android:text="15"/>
+                                android:text="NA"/>
 
                         </LinearLayout>
                         <View
@@ -592,10 +595,10 @@ android:background="@color/background"
                                 android:gravity="end"
                                 android:textStyle="bold"
                                 android:textSize="20dp"
-
+                                android:id="@+id/total_diets"
                                 android:textColor="@android:color/darker_gray"
                                 android:layout_height="wrap_content"
-                                android:text="37.5"/>
+                                android:text="NA"/>
 
                         </LinearLayout>
 
@@ -626,8 +629,8 @@ android:background="@color/background"
                             android:textStyle="bold"
                             android:textSize="22dp"
                             android:textColor="@color/cardview_dark_background"
-
-                            android:text="₹ 3450"/>
+                            android:id="@+id/eta_expense"
+                            android:text="NA"/>
                     </LinearLayout>
                 </LinearLayout>
 
