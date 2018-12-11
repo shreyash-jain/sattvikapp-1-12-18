@@ -35,5 +35,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         fragmentList.add(fragment);
         FragmentListTitle.add(Title);
     }
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
+    }
 
 }

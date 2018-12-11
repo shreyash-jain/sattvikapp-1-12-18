@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else{
                     Intent i = new Intent(MainActivity.this, Dashboard.class);
+                    i.putExtra("EXTRA", "notopenFragment");
                     startActivity(i);
                     finish();
                 }
