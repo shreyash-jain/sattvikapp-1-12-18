@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
-        <item name="drawerArrowStyle">@style/MyDrawerArrowToggle</item>
+
+        <item name="drawerArrowStyle">@style/DrawerHamburgerStyle</item>
+
+
 
 
         <!-- Support library compatibility -->
         <item name="actionBarStyle">@style/MyActionBar</item>
     </style>
+
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">@android:color/white</item>
@@ -26,7 +30,8 @@
         <item name="colorButtonNormal">@color/colorAccent</item>
     </style>
     <style name="MyDrawerArrowToggle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/foreground</item>
+        <item name="color">@color/background</item>
+        <item name="spinBars">true</item>
     </style>
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/foreground</item>
@@ -36,6 +41,12 @@
         <item name = "android:textColor">@android:color/black</item>
     </style>
     <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">11sp</item>
+        <item name="android:textSize">15sp</item>
+
+        <item name="android:font" tools:targetApi="o">@font/cocogoose</item>
+    </style>
+    <style name="DrawerHamburgerStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/holo_green_dark</item>
     </style>
 </resources>
