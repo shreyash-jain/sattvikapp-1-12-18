@@ -7,7 +7,7 @@
     <item
         android:id="@+id/action_custom_button"
         android:title="Custom Button"
-        android:icon="@drawable/ic_send_white"
+        android:icon="@drawable/ic_send_black"
 
         app:showAsAction="always" />
 

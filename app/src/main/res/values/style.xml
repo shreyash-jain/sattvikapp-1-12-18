@@ -41,9 +41,9 @@
         <item name = "android:textColor">@android:color/black</item>
     </style>
     <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">11sp</item>
 
-        <item name="android:font" tools:targetApi="o">@font/cocogoose</item>
+
     </style>
     <style name="DrawerHamburgerStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
