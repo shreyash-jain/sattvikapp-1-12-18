@@ -54,13 +54,18 @@
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ConfirmCancel"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityAbout" />
         <activity
             android:name=".ActivityWorkers"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegistrationConfirmation" />
-
+        <activity android:name=".MainCancel" />
 
     </application>
 

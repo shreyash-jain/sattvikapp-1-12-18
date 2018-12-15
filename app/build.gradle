@@ -16,6 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
 }
 
 dependencies {
@@ -35,6 +41,16 @@ dependencies {
     compile 'agency.tango.android:material-intro-screen:0.0.5'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.github.ronaldsmartin:Material-ViewPagerIndicator:1.0.4'
+    compile 'com.applandeo:material-calendar-view:1.5.1'
+    compile 'com.tomer:fadingtextview:2.5'
+    compile 'in.shadowfax:proswipebutton:1.1'
+    implementation 'commons-net:commons-net:3.6'
+
+
+
+
+
 
 
 

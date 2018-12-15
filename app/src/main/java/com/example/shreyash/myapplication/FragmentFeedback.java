@@ -69,6 +69,9 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         setHasOptionsMenu(true);
+
+
+
         List categories = new ArrayList<>();
         categories.add("Over All");
         categories.add("Bills Issue");
@@ -85,6 +88,14 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         spinner.setAdapter(dataAdapter);
         disctext=view.findViewById(R.id.discription);
         ratingBar = (RatingBar) view.findViewById(R.id.rating_bar);
+
+        if (getArguments()!=null ) {
+            int myInt = getArguments().getInt("pass", 1);
+            if (myInt==0){
+                spinner.setSelection(7);
+                ratingBar.setRating(Float.parseFloat("1.0"));
+            }
+        }
 
         return view;
     }

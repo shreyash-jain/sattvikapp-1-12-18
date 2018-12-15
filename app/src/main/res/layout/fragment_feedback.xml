@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/mybg"
@@ -35,13 +36,16 @@
         android:paddingBottom="10dp"/>
 
     <RatingBar
-        android:layout_width="wrap_content"
         android:id="@+id/rating_bar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
+        android:clickable="false"
         android:numStars="5"
         android:rating="3.5"
         android:stepSize=".5"
-        android:theme="@style/RatingBar" />
+        android:theme="@style/RatingBar"
+        tools:animationResolution="50" />
 
     <TextView
         android:layout_width="match_parent"

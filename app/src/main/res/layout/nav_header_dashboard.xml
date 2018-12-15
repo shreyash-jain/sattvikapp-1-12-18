@@ -11,10 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="8dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/sattvik_logo"/>
+
 
 
 
@@ -29,7 +26,8 @@
 
     <TextView
         android:id="@+id/main_EmailId"
-        android:paddingTop="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email" />
