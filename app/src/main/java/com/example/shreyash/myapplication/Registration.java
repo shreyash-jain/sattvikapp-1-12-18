@@ -1,5 +1,6 @@
 package com.example.shreyash.myapplication;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -51,13 +52,15 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         editTextPass = findViewById(R.id.input_password);
         buttonSubmit = findViewById(R.id.button);
 
+
         awesomeValidation.addValidation(this, R.id.input_name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.input_phone, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.input_year, Range.closed(1, 6), R.string.ageerror);
-        String regexPassword = "(?=.*[a-z])(?=.*[A-Z])(?=.*[\\d])(?=.*[~`!@#\\$%\\^&\\*\\(\\)\\-_\\+=\\{\\}\\[\\]\\|\\;:\"<>,./\\?]).{8,}";
-        awesomeValidation.addValidation(this, R.id.input_password, regexPassword, R.string.err_password);
-        //awesomeValidation.addValidation(this, R.id.input_confirm_password,editTextPass.getText().toString(), R.string.err_password_confirmation);
+        String regexPassword = "^([a-zA-Z0-9@*#]{8,20})$";
+        awesomeValidation.addValidation(this, R.id.input_password, regexPassword, R.string.error_invalid_password);
+
+        //awesomeValidation.addValidation(this, R.id.input_confirm_password,s, R.string.err_password_confirmation);
 
         String[] clg_branches = getResources().getStringArray(R.array.branches);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, clg_branches);
@@ -76,9 +79,10 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         buttonSubmit.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
-        if (v == buttonSubmit) {
+        if (v == buttonSubmit && awesomeValidation.validate()) {
             Intent i = new Intent(Registration.this, RegistrationConfirmation.class);
             i.putExtra("name",editTextName.getText().toString());
             i.putExtra("email",editTextEmail.getText().toString());

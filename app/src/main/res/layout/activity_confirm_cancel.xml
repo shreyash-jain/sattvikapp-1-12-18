@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ConfirmCancel">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="8dp"
+        android:paddingTop="16dp">
+
+        <android.support.v7.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#E6E6E6"
+
+
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical"
+
+                android:paddingTop="12dp">
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+
+
+                        android:text="Cancellation Form"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-condensed"
+                        android:typeface="monospace"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="12dp"
+                        android:textSize="28dp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="end"
+                    android:background="@android:color/darker_gray"
+                    android:elevation="2dp"
+
+                    android:fadingEdge="vertical"
+                    android:paddingTop="4dp"
+                    android:requiresFadingEdge="vertical"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:textSize="22dp"
+                        android:gravity="start"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="end"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:id="@+id/cancel_date"
+                        android:textSize="22dp"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:layout_height="wrap_content"
+                        android:text="NA"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingBottom="12dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="8dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Diets"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:textSize="22dp"
+                        android:gravity="start"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:gravity="end"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:id="@+id/cancel_diets"
+                        android:textSize="22dp"
+                        android:textColor="@android:color/holo_green_dark"
+                        android:layout_height="wrap_content"
+                        android:text="NA"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="end"
+                    android:background="@android:color/darker_gray"
+                    android:elevation="2dp"
+
+                    android:fadingEdge="vertical"
+                    android:paddingTop="4dp"
+                    android:requiresFadingEdge="vertical"></View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="30dp"
+                    android:paddingBottom="12dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="8dp">
+                    <android.support.v7.widget.AppCompatCheckBox
+                        android:layout_width="wrap_content"
+                        android:id="@+id/checkbtn"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="8dp"
+                        android:text="I am aware that if I will misuse this facility by any way I will be deregistered from Sattvik Mess "
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="bold"
+                        android:textSize="22dp"
+                        android:gravity="start"/>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <in.shadowfax.proswipebutton.ProSwipeButton
+            android:id="@+id/awesome_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:layout_margin="8dp"
+            app:bg_color="@color/background"
+            app:btn_text="Request Cancellation" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

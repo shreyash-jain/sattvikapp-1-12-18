@@ -10,6 +10,10 @@ submit it at the Sattvik Mess desk along with the Mess Advance Receipt.\n\n<b>Yo
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="spinner_title">Select Category</string>
+    <string-array name="examples">
+        <item>Hello</item>
+        <item>Fading TextView</item>
+    </string-array>
     <string-array name="branches">
         <item>Electrical</item>
         <item>Electronics</item>
@@ -51,6 +55,10 @@ submit it at the Sattvik Mess desk along with the Mess Advance Receipt.\n\n<b>Yo
         <item>Dinner</item>
     </string-array>
 
+    <string-array name="Cancel_text">
+        <item>Click on a Date</item>
+        <item>To cancel your meal</item>
+    </string-array>
 
     <string name="title_1"> "Today's Menu" </string>
     <string name="title_2"> "Tomorrow's Menu" </string>
@@ -157,4 +165,5 @@ Items for which extra amount will be added no matter he eats or not.
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

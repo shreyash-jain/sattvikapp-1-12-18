@@ -131,14 +131,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         loginButton.setEnabled(true);
-        //TODO: Check if offline registration complete or not. Proceed accordingly
-        //If complete
-        Intent i = new Intent(LoginActivity.this, Dashboard.class);
+        Intent i = new Intent(LoginActivity.this, Offline.class);
         startActivity(i);
         finish();
-        //Else
-        //Intent i = new Intent(LoginActivity.this, Offline.class);
-        //startActivity(i);
     }
 
     public void onLoginFailed() {

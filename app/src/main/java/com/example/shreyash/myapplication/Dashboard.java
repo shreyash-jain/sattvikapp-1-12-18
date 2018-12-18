@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -30,7 +32,13 @@ public class Dashboard extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
+
+
+
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -43,12 +51,14 @@ public class Dashboard extends AppCompatActivity
 
         View header=navigationView.getHeaderView(0);
         TextView name = header.findViewById(R.id.main_name);
-        TextView id = header.findViewById(R.id.main_sattvikId);
+        TextView email = header.findViewById(R.id.main_EmailId);
         //TODO: CHange name and sattvik id of person from here. Can change image also.
-//        String personName = "Abhinav Dangi";
-//        String personEmail = "2";
-//        name.setText(personName);
-//        id.setText(personEmail);
+        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        String user_email = sharedPreferences.getString(Constants.email,"");
+        String user_name = sharedPreferences.getString(Constants.name,"");
+//        String personName = "AbhinString personEmail = s;
+        name.setText(user_name);
+        email.setText(user_email);
 
         Fragment myFragment=new FragmentBoard();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -142,6 +152,25 @@ public class Dashboard extends AppCompatActivity
             displaySelectedScreen(item.getItemId());
         }
         return true;
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+
+        Intent intent = getIntent();
+
+        String frag = intent.getExtras().getString("EXTRA");
+
+        switch(frag){
+
+            case "openFragment":
+                Fragment fragment1=new FragmentFeedback();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment1).commit();
+                Bundle bundle = new Bundle();
+                bundle.putInt("pass", 0);
+                fragment1.setArguments(bundle);
+                break;
+        }
     }
 }
 

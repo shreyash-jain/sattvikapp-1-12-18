@@ -7,6 +7,10 @@ package com.example.shreyash.myapplication;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.TimeInfo;
+
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,15 +24,28 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener;
+import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.tomer.fadingtextview.FadingTextView;
+
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.DateFormat;
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class FragmentCancel extends Fragment {
     private TextView displayDate;
+
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Nullable
     @Override
@@ -38,42 +55,105 @@ public class FragmentCancel extends Fragment {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+       /* String TIME_SERVER = "time-a.nist.gov";
+        NTPUDPClient timeClient = new NTPUDPClient();
+        InetAddress inetAddress = null;
+        try {
+            inetAddress = InetAddress.getByName(TIME_SERVER);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        TimeInfo timeInfo = null;
+        try {
+            timeInfo = timeClient.getTime(inetAddress);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        long returnTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();
+        Date time = new Date(returnTime);
+       DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        String reportDate = df.format(time);*/
 
-        displayDate = rootview.findViewById(R.id.text_datepicker);
-        displayDate.setOnClickListener(new View.OnClickListener() {
+
+        String[] meals = new String[]{
+                "Breakfast",
+                "Lunch",
+                "Dinner",
+
+        };
+        final boolean[] checkedmeals = new boolean[]{
+                false, // Red
+                false, // Green
+                false, // Blue
+
+
+        };
+        final List<String> mealsList = Arrays.asList(meals);
+        com.applandeo.materialcalendarview.CalendarView calendarView = (com.applandeo.materialcalendarview.CalendarView) rootview.findViewById(R.id.calendarView);
+        Calendar min = Calendar.getInstance();
+        min.add(Calendar.DAY_OF_MONTH, 0);
+
+        Calendar max = Calendar.getInstance();
+        max.add(Calendar.DAY_OF_MONTH, 15);
+
+        calendarView.setMinimumDate(min);
+        calendarView.setMaximumDate(max);
+
+        String[] texts = {"Click a date ","To cancel your meals"};
+        FadingTextView FTV = (FadingTextView) rootview.findViewById(R.id.fadingTextView);
+        FTV.setTexts(texts);
+
+        calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
-            public void onClick(View v) {
-                DatePickerDialog dialog = new DatePickerDialog(getContext(),mDateSetListener,year,month,day);
-                dialog.show();
-            }
-        });
-        mDateSetListener= new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-                month = month+1;
-                String dateString = dayOfMonth+"/"+month+"/"+year;
-                displayDate.setText(dateString);
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                try {
-                    Date dateSelected = format.parse(dateString);
-                    Date dateCurrent = Calendar.getInstance().getTime();
-                    //TODO: get current date from backend
-                    if(dateSelected.after(dateCurrent)){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                        builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
-                                null, new DialogInterface.OnMultiChoiceClickListener() {
+            public void onDayClick(EventDay eventDay) {
+                Calendar clickedDayCalendar = eventDay.getCalendar();
+                Date clickeddate=clickedDayCalendar.getTime();
+                Date today = new Date();
+                Date fdate = new Date();
+                Calendar c = Calendar.getInstance();
+                c.setTime(fdate);
+                c.add(Calendar.DATE, 15);
+                fdate = c.getTime();
+              // Toast.makeText(getContext(),reportDate,Toast.LENGTH_LONG).show();
+                if (!today.after(clickeddate) && !fdate.before(clickeddate) ){
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
+                        null, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                                 //TODO:get values and store in a variable
-                                String s = "which:"+which+",isChecked:"+isChecked;
-                                Toast.makeText(getContext(),s,Toast.LENGTH_SHORT).show();
+
+
+                                checkedmeals[which] = isChecked;
+
+                                String currentItem = mealsList.get(which);
+
+                                // Notify the current action
+
+
                             }
                         })
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("PROCEED", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //TODO: use the stored value to send in database
-                                Toast.makeText(getContext(),"Clicked OK",Toast.LENGTH_SHORT).show();
+                                int sum=0;
+                                if (checkedmeals[0]) sum+=1;if (checkedmeals[1]) sum+=3;if (checkedmeals[2]) sum+=5;
+                                checkedmeals[0]=false;
+                                checkedmeals[1]=false;
+                                checkedmeals[2]=false;
+
+
+                                    Intent intent = new Intent(getActivity(), ConfirmCancel.class);
+                                    intent.putExtra("Cancel_diets", sum);
+                                    intent.putExtra("date", clickeddate.getTime());
+                                    sum=0;
+
+                                    startActivity(intent);
+
+
+
+
+
                             }
                         })
                         .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -81,25 +161,27 @@ public class FragmentCancel extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                             }
                         });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
+                AlertDialog dialog = builder.create();
+                dialog.show();
 
-                    }
-                    else{
-                        //TODO: Get data from backend and display it here by toast
-                    }
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(),"Error",Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
-        DatePickerDialog dialog1 = new DatePickerDialog(getContext(),mDateSetListener,year,month,day);
-        dialog1.show();
+            }}
+        });
+
+
+
+
+
+        // Boolean array for initial selected items
+
+
+
+        ;
+
+
         TextView dietsCancel = (TextView) rootview.findViewById(R.id.diets_cancel);
         //TODO: Get number online
         int number =0;
-        String s = "Diets remaining to Cancel:"+number;
+        String s = "Diets remaining to Cancel:  "+number;
         dietsCancel.setText(s);
         return rootview;
     }

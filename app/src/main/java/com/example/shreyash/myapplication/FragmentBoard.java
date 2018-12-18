@@ -29,11 +29,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.Calendar;
 
 public class FragmentBoard extends Fragment  {
     private TabLayout tabLayout;
     private AppBarLayout appBarLayout;
+
     private ViewPager viewPager;
     @Nullable
     @Override
@@ -45,12 +47,14 @@ public class FragmentBoard extends Fragment  {
         tabLayout=rootview.findViewById(R.id.tab_id);
         appBarLayout=rootview.findViewById(R.id.appboard);
         viewPager=rootview.findViewById(R.id.view_pager);
-        ViewPagerAdapter adapter= new ViewPagerAdapter(getFragmentManager());
+        ViewPagerAdapter adapter= new ViewPagerAdapter(getChildFragmentManager());
         adapter.AddFragment(new FragmentToday(),"Today");
         adapter.AddFragment(new FragmentTomorrow(),"Tomorrow");
-        adapter.AddFragment(new FragmentDAT(),"Next");
+        adapter.AddFragment(new FragmentDAT(),"Next Day");
 
         viewPager.setAdapter(adapter);
+
+
         tabLayout.setupWithViewPager(viewPager);
 
 
@@ -61,6 +65,9 @@ public class FragmentBoard extends Fragment  {
         final TextView diet_dinner = rootview.findViewById(R.id.diet_dinner);
         final TextView total_diets = rootview.findViewById(R.id.total_diets);
         final TextView eta_expense = rootview.findViewById(R.id.eta_expense);
+        final TextView extras = rootview.findViewById(R.id.extras);
+        final TextView service= rootview.findViewById(R.id.service);
+        final TextView prev=rootview.findViewById(R.id.prev_cost);
 
         SharedPreferences sharedPreferences;
         sharedPreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
@@ -85,6 +92,9 @@ public class FragmentBoard extends Fragment  {
                             diet_dinner.setText(("" + bill.diet_dinner));
                             total_diets.setText("" + bill.total_diets);
                             eta_expense.setText("" + bill.eta_cost);
+                            extras.setText("" + bill.extra);
+                            service.setText(""+bill.service_charge);
+                            prev.setText(""+ bill.previous_cost);
                         }
                     }
                     catch (Exception e)
