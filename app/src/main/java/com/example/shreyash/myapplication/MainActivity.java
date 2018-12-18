@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
                     final String email = sharedPreferences.getString(Constants.email,"");
                     final String email_refined = email.replaceAll("\\W+", "");
 
+                    sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+                    final SharedPreferences.Editor editor = sharedPreferences.edit();
+
                     FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
                     DatabaseReference mPostReference = PostReference.getReference("student_sheet");
 
@@ -49,29 +52,30 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     PersonDetails personDetails = dataSnapshot.getValue(PersonDetails.class);
-                                    sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
                                     editor.putString(Constants.isactive, personDetails.isactive);
                                     editor.apply();
-                                    if(personDetails.isactive.equals("0"))
-                                    {
-                                        Intent i = new Intent(MainActivity.this, Offline.class);
-                                        i.putExtra("EXTRA", "notopenFragment");
-                                        startActivity(i);
-                                        finish();
-                                    }
-                                    else{
-                                        Intent i = new Intent(MainActivity.this, Dashboard.class);
-                                        i.putExtra("EXTRA", "notopenFragment");
-                                        startActivity(i);
-                                        finish();
-                                    }
+
                                 }
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
                                     Log.w("activated or not", "loadPost:onCancelled", databaseError.toException());
                                 }
                             });
+                    String active = sharedPreferences.getString(Constants.isactive,"0");
+                    if(active.equals("0"))
+                    {
+                        Intent i = new Intent(MainActivity.this, Offline.class);
+                        i.putExtra("EXTRA", "notopenFragment");
+                        startActivity(i);
+                        finish();
+                    }
+                    else{
+                        Intent i = new Intent(MainActivity.this, Dashboard.class);
+                        i.putExtra("EXTRA", "notopenFragment");
+                        startActivity(i);
+                        finish();
+                    }
                 }
 
             }

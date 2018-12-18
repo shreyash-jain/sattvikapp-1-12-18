@@ -35,6 +35,9 @@ public class Offline extends AppCompatActivity {
 
         b1.setEnabled(false);
 
+        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
         final String email = sharedPreferences.getString(Constants.email,"");
         final String email_refined = email.replaceAll("\\W+", "");
 
@@ -46,8 +49,7 @@ public class Offline extends AppCompatActivity {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         PersonDetails personDetails = dataSnapshot.getValue(PersonDetails.class);
-                        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
                         editor.putString(Constants.isactive, personDetails.isactive);
                         editor.apply();
                         if(personDetails.isactive.equals("1"))

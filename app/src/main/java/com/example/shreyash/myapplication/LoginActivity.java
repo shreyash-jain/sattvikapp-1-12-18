@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString(Constants.name, personDetails2.name);
                                 editor.putString(Constants.email, email);
                                 editor.putString(Constants.password,password);
+                                editor.putString(Constants.isactive,personDetails2.isactive);
                                 editor.apply();
                                 progressDialog.dismiss();
                                 onLoginSuccess();
@@ -131,9 +132,21 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         loginButton.setEnabled(true);
-        Intent i = new Intent(LoginActivity.this, Offline.class);
-        startActivity(i);
-        finish();
+
+        String active = sharedPreferences.getString(Constants.isactive,"0");
+        if(active.equals("0"))
+        {
+            Intent i = new Intent(LoginActivity.this, Offline.class);
+            i.putExtra("EXTRA", "notopenFragment");
+            startActivity(i);
+            finish();
+        }
+        else{
+            Intent i = new Intent(LoginActivity.this, Dashboard.class);
+            i.putExtra("EXTRA", "notopenFragment");
+            startActivity(i);
+            finish();
+        }
     }
 
     public void onLoginFailed() {
