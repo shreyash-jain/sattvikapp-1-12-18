@@ -9,6 +9,14 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
+import java.net.InetAddress;
+import java.net.URL;
+import java.util.Date;
+
+import org.apache.commons.net.ntp.NTPUDPClient;
+import org.apache.commons.net.ntp.NtpV3Packet;
+import org.apache.commons.net.ntp.TimeInfo;
+
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +24,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +36,12 @@ import android.widget.Toast;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.instacart.library.truetime.TrueTime;
 import com.tomer.fadingtextview.FadingTextView;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -43,8 +56,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class FragmentCancel extends Fragment {
     private TextView displayDate;
+    long tdiff;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Nullable
@@ -55,24 +71,10 @@ public class FragmentCancel extends Fragment {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
-       /* String TIME_SERVER = "time-a.nist.gov";
-        NTPUDPClient timeClient = new NTPUDPClient();
-        InetAddress inetAddress = null;
-        try {
-            inetAddress = InetAddress.getByName(TIME_SERVER);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        TimeInfo timeInfo = null;
-        try {
-            timeInfo = timeClient.getTime(inetAddress);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        long returnTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();
-        Date time = new Date(returnTime);
-       DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        String reportDate = df.format(time);*/
+
+
+       // checkTimeServer();
+
 
 
         String[] meals = new String[]{
@@ -88,6 +90,8 @@ public class FragmentCancel extends Fragment {
 
 
         };
+
+
         final List<String> mealsList = Arrays.asList(meals);
         com.applandeo.materialcalendarview.CalendarView calendarView = (com.applandeo.materialcalendarview.CalendarView) rootview.findViewById(R.id.calendarView);
         Calendar min = Calendar.getInstance();
@@ -114,7 +118,7 @@ public class FragmentCancel extends Fragment {
                 c.setTime(fdate);
                 c.add(Calendar.DATE, 15);
                 fdate = c.getTime();
-              // Toast.makeText(getContext(),reportDate,Toast.LENGTH_LONG).show();
+
                 if (!today.after(clickeddate) && !fdate.before(clickeddate) ){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
@@ -190,6 +194,23 @@ public class FragmentCancel extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Meals Cancellation");
+
+    }
+    String TAG = "YOUR_APP_TAG";
+    String TIME_SERVER = "0.europe.pool.ntp.org";
+    public void checkTimeServer() {
+        try {
+            NTPUDPClient timeClient = new NTPUDPClient();
+            InetAddress inetAddress = InetAddress.getByName(TIME_SERVER);
+            TimeInfo timeInfo = timeClient.getTime(inetAddress);
+            long setverTime = timeInfo.getMessage().getTransmitTimeStamp().getTime();
+
+            // store this somewhere and use to correct system time
+            long timeCorrection = System.currentTimeMillis()-setverTime;
+            tdiff=timeCorrection;
+        } catch (Exception e) {
+            Log.v(TAG,"Time server error - "+e.getLocalizedMessage());
+        }
     }
 }
 

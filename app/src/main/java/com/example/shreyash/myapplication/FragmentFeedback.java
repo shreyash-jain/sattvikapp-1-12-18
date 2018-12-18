@@ -4,8 +4,10 @@ package com.example.shreyash.myapplication;
  * Created by Shreyash on 17-02-2018.
  */
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,6 +54,12 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
     private EditText disctext;
     private RatingBar ratingBar;
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+
+    // Connection detector class
+    ConnectionDetector cd;
+
     private  String field;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -69,6 +77,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
         setHasOptionsMenu(true);
+        EditText disc=view.findViewById(R.id.discription);
 
 
 
@@ -83,15 +92,27 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         categories.add("Workers");
         categories.add("Student's Team");
         categories.add("Mobile App");
+
         ArrayAdapter dataAdapter = new ArrayAdapter (getActivity(), android.R.layout.simple_spinner_item, categories);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
         disctext=view.findViewById(R.id.discription);
         ratingBar = (RatingBar) view.findViewById(R.id.rating_bar);
+        cd = new ConnectionDetector(getContext());
+        isInternetPresent = cd.isConnectingToInternet();
+        if(!isInternetPresent){
+            showAlertDialog(getContext(), "No Internet Connection",
+                    "You don't have internet connection.", false);
+        }
 
         if (getArguments()!=null ) {
             int myInt = getArguments().getInt("pass", 1);
+          //  String  wname= getArguments().getString("wname","nothing");
             if (myInt==0){
+                //if (wname!="nothing"){
+                  //  disc.setHint(wname);
+
+               // }
                 spinner.setSelection(7);
                 ratingBar.setRating(Float.parseFloat("1.0"));
             }
@@ -140,6 +161,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
             public void onDataChange(DataSnapshot snapshot) {
                 double offset = snapshot.getValue(Double.class);
                 double estimatedServerTimeMs = System.currentTimeMillis() + offset;
+                calendar.setTimeInMillis(((long) estimatedServerTimeMs));
                 calendar.setTimeInMillis(((long) estimatedServerTimeMs));
                 Log.d("inter",""+calendar.getTime());
             }
@@ -198,6 +220,27 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // Setting alert dialog icon
+        alertDialog.setIcon((status) ? R.drawable.ic_signal_wifi_off_black_24dp : R.drawable.ic_signal_wifi_off_black_24dp);
+
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 
 }

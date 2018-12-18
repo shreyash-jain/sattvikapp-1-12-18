@@ -21,11 +21,19 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.shreyash.utils.Constants;
+import com.instacart.library.truetime.TrueTime;
+
+import java.io.IOException;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     SharedPreferences sharedPreferences;
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+
+    // Connection detector class
+    ConnectionDetector cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,12 @@ public class Dashboard extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-
-
+        cd = new ConnectionDetector(getApplicationContext());
+        isInternetPresent = cd.isConnectingToInternet();
+        if(!isInternetPresent){
+            showAlertDialog(Dashboard.this, "No Internet Connection",
+                    "You don't have internet connection.", false);
+        }
 
 
 
@@ -160,6 +172,7 @@ public class Dashboard extends AppCompatActivity
         Intent intent = getIntent();
 
         String frag = intent.getExtras().getString("EXTRA");
+       // String wname =intent.getExtras().getString("WEXTRA");
 
         switch(frag){
 
@@ -168,9 +181,31 @@ public class Dashboard extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment1).commit();
                 Bundle bundle = new Bundle();
                 bundle.putInt("pass", 0);
+               // bundle.putString("wname",wname);
                 fragment1.setArguments(bundle);
                 break;
         }
+    }
+    public void showAlertDialog(Context context, String title, String message, Boolean status) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle(title);
+
+        // Setting Dialog Message
+        alertDialog.setMessage(message);
+
+        // Setting alert dialog icon
+        alertDialog.setIcon((status) ? R.drawable.ic_signal_wifi_off_black_24dp : R.drawable.ic_signal_wifi_off_black_24dp);
+
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
     }
 }
 

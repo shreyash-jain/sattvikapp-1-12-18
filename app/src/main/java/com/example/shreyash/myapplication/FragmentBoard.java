@@ -68,6 +68,7 @@ public class FragmentBoard extends Fragment  {
         final TextView extras = rootview.findViewById(R.id.extras);
         final TextView service= rootview.findViewById(R.id.service);
         final TextView prev=rootview.findViewById(R.id.prev_cost);
+        final  TextView total_expense=rootview.findViewById(R.id.total_expense);
 
         SharedPreferences sharedPreferences;
         sharedPreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
@@ -91,10 +92,12 @@ public class FragmentBoard extends Fragment  {
                             diet_lunch.setText(("" + bill.diet_lunch));
                             diet_dinner.setText(("" + bill.diet_dinner));
                             total_diets.setText("" + bill.total_diets);
-                            eta_expense.setText("" + bill.eta_cost);
+                            eta_expense.setText("" + bill.eta_cost+" ₹");
                             extras.setText("" + bill.extra);
-                            service.setText(""+bill.service_charge);
-                            prev.setText(""+ bill.previous_cost);
+                            service.setText(""+bill.service_charge +" ₹");
+                            prev.setText(""+ bill.previous_cost +" ₹");
+                            float total_cost=bill.previous_cost+bill.eta_cost;
+                            total_expense.setText(""+total_cost +" ₹");
                         }
                     }
                     catch (Exception e)

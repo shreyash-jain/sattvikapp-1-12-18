@@ -26,6 +26,7 @@ public class Offline extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(Offline.this,Dashboard.class);
+                i.putExtra("EXTRA", "notopenFragment");
                 startActivity(i);
                 finish();
             }

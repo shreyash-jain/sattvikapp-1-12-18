@@ -134,6 +134,7 @@ public class LoginActivity extends AppCompatActivity {
         //TODO: Check if offline registration complete or not. Proceed accordingly
         //If complete
         Intent i = new Intent(LoginActivity.this, Dashboard.class);
+        i.putExtra("EXTRA", "notopen");
         startActivity(i);
         finish();
         //Else

@@ -6,6 +6,7 @@ package com.example.shreyash.myapplication;
 
 
 
+        import android.app.Activity;
         import android.content.Context;
         import android.content.Intent;
         import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ package com.example.shreyash.myapplication;
         import android.view.MenuItem;
         import android.view.View;
         import android.view.ViewGroup;
+        import android.widget.AdapterView;
         import android.widget.ImageView;
         import android.widget.TextView;
         import android.widget.Toast;
@@ -103,11 +105,18 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                 case R.id.action_add_favourite:
 //                    Intent i = new Intent(mContext,Dashboard.class);
 //                    mContext.startActivity(i);
+                  //  AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuItem.getMenuInfo();
+                  //  int index = info.position;
+                 //   Album album = albumList.get( index);
+                 //8  String wname= album.getName();
+
                     Intent intent = new Intent (mContext, Dashboard.class);
                     intent.putExtra("EXTRA", "openFragment");
+                   // intent.putExtra("WEXTRA",wname);
                     mContext.startActivity(intent);
 
                     Toast.makeText(mContext, "Register a Complaint", Toast.LENGTH_SHORT).show();
+                    ((Activity)mContext).finish();
                     return true;
 
                 default:
