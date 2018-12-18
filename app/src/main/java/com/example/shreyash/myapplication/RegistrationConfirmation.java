@@ -103,12 +103,6 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
             progressDialog.setTitle("Authenticating...");
             progressDialog.setMessage("loading");
             progressDialog.show();
-            /*new android.os.Handler().postDelayed(
-                    new Runnable() {
-                        public void run() {
-                            progressDialog.dismiss();
-                        }
-                    }, 2000);*/
 
             confirm.setEnabled(false);
             final Calendar calendar = Calendar.getInstance();
@@ -158,7 +152,8 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                                         phone,
                                         email,
                                         du,
-                                        password);
+                                        password,
+                                        0+"");
                                 myRef.child("students").child(email_refined).setValue(personDetails);
                                 //Log.d("flag in registering",flag)
                                 sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
@@ -166,6 +161,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                                 editor.putString(Constants.name, name);
                                 editor.putString(Constants.email, email);
                                 editor.putString(Constants.password, password);
+                                editor.putString(Constants.isactive, "0");
                                 editor.apply();
                                 progressDialog.dismiss();
                                 Intent i = new Intent(RegistrationConfirmation.this, Offline.class);

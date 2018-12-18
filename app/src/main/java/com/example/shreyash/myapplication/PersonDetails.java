@@ -14,11 +14,12 @@ public class PersonDetails {
     public String du;
     public String email;
     public String registrationDate;
-    public  String password;
+    public String password;
+    public String isactive;
     public PersonDetails() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public PersonDetails(String registrationDate, String name, String branch, String year, String room, String hostel, String mobile, String email, String du , String password ){
+    public PersonDetails(String registrationDate, String name, String branch, String year, String room, String hostel, String mobile, String email, String du , String password, String isactive ){
         this.registrationDate = registrationDate;
         this.name = name;
         this.branch = branch;
@@ -29,6 +30,7 @@ public class PersonDetails {
         this.email = email;
         this.password= password;
         this.du = du;
+        this.isactive= isactive;
     }
 }
 
