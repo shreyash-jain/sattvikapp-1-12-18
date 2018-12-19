@@ -58,7 +58,6 @@ public class Offline extends AppCompatActivity {
                             Intent i=new Intent(Offline.this,Dashboard.class);
                             startActivity(i);
                             finish();
-
                         }
                     }
                     @Override
