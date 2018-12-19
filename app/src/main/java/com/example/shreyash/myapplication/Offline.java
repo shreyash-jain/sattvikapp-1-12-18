@@ -56,6 +56,7 @@ public class Offline extends AppCompatActivity {
                         {
                             b1.setEnabled(true);
                             Intent i=new Intent(Offline.this,Dashboard.class);
+                            i.putExtra("EXTRA", "notopenFragment");
                             startActivity(i);
                             finish();
                         }
