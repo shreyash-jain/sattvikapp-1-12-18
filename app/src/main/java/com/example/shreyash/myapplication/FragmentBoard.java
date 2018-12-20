@@ -88,15 +88,18 @@ public class FragmentBoard extends Fragment  {
         final CardView card_cancel=rootview.findViewById(R.id.cv);
         final CardView card_feedback=rootview.findViewById(R.id.cv2);
 
-        card_cancel.setOnClickListener(new View.OnClickListener() {
+       card_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FragmentCancel();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null);
+
                 fragmentTransaction.commit();
+
+
+
             }
         });
         card_feedback.setOnClickListener(new View.OnClickListener() {
@@ -106,10 +109,12 @@ public class FragmentBoard extends Fragment  {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.content_frame, fragment);
-                fragmentTransaction.addToBackStack(null);
+
                 fragmentTransaction.commit();
+
             }
         });
+
 
 
 

@@ -63,6 +63,7 @@ import static android.support.constraint.Constraints.TAG;
 
 public class FragmentCancel extends Fragment {
     private TextView displayDate;
+    private  TextView viewallcancel;
     long tdiff;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
@@ -74,6 +75,14 @@ public class FragmentCancel extends Fragment {
         final int year = calendar.get(Calendar.YEAR);
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+        viewallcancel=rootview.findViewById(R.id.view_more);
+        viewallcancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), CancelList.class);
+                startActivity(i);
+            }
+        });
 
 
        // checkTimeServer();
