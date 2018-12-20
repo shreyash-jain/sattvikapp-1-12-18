@@ -6,6 +6,7 @@ package com.example.shreyash.myapplication;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
@@ -21,7 +22,9 @@ import org.apache.commons.net.ntp.TimeInfo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -106,6 +109,7 @@ public class FragmentCancel extends Fragment {
         String[] texts = {"Click a date ","To cancel your meals"};
         FadingTextView FTV = (FadingTextView) rootview.findViewById(R.id.fadingTextView);
         FTV.setTexts(texts);
+        final boolean[] correct_date = new boolean[1];
 
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
@@ -118,8 +122,12 @@ public class FragmentCancel extends Fragment {
                 c.setTime(fdate);
                 c.add(Calendar.DATE, 15);
                 fdate = c.getTime();
+                correct_date[0] =isTimeAutomatic(getContext());
+                if(!correct_date[0]){
+                    Toast.makeText(getActivity(), "Please set time to automatic", Toast.LENGTH_LONG).show();
+                }
 
-                if (!today.after(clickeddate) && !fdate.before(clickeddate) ){
+                else if (!today.after(clickeddate) && !fdate.before(clickeddate) ){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
                         null, new DialogInterface.OnMultiChoiceClickListener() {
@@ -182,11 +190,9 @@ public class FragmentCancel extends Fragment {
         ;
 
 
-        TextView dietsCancel = (TextView) rootview.findViewById(R.id.diets_cancel);
+
         //TODO: Get number online
-        int number =0;
-        String s = "Diets remaining to Cancel:  "+number;
-        dietsCancel.setText(s);
+
         return rootview;
     }
     @Override
@@ -210,6 +216,13 @@ public class FragmentCancel extends Fragment {
             tdiff=timeCorrection;
         } catch (Exception e) {
             Log.v(TAG,"Time server error - "+e.getLocalizedMessage());
+        }
+    }
+    public static boolean isTimeAutomatic(Context c) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return Settings.Global.getInt(c.getContentResolver(), Settings.Global.AUTO_TIME, 0) == 1;
+        } else {
+            return android.provider.Settings.System.getInt(c.getContentResolver(), android.provider.Settings.System.AUTO_TIME, 0) == 1;
         }
     }
 }

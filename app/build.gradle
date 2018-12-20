@@ -48,6 +48,7 @@ dependencies {
     implementation 'commons-net:commons-net:3.6'
     compile 'com.github.instacart.truetime-android:library:3.4'
     compile 'org.jsoup:jsoup:1.10.2'
+    compile 'com.makeramen:roundedimageview:2.2.1'
 
 
 

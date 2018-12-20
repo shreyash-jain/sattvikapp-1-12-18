@@ -2,11 +2,15 @@ package com.example.shreyash.myapplication;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -19,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,7 +35,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+import org.apache.commons.net.time.TimeTCPClient;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
+import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
+import java.util.Date;
 
 public class FragmentBoard extends Fragment  {
     private TabLayout tabLayout;
@@ -59,7 +72,7 @@ public class FragmentBoard extends Fragment  {
 
 
         final TextView notice_text=(TextView)rootview.findViewById(R.id.notice_board_text);
-        final TextView amount_prev = (TextView) rootview.findViewById(R.id.notice_board_text);
+
         final TextView diet_break = rootview.findViewById(R.id.diet_break);
         final TextView diet_lunch = rootview.findViewById(R.id.diet_lunch);
         final TextView diet_dinner = rootview.findViewById(R.id.diet_dinner);
@@ -69,6 +82,53 @@ public class FragmentBoard extends Fragment  {
         final TextView service= rootview.findViewById(R.id.service);
         final TextView prev=rootview.findViewById(R.id.prev_cost);
         final  TextView total_expense=rootview.findViewById(R.id.total_expense);
+        final ImageView info_bf=rootview.findViewById(R.id.info_bf);
+        final ImageView info_prev=rootview.findViewById(R.id.info_prev);
+        final ImageView info_diets=rootview.findViewById(R.id.info_diets);
+        final CardView card_cancel=rootview.findViewById(R.id.cv);
+        final CardView card_feedback=rootview.findViewById(R.id.cv2);
+
+        card_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FragmentCancel();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+        card_feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new FragmentFeedback();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.content_frame, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+
+
+        info_bf.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Breakfast has half diet", Toast.LENGTH_SHORT).show();
+            }
+        });
+        info_diets.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Lunch + Dinner + Half of breakfast", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        info_prev.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "All the previous months expenses", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         SharedPreferences sharedPreferences;
         sharedPreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
@@ -87,7 +147,7 @@ public class FragmentBoard extends Fragment  {
                 try {
                         ExpenseBoard bill = dataSnapshot.getValue(ExpenseBoard.class);
                         if(bill != null) {
-                            amount_prev.setText("" + bill.previous_cost);
+
                             diet_break.setText(("" + bill.diet_break));
                             diet_lunch.setText(("" + bill.diet_lunch));
                             diet_dinner.setText(("" + bill.diet_dinner));
@@ -138,5 +198,6 @@ public class FragmentBoard extends Fragment  {
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Dashboard");
     }
+
 }
 

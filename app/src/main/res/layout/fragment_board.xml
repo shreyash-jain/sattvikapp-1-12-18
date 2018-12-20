@@ -367,8 +367,140 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-android:background="@color/foreground"
+        android:background="@color/foreground"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2"
+                    android:orientation="horizontal">
+
+
+
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cv"
+                    style="@style/CardViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_bg_white_rounded_rect"
+                        android:orientation="vertical">
+
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/meal_cancel"
+                            app:riv_corner_radius_bottom_left="0dp"
+                            app:riv_corner_radius_bottom_right="0dp"
+                            app:riv_corner_radius_top_left="8dp"
+                            app:riv_corner_radius_top_right="8dp"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:gravity="top"
+                            android:layout_gravity="top"
+                            android:layout_marginBottom="-8dp"
+                            android:padding="2dp"
+                            android:orientation="vertical"
+                          >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="top"
+                                android:textStyle="bold"
+                                android:gravity="center"
+                                android:text="Cancel your meals"
+                                android:textColor="@color/grey_700"
+                                android:textSize="12sp" />
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cv2"
+                        style="@style/CardViewStyle"
+                        android:layout_width="0dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_weight="1"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/shape_bg_white_rounded_rect"
+                            android:orientation="vertical">
+
+                            <com.makeramen.roundedimageview.RoundedImageView
+                                android:id="@+id/iv2"
+                                android:layout_width="match_parent"
+                                android:layout_height="80dp"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/feedbackpic"
+                                app:riv_corner_radius_bottom_left="0dp"
+                                app:riv_corner_radius_bottom_right="0dp"
+                                app:riv_corner_radius_top_left="8dp"
+                                app:riv_corner_radius_top_right="8dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:gravity="top"
+                                android:layout_gravity="top"
+                                android:orientation="vertical"
+                                android:padding="2dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="top"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:text="Give Feedback"
+                                    android:textColor="@color/grey_700"
+                                    android:textSize="12sp" />
+
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </LinearLayout>
+
+        </LinearLayout>
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -424,6 +556,7 @@ android:background="@color/foreground"
                         android:layout_height="match_parent"
                         android:textStyle="bold"
                         android:id="@+id/notice_board_text"
+                        android:text="updating..."
 
 
 
@@ -564,6 +697,13 @@ android:background="@color/foreground"
                                     android:textStyle="bold"
                                     android:textSize="18dp"
                                     android:gravity="start"/>
+                                <android.support.v7.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:paddingLeft="2dp"
+                                    android:alpha=".2"
+                                    android:id="@+id/info_bf"
+                                    android:src="@drawable/ic_info_black_24dp"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:gravity="end"
@@ -683,6 +823,13 @@ android:background="@color/foreground"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="20dp"
                                     android:gravity="start"/>
+                                <android.support.v7.widget.AppCompatImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:alpha=".2"
+                                    android:paddingLeft="2dp"
+                                    android:id="@+id/info_diets"
+                                    android:src="@drawable/ic_info_black_24dp"/>
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:gravity="end"
@@ -742,6 +889,13 @@ android:background="@color/foreground"
                                 android:textStyle="bold"
                                 android:textSize="22dp"
                                 android:textColor="@color/cardview_dark_background"/>
+                            <android.support.v7.widget.AppCompatImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="2dp"
+                                android:alpha=".2"
+                                android:id="@+id/info_prev"
+                                android:src="@drawable/ic_info_black_24dp"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -771,6 +925,8 @@ android:background="@color/foreground"
                                 android:textStyle="bold"
                                 android:textSize="22dp"
                                 android:textColor="@color/cardview_dark_background"/>
+
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -780,6 +936,7 @@ android:background="@color/foreground"
                                 android:textColor="@color/cardview_dark_background"
                                 android:id="@+id/total_expense"
                                 android:text="NA"/>
+
                         </LinearLayout>
                     </LinearLayout>
 
