@@ -29,15 +29,16 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 //TODO: check if already login from local database. If data present go to Dashboard Else go to LoginActivity
                 sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
-                String s = sharedPreferences.getString(Constants.email,"");
+                String mail = sharedPreferences.getString(Constants.email,"");
                 //String active = sharedPreferences.getString(Constants.isactive,"0");
-                if(s.equals("")) {
+                if(mail.equals("")) {
 
                     Intent i = new Intent(MainActivity.this, IntroActivity.class);
                     startActivity(i);
                     finish();
                 }
                 else {
+                    final boolean[] isupdated = {false};
                     final String email = sharedPreferences.getString(Constants.email,"");
                     final String email_refined = email.replaceAll("\\W+", "");
 
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     editor.putString(Constants.isactive, personDetails.isactive);
                                     editor.apply();
-
+                                    isupdated[0] = true;
                                 }
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
@@ -63,24 +64,29 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                     String active = sharedPreferences.getString(Constants.isactive,"0");
-                    if(active.equals("0"))
-                    {
-                        Intent i = new Intent(MainActivity.this, Offline.class);
-                        i.putExtra("EXTRA", "notopenFragment");
-                        startActivity(i);
-                        finish();
-                    }
-                    else{
-                        Intent i = new Intent(MainActivity.this, Dashboard.class);
-                        i.putExtra("EXTRA", "notopenFragment");
-                        startActivity(i);
-                        finish();
-                    }
+                    nextPage(isupdated[0], active);
                 }
 
             }
         }, 3000);
 
 
+    }
+
+    void nextPage(boolean isupdated, String active)
+    {
+        if(active.equals("0") || !isupdated)
+        {
+            Intent i = new Intent(MainActivity.this, Offline.class);
+            i.putExtra("EXTRA", "notopenFragment");
+            startActivity(i);
+            finish();
+        }
+        else{
+            Intent i = new Intent(MainActivity.this, Dashboard.class);
+            i.putExtra("EXTRA", "notopenFragment");
+            startActivity(i);
+            finish();
+        }
     }
 }

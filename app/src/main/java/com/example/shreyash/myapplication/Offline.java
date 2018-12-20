@@ -59,7 +59,6 @@ public class Offline extends AppCompatActivity {
                             i.putExtra("EXTRA", "notopenFragment");
                             startActivity(i);
                             finish();
-
                         }
                     }
                     @Override
