@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
@@ -37,8 +38,14 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
 
         //binding the data with the viewholder views
         holder.textViewDate.setText(String.valueOf(cancelitem.getCan_date()));
-        holder.textViewDiets.setText(String.valueOf(cancelitem.getDiets()));
+        holder.textRequestDate.setText(String.valueOf(cancelitem.getRequestdate()));
         holder.textStatus.setText(String.valueOf(cancelitem.getStatus()));
+        holder.check_bf.setChecked(cancelitem.getbf());
+        holder.check_ln.setChecked(cancelitem.getln());
+        holder.check_dn.setChecked(cancelitem.getdn());
+        holder.check_bf.setEnabled(cancelitem.unsetenable());
+        holder.check_dn.setEnabled(cancelitem.unsetenable());
+        holder.check_ln.setEnabled(cancelitem.unsetenable());
 
 
     }
@@ -49,13 +56,19 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
     }
 
     public class CancellationViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewDate,textViewDiets,textStatus;
+        TextView textViewDate,textStatus,textRequestDate;
+        CheckBox check_bf,check_ln,check_dn,unsetenable;
         public CancellationViewHolder(View itemView) {
             super(itemView);
 
             textStatus=itemView.findViewById(R.id.list_status);
             textViewDate=itemView.findViewById(R.id.list_date);
-            textViewDiets=itemView.findViewById(R.id.list_diets);
+            textRequestDate=itemView.findViewById(R.id.request_date);
+            check_bf=itemView.findViewById(R.id.check_bk);
+            check_ln=itemView.findViewById(R.id.check_ln);
+            check_dn=itemView.findViewById(R.id.check_dn);
+
+
         }
     }
 }

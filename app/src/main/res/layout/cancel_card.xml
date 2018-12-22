@@ -13,30 +13,185 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp"
-        android:paddingLeft="8dp"
+
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/list_date"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:textStyle="bold"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
-        <TextView
-            android:id="@+id/list_diets"
+            android:paddingTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:background="#ececec"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10sp"
+                android:text="Request initiated on :  "/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:layout_height="wrap_content"
+                android:id="@+id/request_date"
+
+                android:textSize="10sp"/>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="1dp"
-            android:textColor="@android:color/darker_gray" />
-        <TextView
-            android:id="@+id/list_status"
+
+            android:paddingRight="8dp"
+            android:paddingLeft="16dp"
+
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_height="wrap_content"
+                android:text="For Date : "/>
+            <TextView
+                android:id="@+id/list_date"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+
+                android:paddingLeft="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+
+
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp"
-            android:textColor="@android:color/black" />
+
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/check_bk"/>
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"/>
+
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:id="@+id/check_ln"/>
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_height="wrap_content"
+                android:text="Lunch"/>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="132dp"
+            android:layout_height="wrap_content"
+
+            android:paddingRight="8dp"
+            android:paddingLeft="32dp"
+
+            android:orientation="horizontal">
+            <android.support.v7.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/check_dn"/>
+            <TextView
+                android:layout_width="wrap_content"
+
+                android:textSize="14sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_height="wrap_content"
+                android:text="Dinner"/>
+
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:paddingRight="8dp"
+            android:paddingLeft="16dp"
+
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif-condensed"
+                android:layout_height="wrap_content"
+                android:text="Status : "/>
+            <TextView
+                android:id="@+id/list_status"
+                android:paddingTop="4dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp"
+                android:paddingLeft="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+
+
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
