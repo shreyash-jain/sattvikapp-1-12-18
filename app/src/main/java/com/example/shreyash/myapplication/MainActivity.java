@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                     String active = sharedPreferences.getString(Constants.isactive,"0");
+                    while(!isupdated[0]);
                     nextPage(isupdated[0], active);
                 }
 
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     void nextPage(boolean isupdated, String active)
     {
-        if(active.equals("0") || !isupdated)
+        if(active.equals("0"))
         {
             Intent i = new Intent(MainActivity.this, Offline.class);
             i.putExtra("EXTRA", "notopenFragment");
