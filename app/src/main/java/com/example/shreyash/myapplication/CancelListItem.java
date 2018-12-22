@@ -1,18 +1,26 @@
 package com.example.shreyash.myapplication;
 
 public class CancelListItem {
-    int status;
-    String diets;
+    String status;
+    String requestdate;
     String can_date;
+    boolean breakfast;
+    boolean lunch;
+    boolean dinner;
+    boolean enable;
 
 
-    public CancelListItem(int status,String diets, String can_date){
+    public CancelListItem(String status,String requestdate, String can_date, Boolean breakfast, Boolean lunch, Boolean dinner,Boolean enable){
         this.status=status;
-        this.diets=diets;
+        this.requestdate=requestdate;
         this.can_date=can_date;
+        this.breakfast=breakfast;
+        this.lunch=lunch;
+        this.dinner=dinner;
+        this.enable=enable;
     }
 
-    public int getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -20,8 +28,18 @@ public class CancelListItem {
         return can_date;
     }
 
-    public String getDiets() {
-        return diets;
+    public String getRequestdate() {
+        return requestdate;
+    }
+
+    public boolean getbf(){ return  breakfast;}
+
+    public boolean getln(){ return  lunch; }
+
+    public  boolean getdn() { return  dinner; }
+
+    public  boolean unsetenable(){
+        return  enable;
     }
 }
 

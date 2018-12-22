@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
                     String active = sharedPreferences.getString(Constants.isactive,"0");
-                    while(!isupdated[0]);
+                   // while(!isupdated[0]);
                     nextPage(isupdated[0], active);
                 }
 
