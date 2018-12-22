@@ -101,37 +101,6 @@ public class MainActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
 
-
-                                    /*
-                                    // Reading from internal storage
-                                    List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
-                                    String filename = "CancelData";
-                                    try {
-                                        Toast.makeText(CancelList.this, "reading", Toast.LENGTH_SHORT).show();
-                                        //FileInputStream inStream = new FileInputStream(filename);
-                                        FileInputStream inStream = openFileInput(filename);
-                                        ObjectInputStream objectInStream = new ObjectInputStream(inStream);
-                                        int count = objectInStream.readInt();// Get the number of cancel requests
-                                        for (int c=0; c < count; c++)
-                                            cancelDetailsArrayTemp.add((CancelDetails) objectInStream.readObject());
-                                        objectInStream.close();
-                                    }
-                                    catch (Exception e) {
-                                        Toast.makeText(CancelList.this, "ohhh", Toast.LENGTH_SHORT).show();
-                                        Log.e("reading error",""+e);
-                                        e.printStackTrace();
-                                    }
-
-                                    cancelList=new ArrayList<>();
-                                    for(int i = 0; i< cancelDetailsArrayTemp.size();i++)
-                                    {
-                                        int acep = Integer.parseInt(cancelDetailsArrayTemp.get(i).Acceptance);
-                                        /*cancelList.add(
-                                                new CancelListItem(acep,"Lunch and Dinner",cancelDetailsArrayTemp.get(i).request_date)
-                                        );
-                                     Toast.makeText(CancelList.this, ""+cancelDetailsArrayTemp.get(i).request_date, Toast.LENGTH_SHORT).show();
-                                     }
-                                     */
                                 }
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
