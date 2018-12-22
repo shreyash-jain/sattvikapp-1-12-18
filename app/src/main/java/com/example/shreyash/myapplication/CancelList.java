@@ -27,10 +27,10 @@ public class CancelList extends AppCompatActivity {
 
         cancelList=new ArrayList<>();
         cancelList.add(
-                new CancelListItem(1,"Lunch and Dinner","On 24/12/18")
+                new CancelListItem(1,"Lunch and Dinner","24/12/18")
         );
         cancelList.add(
-                new CancelListItem(0,"Breakfast and Dinner","On 22/12/18")
+                new CancelListItem(0,"Breakfast and Dinner","22/12/18")
         );
         CancellationAdapter adapter = new CancellationAdapter(this, cancelList);
         recyclerView.setAdapter(adapter);
