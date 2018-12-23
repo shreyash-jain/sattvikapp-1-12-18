@@ -10,8 +10,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import org.apache.commons.net.ntp.NTPUDPClient;
 import org.apache.commons.net.ntp.TimeInfo;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.commons.net.ntp.NTPUDPClient;
@@ -119,6 +123,51 @@ public class FragmentCancel extends Fragment {
         FadingTextView FTV = (FadingTextView) rootview.findViewById(R.id.fadingTextView);
         FTV.setTexts(texts);
         final boolean[] correct_date = new boolean[1];
+
+
+
+        List<EventDay> cancel_events = new ArrayList<>();
+
+
+
+        List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
+        String filename = "CancelData";
+        try {
+
+            //FileInputStream inStream = new FileInputStream(filename);
+            FileInputStream inStream = getActivity().openFileInput(filename);
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+            int count = objectInStream.readInt();// Get the number of cancel requests
+            for (int c=0; c < count; c++)
+                cancelDetailsArrayTemp.add((CancelDetails) objectInStream.readObject());
+            objectInStream.close();
+        }
+        catch (Exception e) {
+
+            Log.e("reading error",""+e);
+            e.printStackTrace();
+        }
+
+
+        for(int i = 0; i< cancelDetailsArrayTemp.size();i++) {
+
+
+            String sdate= cancelDetailsArrayTemp.get(i).request_date.substring(0, cancelDetailsArrayTemp.get(i).request_date.length()-12);
+            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+            try {
+                Date pdate = format.parse(sdate);
+                Calendar event_day=toCalendar(pdate);
+                cancel_events.add(new EventDay(event_day,R.drawable.ic_cancel_black_24dp));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+
+
+
+        }
+        calendarView.setEvents(cancel_events);
 
         calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
@@ -233,6 +282,12 @@ public class FragmentCancel extends Fragment {
         } else {
             return android.provider.Settings.System.getInt(c.getContentResolver(), android.provider.Settings.System.AUTO_TIME, 0) == 1;
         }
+    }
+
+    public static Calendar toCalendar(Date date){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return cal;
     }
 }
 
