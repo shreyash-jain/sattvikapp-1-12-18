@@ -1,6 +1,8 @@
 package com.example.shreyash.myapplication;
 
-public class CancelDetails {
+import java.io.Serializable;
+
+public class CancelDetails implements Serializable {
     public String Acceptance;
     public String b;
     public String d;
@@ -25,4 +27,5 @@ public class CancelDetails {
         this.name = name;
         this.request_date= request_date;
     }
+
 }
