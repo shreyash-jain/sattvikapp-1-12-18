@@ -20,6 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -149,6 +153,34 @@ public class ConfirmCancel extends AppCompatActivity {
                                 request_date
                         );
                         mPostReference.child(email_refined).child(key).setValue(cancelDetails);
+                        String filename = "CancelData";
+                        //Getting number of cancel requests
+                        int count = 0;
+                        try {
+                            FileInputStream inStream = openFileInput(filename);
+                            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+                            count = objectInStream.readInt();// Get the number of cancel requests
+                            objectInStream.close();
+                        }
+                        catch (Exception e) {
+                            Log.e("reading error",""+e);
+                            e.printStackTrace();
+                        }
+                        //Updating internal storage
+                        FileOutputStream outStream;
+                        try {
+                            outStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
+                            // Save size first
+                            int sz = count +1;
+                            objectOutStream.writeInt(sz);
+                            objectOutStream.writeObject(cancelDetails);
+                            objectOutStream.close();
+                            outStream.close();
+                        } catch (Exception e) {
+                            Log.e("writer error", e+"");
+                            e.printStackTrace();
+                        }
                         Toast.makeText(ConfirmCancel.this, "requested", Toast.LENGTH_SHORT).show();
                     }
                     @Override
