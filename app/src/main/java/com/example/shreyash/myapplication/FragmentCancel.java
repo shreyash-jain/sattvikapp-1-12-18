@@ -147,6 +147,7 @@ public class FragmentCancel extends Fragment {
             Log.e("reading error",""+e);
             e.printStackTrace();
         }
+        List<CheckCancelDate> cancel_dates_checker= new ArrayList<>();
 
 
         for(int i = 0; i< cancelDetailsArrayTemp.size();i++) {
@@ -158,6 +159,11 @@ public class FragmentCancel extends Fragment {
                 Date pdate = format.parse(sdate);
                 Calendar event_day=toCalendar(pdate);
                 cancel_events.add(new EventDay(event_day,R.drawable.ic_cancel_black_24dp));
+                boolean b = cancelDetailsArrayTemp.get(i).b.equals("1");
+                boolean l = cancelDetailsArrayTemp.get(i).l.equals("1");
+                boolean d = cancelDetailsArrayTemp.get(i).d.equals("1");
+                int acceptance=Integer.valueOf(cancelDetailsArrayTemp.get(i).Acceptance);
+                cancel_dates_checker.add(new CheckCancelDate(pdate,acceptance,b,l,d));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -208,17 +214,44 @@ public class FragmentCancel extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 int sum=0;
                                 if (checkedmeals[0]) sum+=1;if (checkedmeals[1]) sum+=3;if (checkedmeals[2]) sum+=5;
+                                int coinside=0;
+                                for(int i = 0; i< cancel_dates_checker.size();i++){
+                                    if ((clickeddate.compareTo(cancel_dates_checker.get(i).for_date)==0)){
+                                        if(checkedmeals[0]==true && cancel_dates_checker.get(i).ck_breakfast==true){
+                                            coinside=1;
+                                            break;
+                                        }
+                                        if(checkedmeals[1]==true && cancel_dates_checker.get(i).ck_lunch==true){
+                                            coinside=1;
+                                            break;
+                                        }
+                                        if(checkedmeals[2]==true && cancel_dates_checker.get(i).ck_dinner==true){
+                                            coinside=1;
+                                            break;
+                                        }
+                                    }
+
+                                }
                                 checkedmeals[0]=false;
                                 checkedmeals[1]=false;
                                 checkedmeals[2]=false;
+                                if (sum>0 && coinside==0){
 
 
                                     Intent intent = new Intent(getActivity(), ConfirmCancel.class);
                                     intent.putExtra("Cancel_diets", sum);
                                     intent.putExtra("date", clickeddate.getTime());
-                                    sum=0;
-
+                                    sum=0;coinside=0;
                                     startActivity(intent);
+                                }
+
+                                else {
+                                    if (sum==0)
+                                    Toast.makeText(getActivity(), "Please select any meal", Toast.LENGTH_LONG).show();
+                                    else   Toast.makeText(getActivity(), "You are selecting already requested meal", Toast.LENGTH_LONG).show();
+                                }
+
+
 
 
 

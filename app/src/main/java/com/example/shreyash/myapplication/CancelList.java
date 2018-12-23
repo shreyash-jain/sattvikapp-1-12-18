@@ -58,6 +58,7 @@ public class CancelList extends AppCompatActivity {
             boolean b = cancelDetailsArrayTemp.get(i).b.equals("1");
             boolean l = cancelDetailsArrayTemp.get(i).l.equals("1");
             boolean d = cancelDetailsArrayTemp.get(i).d.equals("1");
+
             String sdate= cancelDetailsArrayTemp.get(i).request_date.substring(0, cancelDetailsArrayTemp.get(i).request_date.length()-11);
             cancelList.add(
                     new CancelListItem(status,cancelDetailsArrayTemp.get(i).date , sdate, b, l, d, false)
