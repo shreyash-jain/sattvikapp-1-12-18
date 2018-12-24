@@ -21,6 +21,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -131,6 +136,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
+        final String email = sharedPreferences.getString(Constants.email,"");
+        final String email_refined = email.replaceAll("\\W+", "");
+
+        FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
+        DatabaseReference cPostReference = PostReference.getReference("cancel_sheet");
+        cPostReference.child(email_refined).
+                addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        List<CancelDetails> cancelDetailsArray = new ArrayList<>();
+                        for (DataSnapshot child: dataSnapshot.getChildren()) {
+                            cancelDetailsArray.add(child.getValue(CancelDetails.class));
+                        }
+                        //Saving to internal storage
+                        String filename = "CancelData";
+                        FileOutputStream outStream;
+                        try {
+                            outStream = openFileOutput(filename, Context.MODE_PRIVATE);
+                            ObjectOutputStream objectOutStream = new ObjectOutputStream(outStream);
+                            // Save size first
+                            objectOutStream.writeInt(cancelDetailsArray.size());
+                            for(CancelDetails var:cancelDetailsArray)
+                                objectOutStream.writeObject(var);
+                            objectOutStream.close();
+                            outStream.close();
+                        } catch (Exception e) {
+                            //Toast.makeText(LoginActivity.this, "oho", Toast.LENGTH_SHORT).show();
+                            Log.e("writer error", e+"");
+                            e.printStackTrace();
+                        }
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w("activated or not", "loadPost:onCancelled", databaseError.toException());
+                    }
+                });
         loginButton.setEnabled(true);
 
         String active = sharedPreferences.getString(Constants.isactive,"0");

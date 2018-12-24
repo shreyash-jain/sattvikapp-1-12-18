@@ -32,7 +32,7 @@ public class CancelList extends AppCompatActivity {
         List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
         String filename = "CancelData";
         try {
-            Toast.makeText(CancelList.this, "reading", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CancelList.this, "reading", Toast.LENGTH_SHORT).show();
             //FileInputStream inStream = new FileInputStream(filename);
             FileInputStream inStream = openFileInput(filename);
             ObjectInputStream objectInStream = new ObjectInputStream(inStream);
@@ -42,7 +42,7 @@ public class CancelList extends AppCompatActivity {
             objectInStream.close();
         }
         catch (Exception e) {
-            Toast.makeText(CancelList.this, "ohhh", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CancelList.this, "ohhh", Toast.LENGTH_SHORT).show();
             Log.e("reading error",""+e);
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class CancelList extends AppCompatActivity {
         cancelList=new ArrayList<>();
         for(int i = 0; i< cancelDetailsArrayTemp.size();i++) {
 
-            Toast.makeText(CancelList.this, "" + cancelDetailsArrayTemp.get(i).request_date, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(CancelList.this, "" + cancelDetailsArrayTemp.get(i).request_date, Toast.LENGTH_SHORT).show();
             String status = cancelDetailsArrayTemp.get(i).Acceptance;
             if(status.equals("-1")) status = "pending";
             else if(status.equals("1")) status = "accepted";
