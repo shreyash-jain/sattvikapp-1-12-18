@@ -48,15 +48,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Year"/>
-    <EditText android:id="@+id/input_year"
+        android:layout_marginTop="8dp"
+        android:text="Insitute Roll No." />
+
+    <EditText
+        android:id="@+id/input_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="number"
-        android:hint="Year" />
+        android:hint="Roll No."
+        android:inputType="number" />
 
     <TextView
         android:layout_width="match_parent"

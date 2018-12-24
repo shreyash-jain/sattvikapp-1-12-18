@@ -25,12 +25,14 @@ import org.apache.commons.net.ntp.TimeInfo;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DrawableUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,9 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import com.applandeo.materialcalendarview.CalendarUtils;
+import com.applandeo.materialcalendarview.utils.DateUtils;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.listeners.OnCalendarPageChangeListener;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
@@ -110,13 +115,12 @@ public class FragmentCancel extends Fragment {
 
         final List<String> mealsList = Arrays.asList(meals);
         com.applandeo.materialcalendarview.CalendarView calendarView = (com.applandeo.materialcalendarview.CalendarView) rootview.findViewById(R.id.calendarView);
-        Calendar min = Calendar.getInstance();
-        min.add(Calendar.DAY_OF_MONTH, 0);
+
 
         Calendar max = Calendar.getInstance();
         max.add(Calendar.DAY_OF_MONTH, 15);
 
-        calendarView.setMinimumDate(min);
+
         calendarView.setMaximumDate(max);
 
         String[] texts = {"Click a date ","To cancel your meals"};
@@ -158,10 +162,31 @@ public class FragmentCancel extends Fragment {
             try {
                 Date pdate = format.parse(sdate);
                 Calendar event_day=toCalendar(pdate);
-                cancel_events.add(new EventDay(event_day,R.drawable.ic_cancel_black_24dp));
+
                 boolean b = cancelDetailsArrayTemp.get(i).b.equals("1");
                 boolean l = cancelDetailsArrayTemp.get(i).l.equals("1");
                 boolean d = cancelDetailsArrayTemp.get(i).d.equals("1");
+                if (b && !l && !d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.b));
+
+                }
+                else if (!b && l && !d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.l));
+                    }
+                else if (!b && !l && d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.d));
+                }else if (b && l && !d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.bl));
+                }else if (b && !l && d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.bd));
+                }else if (!b && l && d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.ld));
+                }else if (b && l && d){
+                    cancel_events.add(new EventDay(event_day, R.drawable.bld));
+                }
+
+
+
                 int acceptance=Integer.valueOf(cancelDetailsArrayTemp.get(i).Acceptance);
                 cancel_dates_checker.add(new CheckCancelDate(pdate,acceptance,b,l,d));
             } catch (ParseException e) {

@@ -12,12 +12,24 @@ public class ActivityAbout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
+        final ScrollView scroller=findViewById(R.id.scroll_about);
 
         final TextView textVision = findViewById(R.id.text_vision_content);
         final TextView titleVision =  findViewById(R.id.text_vision_title);
         expandCollapseText(titleVision,textVision);
         final TextView textHistory = findViewById(R.id.text_history_content);
-        final TextView titleHistory =  findViewById(R.id.text_history_title);
+
+        final TextView titleHistory = findViewById(R.id.text_history_title);
+        titleHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scroller.post(new Runnable() {
+                    public void run() {
+                       scroller.scrollTo(0,-10);
+                    }
+                });
+            }
+        });
         textHistory.setVisibility(View.GONE);
         expandCollapseText(titleHistory,textHistory);
         final TextView textRegistration = findViewById(R.id.text_registration_procedure_content);
