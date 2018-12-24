@@ -130,7 +130,7 @@ public class ConfirmCancel extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, ""+request_date, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+request_date, Toast.LENGTH_SHORT).show();
         FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
         final DatabaseReference mPostReference = PostReference.getReference("cancel_sheet");
 
@@ -183,7 +183,7 @@ public class ConfirmCancel extends AppCompatActivity {
                             Log.e("writer error", e+"");
                             e.printStackTrace();
                         }
-                        Toast.makeText(ConfirmCancel.this, "requested", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConfirmCancel.this, "request sent", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(ConfirmCancel.this, Dashboard.class);
                         i.putExtra("EXTRA", "notopenFragment");
                         startActivity(i);
@@ -192,7 +192,7 @@ public class ConfirmCancel extends AppCompatActivity {
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(ConfirmCancel.this, "Unable to send request", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConfirmCancel.this, "Unable to send request", Toast.LENGTH_LONG).show();
                         Log.w("cancel uplodaed or not", "loadPost:onCancelled", databaseError.toException());
                     }
                 });
