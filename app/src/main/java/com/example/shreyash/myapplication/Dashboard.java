@@ -145,7 +145,11 @@ public class Dashboard extends AppCompatActivity
                     editor.remove(Constants.name);
                     editor.remove(Constants.email);
                     editor.remove(Constants.password);
+                    editor.remove(Constants.isactive);
                     editor.apply();
+
+                    //Deleting internal storage
+                    Dashboard.this.deleteFile("CancelData");
 
                     Intent i = new Intent(Dashboard.this,LoginActivity.class);
                     startActivity(i);
