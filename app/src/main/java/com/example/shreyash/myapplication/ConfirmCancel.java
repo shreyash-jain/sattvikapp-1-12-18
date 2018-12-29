@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -128,7 +130,7 @@ public class ConfirmCancel extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(this, ""+request_date, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, ""+request_date, Toast.LENGTH_SHORT).show();
         FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
         final DatabaseReference mPostReference = PostReference.getReference("cancel_sheet");
 
@@ -181,13 +183,16 @@ public class ConfirmCancel extends AppCompatActivity {
                             Log.e("writer error", e+"");
                             e.printStackTrace();
                         }
-                        Toast.makeText(ConfirmCancel.this, "requested", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(ConfirmCancel.this, "request sent", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(ConfirmCancel.this, Dashboard.class);
+                        i.putExtra("EXTRA", "notopenFragment");
+                        startActivity(i);
+                        finish();
 
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-                        Toast.makeText(ConfirmCancel.this, "cancelled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ConfirmCancel.this, "Unable to send request", Toast.LENGTH_LONG).show();
                         Log.w("cancel uplodaed or not", "loadPost:onCancelled", databaseError.toException());
                     }
                 });
