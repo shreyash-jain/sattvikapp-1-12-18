@@ -57,7 +57,7 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         awesomeValidation.addValidation(this, R.id.input_name, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_email, Patterns.EMAIL_ADDRESS, R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.input_phone, "^[2-9]{2}[0-9]{8}$", R.string.mobileerror);
-        awesomeValidation.addValidation(this, R.id.input_year, Range.closed(1, 6), R.string.ageerror);
+        awesomeValidation.addValidation(this, R.id.input_year, "\\b\\d{8}\\b", R.string.ageerror);
         String regexPassword = "^([a-zA-Z0-9@*#]{8,20})$";
         awesomeValidation.addValidation(this, R.id.input_password, regexPassword, R.string.error_invalid_password);
 

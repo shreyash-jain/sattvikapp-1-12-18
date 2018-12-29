@@ -16,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 import org.apache.commons.net.ntp.NTPUDPClient;
@@ -33,6 +34,8 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DrawableUtils;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,8 +75,17 @@ import static android.support.constraint.Constraints.TAG;
 
 public class FragmentCancel extends Fragment {
     private TextView displayDate;
-    private  TextView viewallcancel;
+
+    List<CancelListItem> cancelList;
+
+    //the recyclerview
+    RecyclerView recyclerView;
     long tdiff;
+    // flag for Internet connection status
+    Boolean isInternetPresent = false;
+
+    // Connection detector class
+    ConnectionDetector cd;
 
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Nullable
@@ -82,16 +94,52 @@ public class FragmentCancel extends Fragment {
         final View rootview = inflater.inflate(R.layout.fragment_cancel, container, false);
         Calendar calendar = Calendar.getInstance();
         final int year = calendar.get(Calendar.YEAR);
+        recyclerView = (RecyclerView) rootview.findViewById(R.id.recyclerViewcCancel);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
-        viewallcancel=rootview.findViewById(R.id.view_more);
-        viewallcancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), CancelList.class);
-                startActivity(i);
-            }
-        });
+
+        List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
+        String filename = "CancelData";
+        try {
+            Toast.makeText(getContext(), "reading", Toast.LENGTH_SHORT).show();
+            //FileInputStream inStream = new FileInputStream(filename);
+            FileInputStream inStream = getActivity().openFileInput(filename);
+            ObjectInputStream objectInStream = new ObjectInputStream(inStream);
+            int count = objectInStream.readInt();// Get the number of cancel requests
+            for (int c=0; c < count; c++)
+                cancelDetailsArrayTemp.add((CancelDetails) objectInStream.readObject());
+            objectInStream.close();
+        }
+        catch (Exception e) {
+            Toast.makeText(getContext(), "ohhh", Toast.LENGTH_SHORT).show();
+            Log.e("reading error",""+e);
+            e.printStackTrace();
+        }
+
+        cancelList=new ArrayList<>();
+        Collections.reverse(cancelDetailsArrayTemp);
+        for(int i = 0; i< cancelDetailsArrayTemp.size();i++) {
+
+            Toast.makeText(getContext(), "" + cancelDetailsArrayTemp.get(i).request_date, Toast.LENGTH_SHORT).show();
+            String status = cancelDetailsArrayTemp.get(i).Acceptance;
+            if(status.equals("-1")) status = "pending";
+            else if(status.equals("1")) status = "accepted";
+            else if(status.equals("0")) status = "rejected";
+            boolean b = cancelDetailsArrayTemp.get(i).b.equals("1");
+            boolean l = cancelDetailsArrayTemp.get(i).l.equals("1");
+            boolean d = cancelDetailsArrayTemp.get(i).d.equals("1");
+
+            String sdate= cancelDetailsArrayTemp.get(i).request_date.substring(0, cancelDetailsArrayTemp.get(i).request_date.length()-11);
+            cancelList.add(
+                    new CancelListItem(status,cancelDetailsArrayTemp.get(i).date , sdate, b, l, d, false)
+            );
+        }
+        CancellationAdapter adapter = new CancellationAdapter(getContext(), cancelList);
+        recyclerView.setAdapter(adapter);
+
+
+
 
 
        // checkTimeServer();
@@ -134,8 +182,8 @@ public class FragmentCancel extends Fragment {
 
 
 
-        List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
-        String filename = "CancelData";
+        List<CancelDetails> cancelDetailsArrayTemper = new ArrayList<>();
+
         try {
 
             //FileInputStream inStream = new FileInputStream(filename);
@@ -143,7 +191,7 @@ public class FragmentCancel extends Fragment {
             ObjectInputStream objectInStream = new ObjectInputStream(inStream);
             int count = objectInStream.readInt();// Get the number of cancel requests
             for (int c=0; c < count; c++)
-                cancelDetailsArrayTemp.add((CancelDetails) objectInStream.readObject());
+                cancelDetailsArrayTemper.add((CancelDetails) objectInStream.readObject());
             objectInStream.close();
         }
         catch (Exception e) {
@@ -154,40 +202,41 @@ public class FragmentCancel extends Fragment {
         List<CheckCancelDate> cancel_dates_checker= new ArrayList<>();
 
 
-        for(int i = 0; i< cancelDetailsArrayTemp.size();i++) {
+        for(int i = 0; i< cancelDetailsArrayTemper.size();i++) {
 
 
-            String sdate= cancelDetailsArrayTemp.get(i).request_date.substring(0, cancelDetailsArrayTemp.get(i).request_date.length()-12);
+            String sdate= cancelDetailsArrayTemper.get(i).request_date.substring(0, cancelDetailsArrayTemper.get(i).request_date.length()-12);
             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
             try {
                 Date pdate = format.parse(sdate);
                 Calendar event_day=toCalendar(pdate);
+                String status = cancelDetailsArrayTemper.get(i).Acceptance;
 
-                boolean b = cancelDetailsArrayTemp.get(i).b.equals("1");
-                boolean l = cancelDetailsArrayTemp.get(i).l.equals("1");
-                boolean d = cancelDetailsArrayTemp.get(i).d.equals("1");
-                if (b && !l && !d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.b));
 
-                }
-                else if (!b && l && !d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.l));
+                boolean b = cancelDetailsArrayTemper.get(i).b.equals("1");
+                boolean l = cancelDetailsArrayTemper.get(i).l.equals("1");
+                boolean d = cancelDetailsArrayTemper.get(i).d.equals("1");
+                if(status.equals("1")) {
+                    if (b && !l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.b));
+
+                    } else if (!b && l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.l));
+                    } else if (!b && !l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.d));
+                    } else if (b && l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.bl));
+                    } else if (b && !l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.bd));
+                    } else if (!b && l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.ld));
+                    } else if (b && l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.bld));
                     }
-                else if (!b && !l && d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.d));
-                }else if (b && l && !d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.bl));
-                }else if (b && !l && d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.bd));
-                }else if (!b && l && d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.ld));
-                }else if (b && l && d){
-                    cancel_events.add(new EventDay(event_day, R.drawable.bld));
                 }
 
 
-
-                int acceptance=Integer.valueOf(cancelDetailsArrayTemp.get(i).Acceptance);
+                int acceptance=Integer.valueOf(cancelDetailsArrayTemper.get(i).Acceptance);
                 cancel_dates_checker.add(new CheckCancelDate(pdate,acceptance,b,l,d));
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -212,8 +261,13 @@ public class FragmentCancel extends Fragment {
                 c.add(Calendar.DATE, 15);
                 fdate = c.getTime();
                 correct_date[0] =isTimeAutomatic(getContext());
-                if(!correct_date[0]){
-                    Toast.makeText(getActivity(), "Please set time to automatic", Toast.LENGTH_LONG).show();
+                cd = new ConnectionDetector(getActivity().getApplicationContext());
+                isInternetPresent = cd.isConnectingToInternet();
+                if(!isInternetPresent){
+                    Toast.makeText(getActivity(), "Please connect to internet", Toast.LENGTH_LONG).show();
+                }
+                else if(!correct_date[0]){
+                    Toast.makeText(getActivity(), "Your time is not correct, Please set time to automatic", Toast.LENGTH_LONG).show();
                 }
 
                 else if (!today.after(clickeddate) && !fdate.before(clickeddate) ){

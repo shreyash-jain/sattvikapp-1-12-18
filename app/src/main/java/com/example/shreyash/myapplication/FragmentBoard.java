@@ -26,6 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.text.DateFormatSymbols;
 
 import com.example.shreyash.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
@@ -87,7 +88,15 @@ public class FragmentBoard extends Fragment  {
         final ImageView info_diets=rootview.findViewById(R.id.info_diets);
         final CardView card_cancel=rootview.findViewById(R.id.cv);
         final CardView card_feedback=rootview.findViewById(R.id.cv2);
+        final TextView month=rootview.findViewById(R.id.month);
+        Calendar c = Calendar.getInstance();
+        String monthString;
 
+
+        int month_index = c.get(Calendar.MONTH);
+
+        monthString = new DateFormatSymbols().getMonths()[month_index];
+        month.setText(monthString);
        card_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

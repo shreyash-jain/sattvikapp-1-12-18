@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.example.shreyash.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,14 +22,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.shreyash.utils.Constants.email;
+
 
 public class LoginActivity extends AppCompatActivity {
+    private DatabaseReference miDatabase;
     private static final String TAG = "LoginActivity";
 
     EditText emailText;
     EditText passwordText;
     Button loginButton;
     TextView signupLink;
+    TextView password_forget;
     SharedPreferences sharedPreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,8 +42,22 @@ public class LoginActivity extends AppCompatActivity {
 
         emailText = findViewById(R.id.text_email);
         passwordText = findViewById(R.id.text_password);
+      password_forget =findViewById(R.id.forget_pass);
+
         loginButton = findViewById(R.id.btn_login);
         signupLink = findViewById(R.id.text_signup);
+
+        password_forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, RequestPassword.class);
+
+                startActivity(i);
+
+
+
+            }
+        });
         loginButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -57,6 +76,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void login() {
         Log.d(TAG, "Login");

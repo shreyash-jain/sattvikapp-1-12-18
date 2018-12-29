@@ -2,6 +2,7 @@ package com.example.shreyash.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,16 +21,7 @@ public class ActivityAbout extends AppCompatActivity {
         final TextView textHistory = findViewById(R.id.text_history_content);
 
         final TextView titleHistory = findViewById(R.id.text_history_title);
-        titleHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scroller.post(new Runnable() {
-                    public void run() {
-                       scroller.scrollTo(0,-10);
-                    }
-                });
-            }
-        });
+
         textHistory.setVisibility(View.GONE);
         expandCollapseText(titleHistory,textHistory);
         final TextView textRegistration = findViewById(R.id.text_registration_procedure_content);
@@ -40,7 +32,27 @@ public class ActivityAbout extends AppCompatActivity {
         final TextView titleGeneral =  findViewById(R.id.text_general_rules_title);
         textGeneral.setVisibility(View.GONE);
         expandCollapseText(titleGeneral,textGeneral);
+        titleHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              {
+                    Log.d("shreyash","scroll end");
+                    if(textHistory.isShown()){
+                        textHistory.setVisibility(View.GONE);
+                    }
+                    else{
+                        textHistory.setVisibility(View.VISIBLE);
+
+                    }
+
+                    //How to get the scrollview move to the end of the page here??
+                }
+
+            }
+        });
+
     }
+
     void expandCollapseText(final TextView title,final TextView text){
         title.setOnClickListener(new View.OnClickListener() {
             @Override

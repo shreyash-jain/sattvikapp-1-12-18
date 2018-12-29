@@ -65,12 +65,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegistrationConfirmation" />
-        <activity android:name=".CancelList"
-            android:screenOrientation="portrait"
-
-            android:label="Previous Cancellations">
-
-        </activity>
+        <activity android:name=".RequestPassword"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ package com.example.shreyash.myapplication;
  */
 
 import android.app.AlertDialog;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -81,7 +82,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
 
 
-        List categories = new ArrayList<>();
+        List<String> categories = new ArrayList<String>();
         categories.add("Over All");
         categories.add("Bills Issue");
         categories.add("Registration Issue");
@@ -98,12 +99,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
         spinner.setAdapter(dataAdapter);
         disctext=view.findViewById(R.id.discription);
         ratingBar = (RatingBar) view.findViewById(R.id.rating_bar);
-        cd = new ConnectionDetector(getContext());
-        isInternetPresent = cd.isConnectingToInternet();
-        if(!isInternetPresent){
-            showAlertDialog(getContext(), "No Internet Connection",
-                    "You don't have internet connection.", false);
-        }
+
 
         if (getArguments()!=null ) {
             int myInt = getArguments().getInt("pass", 1);
@@ -137,11 +133,19 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
 
         //TODO:Send feedback here
 
+        cd = new ConnectionDetector(getContext());
+        isInternetPresent = cd.isConnectingToInternet();
+        if(!isInternetPresent){
+            showAlertDialog(getContext(), "No Internet Connection",
+                    "You don't have internet connection.", false);
+        }
+        else {
+
 
 
         //Submit feedback
         sharedpreferences = getActivity().getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
-        final String name =sharedpreferences.getString(Constants.name,"");
+        final String name = sharedpreferences.getString(Constants.name,"");
         final String email = sharedpreferences.getString(Constants.email,"");
         final String rating= String.valueOf(ratingBar.getRating());
         final String destxt = disctext.getText().toString();
@@ -208,7 +212,7 @@ public class FragmentFeedback extends Fragment implements OnItemSelectedListener
                 });
 
 
-        return  true;
+     }   return  true;
     }
 
     @Override
