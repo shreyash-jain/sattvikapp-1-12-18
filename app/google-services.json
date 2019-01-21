@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1017119845438:android:feb5e00febfcf1bc",
         "android_client_info": {
-          "package_name": "com.example.shreyash.myapplication"
+          "package_name": "com.jain.shreyash.myapplication"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1017119845438-ibj8gdde7ustk86dp46jau464upj3ldc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.shreyash.myapplication",
+            "package_name": "com.jain.shreyash.myapplication",
             "certificate_hash": "ea46b958a5bd4e598ab7927ec360f233b9dc3a64"
           }
         },

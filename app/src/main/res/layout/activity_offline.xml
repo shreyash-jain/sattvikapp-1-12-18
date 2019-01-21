@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/mybg"
     android:orientation="vertical"
-    tools:context="com.example.shreyash.myapplication.Offline">
+    tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.Offline">
 
     <TextView
         android:layout_width="match_parent"

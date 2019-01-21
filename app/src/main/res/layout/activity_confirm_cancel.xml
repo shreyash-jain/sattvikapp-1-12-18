@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConfirmCancel">
+    tools:context="com.jain.shreyash.myapplication.ConfirmCancel">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -145,7 +145,7 @@
                         android:text="I am aware that if I will misuse this facility by any way I will be deregistered from Sattvik Mess "
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="bold"
-                        android:textSize="22dp"
+                        android:textSize="18dp"
                         android:gravity="start"/>
 
 
@@ -169,8 +169,42 @@
             android:layout_margin="8dp"
             app:bg_color="@color/background"
             app:btn_text="Request Cancellation" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="monospace"
+            android:text="swipe to cancel"
+            android:textSize="14sp"/>
+        <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="end"
+            android:layout_marginTop="6sp"
+        android:background="@android:color/darker_gray"
+        android:elevation="2dp"
+
+        android:fadingEdge="vertical"
+        android:paddingTop="4dp"
+        android:requiresFadingEdge="vertical"></View>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Rules regarding online cancellation"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="6sp"
+
+            android:gravity="left"
+            android:text="1. We are tracking your cancellation requests and if we find that you are fraudulently misusing this, you will be fined with 200 ₹.\n2. If you want to take back the cancel requests then tell us at mess desk or mail us at sattvikmess@gmail.com\n3. Request status will be updated within 24 hours after request.  "/>
 
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

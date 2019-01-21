@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/foreground"
 
-    tools:context="com.example.shreyash.myapplication.FragmentCancel">
+    tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.FragmentCancel">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

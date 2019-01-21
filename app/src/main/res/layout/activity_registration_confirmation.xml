@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android = "http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.shreyash.myapplication.RegistrationConfirmation"
+    tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.RegistrationConfirmation"
     android:layout_width="fill_parent"
 
     android:layout_height="wrap_content"

@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Sattvik Mess</string>
     <string name="workers_title">Sattvik Family</string>
-    <string name="offline_text">Please follow the Instructions given below:\n\n1.You have received an online ID on your mail\n2.You need to fill the Offline Registration form(From Mess).\n3.Get it signed by respective Hostel Warden and then
-submit it at the Sattvik Mess desk along with the Mess Advance Receipt.\n\n<b>You will get a notification once your account gets activated</b></string>
+    <string name="offline_text">Please follow the Instructions given below:\n\nNow we will verify your details and mess advance receipt and then activate your account on app .\n\n If you are facing any problem regarding registration on Mobile App please contact \n\nShreyash Jain\nshreyash.jain.eee15@itbhu.ac.in\n9455223407\n\n<b>You will get a notification once your account gets activated</b></string>
     <string name="title_activity_dashboard">Dashboard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -115,7 +114,7 @@ extra charges will not be added.
 Items for which extra amount will be added no matter he eats or not.
 </string>
     <string name="nameerror">Enter a valid name</string>
-    <string name="emailerror">Enter a valid email</string>
+    <string name="emailerror">Enter a valid email and end it with @iitbhu.ac.in</string>
     <string name="mobileerror">Enter a valid mobile</string>
     <string name="dateerror">Enter a valid date</string>
     <string name="ageerror">Enter 8 digit roll no.</string>
