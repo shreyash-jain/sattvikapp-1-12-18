@@ -59,6 +59,7 @@ public class Dashboard extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        AppRater.app_launched(this);
 
         View header=navigationView.getHeaderView(0);
         TextView name = header.findViewById(R.id.main_name);

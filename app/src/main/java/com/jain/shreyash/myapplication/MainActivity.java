@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jain.shreyash.myapplication.R;
@@ -24,16 +25,20 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private long startTime;
     SharedPreferences sharedPreferences;
+    final int active_fire=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                startTime = System.currentTimeMillis();
                 //TODO: check if already login from local database. If data present go to Dashboard Else go to LoginActivity
                 sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
                 String mail = sharedPreferences.getString(Constants.email,"");
@@ -49,11 +54,15 @@ public class MainActivity extends AppCompatActivity {
                     final String email = sharedPreferences.getString(Constants.email,"");
                     final String email_refined = email.replaceAll("\\W+", "");
 
+
                     sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
                     final SharedPreferences.Editor editor = sharedPreferences.edit();
 
                     FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
+
                     DatabaseReference mPostReference = PostReference.getReference("student_sheet");
+
+                    Log.i("here 1","in");
 
                     mPostReference.child("students").child(email_refined).
                             addValueEventListener(new ValueEventListener() {
@@ -61,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     PersonDetails personDetails = dataSnapshot.getValue(PersonDetails.class);
 
+
                                     editor.putString(Constants.isactive, personDetails.isactive);
+
+                                    Log.i("here 2","in");
                                     editor.apply();
                                     isupdated[0] = true;
                                 }
@@ -71,12 +83,16 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
+
+
+
                     DatabaseReference cPostReference = PostReference.getReference("cancel_sheet");
                     cPostReference.child(email_refined).
                             addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     List<CancelDetails> cancelDetailsArray = new ArrayList<>();
+
                                     for (DataSnapshot child: dataSnapshot.getChildren()) {
                                         cancelDetailsArray.add(child.getValue(CancelDetails.class));
                                     }
@@ -118,15 +134,48 @@ public class MainActivity extends AppCompatActivity {
 
     void nextPage(boolean isupdated, String active)
     {
-        if(active.equals("0") || !isupdated)
+        if(!active.equals("0")){
+
+            final String email = sharedPreferences.getString(Constants.email,"");
+            final String email_refined = email.replaceAll("\\W+", "");
+            FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
+            DatabaseReference mPostReference = PostReference.getReference("student_sheet");
+
+            mPostReference.child("students").child(email_refined).
+                    addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            PersonDetails personDetails = dataSnapshot.getValue(PersonDetails.class);
+
+
+                            if(personDetails.isactive.equals("1"))
+                            {
+
+                                Intent i=new Intent(MainActivity.this,Dashboard.class);
+                                Log.i("here 6","in");
+                                i.putExtra("EXTRA", "notopenFragment");
+                                startActivity(i);
+                                finish();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Log.w("activated or not", "loadPost:onCancelled", databaseError.toException());
+                        }
+                    });
+
+        }
+       else if(active.equals("0") || !isupdated)
         {
             Intent i = new Intent(MainActivity.this, Offline.class);
             i.putExtra("EXTRA", "notopenFragment");
+            Log.i("here 3","in");
             startActivity(i);
             finish();
         }
         else{
             Intent i = new Intent(MainActivity.this, Dashboard.class);
+            Log.i("here 4","in");
             i.putExtra("EXTRA", "notopenFragment");
             startActivity(i);
             finish();

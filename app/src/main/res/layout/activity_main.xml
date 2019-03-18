@@ -1,16 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.MainActivity" >
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="false"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/title_page_3" />
-</android.support.constraint.ConstraintLayout>
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativelayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="false"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/title_page_3" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+
+            android:layout_alignParentBottom="true"
+            android:background="#0A140C"
+
+
+            />
+
+        <com.tomer.fadingtextview.FadingTextView
+            android:id="@+id/myImageViewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_alignLeft="@+id/imageView"
+            android:layout_alignTop="@id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignBottom="@id/imageView"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="bottom"
+            android:padding="12dp"
+            app:texts="@array/examples1"
+            android:textColor="#DDE0E0"
+            app:timeout="5000"
+            android:textSize="24dp"
+            android:typeface="monospace"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</LinearLayout>

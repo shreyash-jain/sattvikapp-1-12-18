@@ -121,7 +121,7 @@ public class FragmentCancel extends Fragment {
                     if (predate.before(today)){
                         cancelList.add(
 
-                                new CancelListItem("Cancelled",cancelDetailsArrayTemp.get(i).date , sdate, b, l, d, R.color.thirdpage,false)
+                                new CancelListItem("Pending...",cancelDetailsArrayTemp.get(i).date , sdate, b, l, d, R.color.thirdpage,false)
                         );
 
                     }
@@ -270,7 +270,7 @@ public class FragmentCancel extends Fragment {
                 Date fdate = new Date();
                 Calendar c = Calendar.getInstance();
                 c.setTime(fdate);
-                c.add(Calendar.DATE, 15);
+                c.add(Calendar.DATE, 5);
                 fdate = c.getTime();
                 correct_date[0] =isTimeAutomatic(getContext());
                 cd = new ConnectionDetector(getActivity().getApplicationContext());

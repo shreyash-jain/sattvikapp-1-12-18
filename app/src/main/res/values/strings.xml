@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sattvik Mess</string>
     <string name="workers_title">Sattvik Family</string>
-    <string name="offline_text">Please follow the Instructions given below:\n\nNow we will verify your details and mess advance receipt and then activate your account on app .\n\n If you are facing any problem regarding registration on Mobile App please contact \n\nShreyash Jain\nshreyash.jain.eee15@itbhu.ac.in\n9455223407\n\n<b>You will get a notification once your account gets activated</b></string>
+    <string name="offline_text">You are seeing this Page because :\n\nYou are deregistered from the mobile app due to misuse of app.\n\nIf you are a new Registrant\n\nPlease follow the Instructions given below:\n\nNow we will verify your details and mess advance receipt and then activate your account on app .\n\n If you are facing any problem regarding registration on Mobile App please contact \n\nShreyash Jain\nshreyash.jain.eee15@itbhu.ac.in\n9455223407\n\n<b>You will get a notification once your account gets activated</b></string>
     <string name="title_activity_dashboard">Dashboard</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -12,6 +12,13 @@
     <string-array name="examples">
         <item>Hello</item>
         <item>Fading TextView</item>
+    </string-array>
+    <string-array name="examples1">
+        <item>Checking Internet Connection</item>
+        <item>Connection is slow …</item>
+        <item>Check what is wrong</item>
+        <item>Network not coming? or</item>
+        <item>Did you sign in to IIT(BHU)?</item>
     </string-array>
     <string-array name="branches">
         <item>Electrical</item>

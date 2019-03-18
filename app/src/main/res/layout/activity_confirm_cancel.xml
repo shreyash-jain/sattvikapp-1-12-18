@@ -202,7 +202,7 @@
             android:padding="6sp"
 
             android:gravity="left"
-            android:text="1. We are tracking your cancellation requests and if we find that you are fraudulently misusing this, you will be fined with 200 ₹.\n2. If you want to take back the cancel requests then tell us at mess desk or mail us at sattvikmess@gmail.com\n3. Request status will be updated within 24 hours after request.  "/>
+            android:text="1. We are tracking your cancellation requests and if we find that you are fraudulently misusing this, you will be fined with 200 ₹.\n2. If you want to take back the cancel requests then tell us at mess desk or mail us at sattvikmess@gmail.com\n3. Request status will be updated within 2-3 days after request.  "/>
 
 
     </LinearLayout>
