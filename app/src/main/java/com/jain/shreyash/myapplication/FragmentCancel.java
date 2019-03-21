@@ -14,6 +14,7 @@ import org.apache.commons.net.ntp.TimeInfo;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.net.InetAddress;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -28,15 +29,30 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.applandeo.materialcalendarview.CalendarView;
+import com.applandeo.materialcalendarview.DatePicker;
 import com.applandeo.materialcalendarview.EventDay;
+import com.applandeo.materialcalendarview.builders.DatePickerBuilder;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.applandeo.materialcalendarview.listeners.OnSelectDateListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Logger;
+import com.google.firebase.database.ValueEventListener;
 import com.jain.shreyash.myapplication.R;
 import com.tomer.fadingtextview.FadingTextView;
 
@@ -54,13 +70,24 @@ public class FragmentCancel extends Fragment {
 
     //the recyclerview
     RecyclerView recyclerView;
+    public  static String[] off_dates;
+    LinearLayout layout;
+    ListView listView;
+    TextView cancel_text;
+    public  static String[] off_day;
+    public  static int num_dates;
     long tdiff;
+    Button btnTag;
     // flag for Internet connection status
     Boolean isInternetPresent = false;
+    public  static ArrayList<Integer> uncheck_bk = new ArrayList<Integer>();
+    public  static ArrayList<Integer> uncheck_ln = new ArrayList<Integer>();
+    public  static ArrayList<Integer> uncheck_dn = new ArrayList<Integer>();
 
     // Connection detector class
     ConnectionDetector cd;
-
+    int cancel_active;
+    ArrayList<Integer> offline_coloumn_list = new ArrayList<Integer>();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Nullable
     @Override
@@ -72,7 +99,10 @@ public class FragmentCancel extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final int month = calendar.get(Calendar.MONTH);
         final int day = calendar.get(Calendar.DAY_OF_MONTH);
+         layout = (LinearLayout) rootview.findViewById(R.id.add_button);
+        listView = (ListView) rootview.findViewById(R.id.listview_on_offline);
 
+        cancel_text=rootview.findViewById(R.id.cancel_btn_id);
         List<CancelDetails> cancelDetailsArrayTemp = new ArrayList<>();
         String filename = "CancelData";
         try {
@@ -109,6 +139,7 @@ public class FragmentCancel extends Fragment {
             calc.add(Calendar.DATE, -2);
 
             Date today = calc.getTime();
+
 
 
 
@@ -154,7 +185,15 @@ public class FragmentCancel extends Fragment {
 
 
 
-       // checkTimeServer();
+
+
+
+
+
+
+
+
+        // checkTimeServer();
 
 
 
@@ -178,15 +217,37 @@ public class FragmentCancel extends Fragment {
 
 
         Calendar max = Calendar.getInstance();
-        max.add(Calendar.DAY_OF_MONTH, 15);
+        max.add(Calendar.DAY_OF_MONTH, 5);
 
 
         calendarView.setMaximumDate(max);
+
+
 
         String[] texts = {"Click a date ","To cancel your meals"};
         FadingTextView FTV = (FadingTextView) rootview.findViewById(R.id.fadingTextView);
         FTV.setTexts(texts);
         final boolean[] correct_date = new boolean[1];
+
+
+        FirebaseDatabase BoardReference = FirebaseDatabase.getInstance();
+
+        DatabaseReference mBoardReference = BoardReference.getReference("cancel_sheet");
+        cancel_active=1;
+        mBoardReference.child("cancel_active").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                CheckCancelActive message = dataSnapshot.getValue(CheckCancelActive.class);
+
+                cancel_active=message.current;
+                Log.e("current cancel stats",cancel_active+"");
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 
@@ -281,9 +342,30 @@ public class FragmentCancel extends Fragment {
                 else if(!correct_date[0]){
                     Toast.makeText(getActivity(), "Your time is not correct, Please set time to automatic", Toast.LENGTH_LONG).show();
                 }
+                else if(cancel_active==0){
+                    createAlertDialogCancel();
+                    //Toast.makeText(getActivity(), "Cancel service is currently unavailable", Toast.LENGTH_LONG).show();
+
+                }
 
                 else if (!today.after(clickeddate) && !fdate.before(clickeddate) ){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    Calendar maxc = Calendar.getInstance();
+                    maxc.add(clickedDayCalendar.DAY_OF_MONTH, 5);
+                    Calendar minc = Calendar.getInstance();
+                    minc.add(Calendar.DAY_OF_MONTH, -1);
+                    DatePickerBuilder builder2 = new DatePickerBuilder(getContext(), listener)
+
+                            .pickerType(CalendarView.MANY_DAYS_PICKER)
+                            .minimumDate(clickedDayCalendar) // Minimum available date
+                            .maximumDate(maxc)
+                            .headerColor(R.color.background);
+
+
+                    DatePicker datePicker = builder2.build();
+                    datePicker.show();
+
+                /*
                 builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
                         null, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
@@ -358,7 +440,7 @@ public class FragmentCancel extends Fragment {
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-            }}
+            */}}
         });
 
 
@@ -380,6 +462,7 @@ public class FragmentCancel extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        createAlertDialogOnCreate();
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Meals Cancellation");
 
@@ -394,10 +477,180 @@ public class FragmentCancel extends Fragment {
         }
     }
 
+
     public static Calendar toCalendar(Date date){
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         return cal;
     }
+    private OnSelectDateListener listener = new OnSelectDateListener() {
+        @Override
+        public void onSelect(List<Calendar> calendars) {
+            offline_coloumn_list.clear();
+
+            num_dates=calendars.size();
+            off_dates = new String[num_dates];
+            off_day = new String[num_dates];
+            Boolean[] make_ck_set =new Boolean[num_dates];
+            Toast.makeText(getActivity(), String.valueOf(num_dates), Toast.LENGTH_SHORT).show();
+            for(int i = 0; i<num_dates; i++){
+                Calendar thiscal= calendars.get(i);
+                Date thisdate=thiscal.getTime();
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                DateFormat df_day = new SimpleDateFormat("dd");
+                String get_only_day_string = df_day.format(thisdate);
+
+                int this_day_of_month = Integer.valueOf(get_only_day_string);
+                DateFormat df_month = new SimpleDateFormat("MM");
+                String get_only_month_string=df_month.format(thisdate);
+                int this_month = Integer.valueOf(get_only_month_string);
+                String reportDate = df.format(thisdate);
+                SimpleDateFormat formatter = new SimpleDateFormat("EEE");
+                String this_day = formatter.format(thiscal.getTime());
+                off_dates[i]=reportDate;
+                off_day[i]=this_day;
+                make_ck_set[i]=false;
+                offline_coloumn_list.add(7+this_day_of_month+(this_month-1)*31);
+
+
+                cancel_text.setText("Select meals to cancel");
+
+
+            }
+
+            btnTag = new Button(getContext());
+
+            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params1.weight=1.0f;
+            params1.gravity= Gravity.RIGHT;
+            layout.removeAllViews();
+            listView.setAdapter(null);
+            btnTag.setLayoutParams(params1);
+            btnTag.setText("Continue");
+            btnTag.setId(0);
+            layout.addView(btnTag);
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = (168)*num_dates;
+            OfflineCustomListAdapter whatever = new OfflineCustomListAdapter(getActivity(),off_dates,off_day, make_ck_set,make_ck_set,make_ck_set);
+            listView.setLayoutParams(params);
+            listView.requestLayout();
+            listView.setAdapter(whatever);
+            btnTag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ListAdapter adapter = listView.getAdapter();
+                    uncheck_bk =((OfflineCustomListAdapter) adapter).unchecked_bk;
+                    uncheck_ln =((OfflineCustomListAdapter) adapter).unchecked_ln;
+                    uncheck_dn =((OfflineCustomListAdapter) adapter).unchecked_dn;
+
+
+
+                    Log.i("BK: ",uncheck_bk.toString());
+                    Log.i("LN: ",uncheck_ln.toString());
+                    Log.i("DN: ",uncheck_dn.toString());
+                    int every_day=0;
+                    for(int ind=0;ind<num_dates;ind++){
+                        if (!uncheck_bk.contains(ind) && !uncheck_ln.contains(ind) && !uncheck_dn.contains(ind))
+                        {
+                            every_day=1;
+                            break;
+                        }
+                    }
+                    if (every_day==1){
+                        Toast.makeText(getActivity(), "Select meals to proceed", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                    else
+                        {
+                            Intent intent = new Intent(getActivity(), ConfirmCancel.class);
+                           // intent.putExtra("Cancel_diets", 1);
+
+
+                            startActivity(intent);
+                    }
+
+                }
+            });
+
+        }
+
+    };
+
+
+    public void createAlertDialogCancel() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Oops!");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("Cancellation service temporarily unavailable");
+
+        // Setting Icon to Dialog
+        alertDialog.setIcon(R.drawable.ic_cloud_off_black_24dp);
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // User pressed YES button. Write Logic Here
+
+
+
+                Toast.makeText(getContext(), "Please check Noticeboard for further update",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Setting Negative "NO" Button
+
+
+
+
+
+        // Showing Alert Message
+        alertDialog.show();
+
+    }
+
+    public void createAlertDialogOnCreate() {
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Do Online Cancellation only at Emergency");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("We are counting your requests, if exceeded over an limit your requests will be automatically cancelled");
+
+        // Setting Icon to Dialog
+        alertDialog.setIcon(R.drawable.ic_warning_black_24dp);
+
+        // Setting Positive "Yes" Button
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // User pressed YES button. Write Logic Here
+
+                // Toast.makeText(getContext(), "Please check Noticeboard for further update",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Setting Negative "NO" Button
+
+
+
+
+
+        // Showing Alert Message
+        alertDialog.show();
+
+    }
+
+
+
+
+
+
 }
 

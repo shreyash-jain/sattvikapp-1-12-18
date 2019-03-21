@@ -52,6 +52,7 @@
         <activity
             android:name="com.jain.shreyash.myapplication.Dashboard"
             android:label="@string/title_activity_dashboard"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

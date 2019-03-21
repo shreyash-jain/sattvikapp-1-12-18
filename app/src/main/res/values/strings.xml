@@ -76,6 +76,26 @@
     <string name="text_4"> Text 4 </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <array name="material_calendar_months_array">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </array>
+    <string name="loginfailed">Send request</string>
+    <string name="login">Send request</string>
+    <string name="loginsuccess">Done</string>
+
+    <string name="material_calendar_today_button">Select a range</string>
     <string name="info_vision"> In contemporary era of diverse religious beliefs, living styles and liberal outlooks, it becomes pertinent for systems to cater diverse groups as per their needs and justified preferences.
 People from western India, Jainism and many other parts of India, particularly with a spiritual inclination, have profound researched belief system which gives much importance to food.
 
