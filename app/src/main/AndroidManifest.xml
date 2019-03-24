@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jain.shreyash.myapplication">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-
 
     <application
         android:allowBackup="true"
@@ -23,8 +15,9 @@
         android:roundIcon="@drawable/icon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ChatActivity"></activity>
         <activity
-            android:name="com.jain.shreyash.myapplication.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -34,41 +27,43 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.jain.shreyash.myapplication.IntroActivity"
+            android:name=".IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Intro" />
         <activity
-            android:name="com.jain.shreyash.myapplication.Registration"
+            android:name=".Registration"
             android:label="Registration Form"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.jain.shreyash.myapplication.LoginActivity"
+            android:name=".LoginActivity"
             android:label="Login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.jain.shreyash.myapplication.Offline"
+            android:name=".Offline"
             android:label="Offline Registration"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.jain.shreyash.myapplication.Dashboard"
+            android:name=".Dashboard"
             android:label="@string/title_activity_dashboard"
-            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ConfirmCancel"
+            android:label="@string/title_activity_dashboard"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ActivityAbout" />
+        <activity
+            android:name=".ActivityWorkers"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.jain.shreyash.myapplication.ConfirmCancel"
-            android:label="@string/title_activity_dashboard"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.jain.shreyash.myapplication.ActivityAbout" />
+            android:name=".RegistrationConfirmation"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.jain.shreyash.myapplication.ActivityWorkers"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.jain.shreyash.myapplication.RegistrationConfirmation"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.jain.shreyash.myapplication.RequestPassword"
-            android:screenOrientation="portrait"></activity>
+            android:name=".RequestPassword"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

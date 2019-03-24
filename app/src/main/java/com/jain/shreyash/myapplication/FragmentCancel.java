@@ -203,13 +203,6 @@ public class FragmentCancel extends Fragment {
                 "Dinner",
 
         };
-        final boolean[] checkedmeals = new boolean[]{
-                false, // Red
-                false, // Green
-                false, // Blue
-
-
-        };
 
 
         final List<String> mealsList = Arrays.asList(meals);

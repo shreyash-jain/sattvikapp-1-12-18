@@ -1,6 +1,7 @@
 package com.jain.shreyash.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -72,6 +73,7 @@ public class FragmentBoard extends Fragment  {
         final ImageView info_diets=rootview.findViewById(R.id.info_diets);
         final CardView card_cancel=rootview.findViewById(R.id.cv);
         final CardView card_feedback=rootview.findViewById(R.id.cv2);
+        final CardView card_chat=rootview.findViewById(R.id.cv3);
         final TextView month=rootview.findViewById(R.id.month);
         Calendar c = Calendar.getInstance();
         String monthString;
@@ -81,6 +83,13 @@ public class FragmentBoard extends Fragment  {
 
         monthString = new DateFormatSymbols().getMonths()[month_index];
         month.setText(monthString);
+        card_chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ChatActivity.class);
+                startActivity(i);
+            }
+        });
        card_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:id="@+id/main_content"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@android:color/white"
+android:fitsSystemWindows="true">
+
+
+
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:id="@+id/ll_change_margin"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginBottom="20dp">
+
+    <include layout="@layout/content_main_chat"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:layout_gravity="bottom"
+    android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:id="@+id/poll_layout_ll">
+
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_chatbox"
+
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+
+        android:minHeight="45dp"
+        android:background="#ffffff"
+        >
+
+        <Button
+            android:id="@+id/button_chatbox_send"
+            android:text="SEND"
+            android:textSize="14dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+
+            />
+        <EditText
+            android:id="@+id/edittext_chatbox"
+            android:hint="Enter message"
+            android:background="@android:color/transparent"
+
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="fill_parent"
+
+            android:layout_height="wrap_content"
+            android:maxLines="6"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>
