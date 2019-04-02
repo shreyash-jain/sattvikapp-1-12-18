@@ -26,7 +26,7 @@ android:fitsSystemWindows="true">
     android:id="@+id/ll_change_margin"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginBottom="20dp">
+    android:layout_marginBottom="24dp">
 
     <include layout="@layout/content_main_chat"
         android:layout_width="fill_parent"
@@ -55,39 +55,68 @@ android:fitsSystemWindows="true">
         android:id="@+id/layout_chatbox"
 
 
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
+        android:background="#ffffff"
+        android:gravity="center"
+        android:layout_gravity="center"
 
         android:minHeight="45dp"
-        android:background="#ffffff"
-        >
+        android:orientation="horizontal"
+        android:weightSum="5">
 
-        <Button
-            android:id="@+id/button_chatbox_send"
-            android:text="SEND"
-            android:textSize="14dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
 
-            android:layout_width="64dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edittext_chatbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+
+
+                android:background="@android:color/transparent"
+
+                android:gravity="center_vertical"
+
+                android:hint="Enter message"
+                android:maxLines="6" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight=".9"
+            android:background="#E6E5E5"
+            android:orientation="vertical"
+            android:paddingTop="2dp"
 
-            />
-        <EditText
-            android:id="@+id/edittext_chatbox"
-            android:hint="Enter message"
-            android:background="@android:color/transparent"
+            android:paddingLeft="4dp">
 
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_width="fill_parent"
+            <Button
+                android:id="@+id/button_chatbox_send"
+                android:layout_width="64dp"
+                android:layout_height="match_parent"
 
-            android:layout_height="wrap_content"
-            android:maxLines="6"/>
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
 
+                android:drawableTop="@drawable/ic_send"
+
+                android:layout_gravity="start"
+                android:gravity="start"
+
+                android:text="Have your say"
+
+                android:textSize="8dp" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>

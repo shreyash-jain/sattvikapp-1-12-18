@@ -534,6 +534,14 @@
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/poll_layout_feedback">
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -592,6 +600,10 @@
                         android:id="@+id/notice_board_text"
                         android:text="updating..."
 
+                        android:autoLink="web"
+
+                        android:textIsSelectable="true"
+
 
 
                         android:textSize="18dp" />
@@ -644,6 +656,8 @@
             android:layout_alignWithParentIfMissing="true">
 
         </android.support.v4.view.ViewPager>
+
+
 
 
 

@@ -1,5 +1,6 @@
 package com.jain.shreyash.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -34,13 +35,16 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static in.shadowfax.proswipebutton.UiUtils.dpToPx;
 
@@ -56,6 +60,8 @@ public class ChatActivity extends AppCompatActivity {
     Boolean poll_active;
     TextView poll_title;
     int count;
+    int other;
+    int limiter;
 
 
     @Override
@@ -72,7 +78,39 @@ public class ChatActivity extends AppCompatActivity {
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) layout.getLayoutParams();
 
 
+        SharedPreferences a_d = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        String activity_date_old= a_d.getString("visit_date", "2010-04-12");
+        SharedPreferences.Editor editor = a_d.edit();
+        String activity_date_new = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        editor.putString("visit_date",activity_date_new);
+        editor.apply();
+        Date visit_old=new Date();
+        SimpleDateFormat formatter1=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            visit_old=formatter1.parse(activity_date_old);
 
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        limiter=0;
+        Date date1=new Date();
+        SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+        String get_date= sp.getString("date_saved", "2010-04-12");
+
+        try {
+            date1=formatter1.parse(get_date);
+            Date date2=new Date();
+
+            long duration  = date2.getTime() - date1.getTime();
+            long diffInDays = TimeUnit.MILLISECONDS.toDays(duration);
+            if (diffInDays>1) limiter=1;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        other=0;
         count=1;
         poll_title=findViewById(R.id.poll_title);
         sharedPreferences = this.getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
@@ -87,6 +125,7 @@ public class ChatActivity extends AppCompatActivity {
         mBoardReference.child("poll1").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                other++;
                 getPollDetails message = dataSnapshot.getValue(getPollDetails.class);
                 Log.e("current cancel stats",dataSnapshot.getKey());
                 poll_active=message.poll_bool;
@@ -99,8 +138,8 @@ public class ChatActivity extends AppCompatActivity {
                         r.getDisplayMetrics()
                 );
                 int p=(int)(px);
-                if (poll_active && count==1){
-                    params.setMargins(5, 0, 5, p);
+                if (poll_active && count==1 && other==1 && limiter==1){
+                    params.setMargins(5, 0, 0, p);
                     layout.setLayoutParams(params);
 
                     LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
@@ -129,11 +168,12 @@ public class ChatActivity extends AppCompatActivity {
                     a1=((float)a1/(float)total)*100;
                     a2=((float)a2/(float)total)*100;
                     a3=((float)a3/(float)total)*100;
-                    pb1.setProgress((int) a1);
-                    pb2.setProgress((int) a2);
-                    pb3.setProgress((int) a3);
+
                     Button btn=to_add.findViewById(R.id.vote);
                     options_layout.addView(to_add);
+                    float finalA = a1;
+                    float finalA1 = a2;
+                    float finalA2 = a3;
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -171,6 +211,16 @@ public class ChatActivity extends AppCompatActivity {
 
 
                             }
+                            pb1.setProgress((int) finalA);
+                            pb2.setProgress((int) finalA1);
+                            pb3.setProgress((int) finalA2);
+                            SharedPreferences sp = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sp.edit();
+                            String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+                            editor.putString("date_saved",date);
+                            editor.commit();
+                            Toast.makeText(getApplicationContext(),"Response taken, and you know what its good to have your say !",Toast.LENGTH_LONG).show();
+
                         }
                     });
 
@@ -193,6 +243,7 @@ public class ChatActivity extends AppCompatActivity {
         List<String> chatmessageArray=new ArrayList<>();
 
         DatabaseReference cPostReference = PostReference.getReference("chat_sheet");
+        Date finalVisit_old = visit_old;
         cPostReference.
                 addValueEventListener(new ValueEventListener() {
                     @Override
@@ -201,6 +252,7 @@ public class ChatActivity extends AppCompatActivity {
                         chatDetailsArray.clear();
                         chatList.clear();
 
+                        int c_pos=0;
 
 
                         chatmessageArray.add("initail one");
@@ -214,8 +266,21 @@ public class ChatActivity extends AppCompatActivity {
                                this_chat.msg_type=false;
                             this_chat.name="You";}
                            chatDetailsArray.add(this_chat);
+                            SimpleDateFormat formatter2=new SimpleDateFormat("yyyy/M/d h:mm:ss a");
 
-                           if(!child.getKey().equals("TAGGED")  )chatList.add(this_chat) ;
+                            try {
+                                Date mess_date=formatter2.parse(child.getValue(ChatMessage.class).gettime());
+
+                                if(mess_date.before(finalVisit_old)) {
+                                    c_pos++;
+                                }
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            if(!child.getKey().equals("TAGGED")  )chatList.add(this_chat) ;
                           else{if(child.getValue(ChatMessage.class).getMsg_type())that_chat=this_chat;}
 
                         }
@@ -232,7 +297,9 @@ public class ChatActivity extends AppCompatActivity {
                         // recyclerView.addItemDecoration(new ActivityWorkers.GridSpacingItemDecoration(2, dpToPx(10), true));
                         recyclerView.setItemAnimator(new DefaultItemAnimator());
                         recyclerView.setAdapter(mAdapter);
+                        if(c_pos>chatList.size() - 1 || c_pos==0)
                         recyclerView.scrollToPosition(chatList.size() - 1);
+                        else {recyclerView.scrollToPosition(c_pos);}
                         }
 
 
@@ -349,7 +416,7 @@ public class ChatActivity extends AppCompatActivity {
         final DatabaseReference mPostReference = PostReference.getReference("chat_sheet");
 
        String special_text="";
-        if(user_name.equals("Shreyash Jain")){special_text="Sattvik Team";}
+        if(user_name.equals("Shreyash Jain")||user_name.equals("Tanish Jain")||user_name.equals("Himanshu Jain")){special_text="Sattvik Team";}
         final String key = mPostReference.push().getKey();
         //String finalSpecial_text = special_text;
         mPostReference.
@@ -358,10 +425,10 @@ public class ChatActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                        ChatMessage chatDetails;
                         //Creating record to Firebase
-                        SimpleDateFormat format = new SimpleDateFormat("d/M h:mm:ss a");
+                        SimpleDateFormat format = new SimpleDateFormat("h:mm:ss a | d/M/yyyy");
 
                         String team="";
-                        if(user_name.equals("Shreyash Jain")){team="Sattvik Team";}
+                        if(user_name.equals("Shreyash Jain")||user_name.equals("Tanish Jain")||user_name.equals("Himanshu Jain")){team="Sattvik Team";}
                         chatDetails = new ChatMessage(user_name,chat_message,  format.format(d1), team, true);
                         mPostReference.child(key).setValue(chatDetails);
                         String filename = "ChatData";

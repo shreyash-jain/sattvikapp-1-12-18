@@ -17,7 +17,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.jain.shreyash.myapplication.R;
 import com.jain.shreyash.utils.Constants;
 
@@ -30,6 +34,8 @@ public class Dashboard extends AppCompatActivity
 
     // Connection detector class
     ConnectionDetector cd;
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +77,12 @@ public class Dashboard extends AppCompatActivity
 //        String personName = "AbhinString personEmail = s;
         name.setText(user_name);
         email.setText(user_email);
+        final String emailRefined = user_email.replaceAll("\\W+", "");
+        FirebaseMessaging.getInstance().subscribeToTopic("notifications");
+        Toast.makeText(this, emailRefined, Toast.LENGTH_LONG).show();
+        FirebaseMessaging.getInstance().subscribeToTopic(emailRefined);
+
+
 
         Fragment myFragment=new FragmentBoard();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -128,12 +140,15 @@ public class Dashboard extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.about) {
-            Intent i = new Intent(Dashboard.this, ActivityAbout.class);
+        if (item.getItemId() == R.id.team) {
+            Intent i = new Intent(Dashboard.this, ActivityTeam.class);
             startActivity(i);
         } else if (item.getItemId() == R.id.workers) {
             Intent i = new Intent(Dashboard.this, ActivityWorkers.class);
-            startActivity(i);
+            startActivity(i);}
+            else if (item.getItemId() == R.id.about) {
+                Intent i = new Intent(Dashboard.this, ActivityAbout.class);
+                startActivity(i);
         } else if(item.getItemId()== R.id.logout){
             AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
             builder.setMessage("Confirm Logout?");

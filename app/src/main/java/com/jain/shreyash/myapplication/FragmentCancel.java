@@ -71,6 +71,7 @@ public class FragmentCancel extends Fragment {
     //the recyclerview
     RecyclerView recyclerView;
     public  static String[] off_dates;
+    List<CancelDetails> cancelDetailsArrayTemper;
     LinearLayout layout;
     ListView listView;
     TextView cancel_text;
@@ -88,6 +89,7 @@ public class FragmentCancel extends Fragment {
     ConnectionDetector cd;
     int cancel_active;
     ArrayList<Integer> offline_coloumn_list = new ArrayList<Integer>();
+    List<CheckCancelDate> cancel_dates_checker;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     @Nullable
     @Override
@@ -97,8 +99,7 @@ public class FragmentCancel extends Fragment {
         final int year = calendar.get(Calendar.YEAR);
         recyclerView = (RecyclerView) rootview.findViewById(R.id.recyclerViewcCancel);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final int month = calendar.get(Calendar.MONTH);
-        final int day = calendar.get(Calendar.DAY_OF_MONTH);
+
          layout = (LinearLayout) rootview.findViewById(R.id.add_button);
         listView = (ListView) rootview.findViewById(R.id.listview_on_offline);
 
@@ -248,7 +249,7 @@ public class FragmentCancel extends Fragment {
 
 
 
-        List<CancelDetails> cancelDetailsArrayTemper = new ArrayList<>();
+       cancelDetailsArrayTemper = new ArrayList<>();
 
         try {
 
@@ -265,7 +266,7 @@ public class FragmentCancel extends Fragment {
             Log.e("reading error",""+e);
             e.printStackTrace();
         }
-        List<CheckCancelDate> cancel_dates_checker= new ArrayList<>();
+       cancel_dates_checker= new ArrayList<>();
 
 
         for(int i = 0; i< cancelDetailsArrayTemper.size();i++) {
@@ -298,6 +299,24 @@ public class FragmentCancel extends Fragment {
                         cancel_events.add(new EventDay(event_day, R.drawable.ld));
                     } else if (b && l && d) {
                         cancel_events.add(new EventDay(event_day, R.drawable.bld));
+                    }
+                }
+                if(status.equals("-1")) {
+                    if (b && !l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_b));
+
+                    } else if (!b && l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_l));
+                    } else if (!b && !l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_d));
+                    } else if (b && l && !d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_bl));
+                    } else if (b && !l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_bd));
+                    } else if (!b && l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_ld));
+                    } else if (b && l && d) {
+                        cancel_events.add(new EventDay(event_day, R.drawable.pen_bld));
                     }
                 }
 
@@ -548,6 +567,34 @@ public class FragmentCancel extends Fragment {
                         {
                             every_day=1;
                             break;
+                        }
+                        for(int i = 0; i< cancelDetailsArrayTemper.size();i++) {
+
+
+                            String sdate= cancelDetailsArrayTemper.get(i).request_date.substring(0, cancelDetailsArrayTemper.get(i).request_date.length()-12);
+                            SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                            try {
+                                Date pdate = format.parse(sdate);
+                                Calendar event_day=toCalendar(pdate);
+                                String status = cancelDetailsArrayTemper.get(i).Acceptance;
+
+
+                                boolean b = cancelDetailsArrayTemper.get(i).b.equals("1");
+                                boolean l = cancelDetailsArrayTemper.get(i).l.equals("1");
+                                boolean d = cancelDetailsArrayTemper.get(i).d.equals("1");
+
+
+
+
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+
+
+
+
                         }
                     }
                     if (every_day==1){

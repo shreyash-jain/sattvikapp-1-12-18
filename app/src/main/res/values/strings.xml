@@ -14,11 +14,11 @@
         <item>Fading TextView</item>
     </string-array>
     <string-array name="examples1">
-        <item>Checking Internet Connection</item>
+        <item>Checking Net Connection</item>
         <item>Connection is slow …</item>
         <item>Check what is wrong</item>
         <item>Network not coming? or</item>
-        <item>Did you sign in to IIT(BHU)?</item>
+        <item>Signed in to IIT(BHU)?</item>
     </string-array>
     <string-array name="branches">
         <item>Electrical</item>
@@ -74,6 +74,7 @@
     <string name="text_2"> <b>Breakfast</b> bla bla\n<b>Lunch</b> bla bla\n<b>Dinner</b> bla bla</string>
     <string name="text_3"> <b>Breakfast</b> bla bla\n<b>Lunch</b> bla bla\n<b>Dinner</b> bla bla </string>
     <string name="text_4"> Text 4 </string>
+    <string name="copy_right"> Sattvik App Team | 2019</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

@@ -1,6 +1,7 @@
 package com.jain.shreyash.myapplication;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -49,10 +50,11 @@ public class ChatAdapter extends  RecyclerView.Adapter<ChatAdapter.MyViewHolder>
         holder.user_message.setText(chat.getmessage());
         holder.user_time.setText(chat.gettime());
         holder.user_special_text.setText(chat.getspecial_text());
+
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         params.weight = 1.0f;
-        if(chat.getspecial_text().equals("tagged")){
+        if(chat.getspecial_text().equals("pinned")){
             params.gravity = Gravity.CENTER;
             holder.outer_ll.setGravity(Gravity.CENTER);
             holder.user_message.setBackgroundResource(R.drawable.rounded_rectangle_blue);
@@ -71,7 +73,7 @@ public class ChatAdapter extends  RecyclerView.Adapter<ChatAdapter.MyViewHolder>
             }
         }
         if(chat.getspecial_text().equals("Sattvik Team")||chat.getspecial_text().equals("pinned")){
-            holder.user_message.setTextSize(TypedValue.COMPLEX_UNIT_SP,20);
+            holder.user_message.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             Typeface bold = Typeface.create("san-serif", Typeface.BOLD);
             holder.user_message.setTypeface(bold);
        }

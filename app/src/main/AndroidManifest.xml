@@ -54,6 +54,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ActivityAbout" />
+        <activity android:name=".ActivityTeam" />
         <activity
             android:name=".ActivityWorkers"
             android:screenOrientation="portrait"
