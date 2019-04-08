@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        ImageView iv=findViewById(R.id.imageView);
+        AlphaAnimation animation1 = new AlphaAnimation(0.0f, 1.0f);
+        animation1.setDuration(1500);
+        iv.setAlpha(1f);
+
+
+        iv.startAnimation(animation1);
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -127,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        }, 500);
+        }, 100);
 
 
     }

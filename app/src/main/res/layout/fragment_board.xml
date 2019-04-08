@@ -352,15 +352,26 @@
 
     </LinearLayout>
 </ScrollView>-->
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/foreground"
+
+    tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.FragmentBoard">
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/foreground"
 
-    tools:context="com.example.shreyash.myapplication.com.jain.shreyash.myapplication.FragmentBoard">
+
+   >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -490,7 +501,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="10dp"
 
-            android:layout_height="170dp"
+            android:layout_height="160dp"
             android:layout_gravity="center">
 
             <LinearLayout
@@ -526,7 +537,7 @@
                         android:textStyle="bold"
                         android:text="Group Chat and Discussions"
                         android:textColor="@color/grey_700"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
 
 
@@ -544,78 +555,76 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/notice_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/notice"/>
+                android:src="@drawable/notice" />
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appboard"
-            android:layout_width="match_parent"
-            android:background="@color/foreground"
-
-
-            android:layout_height="wrap_content"
-            android:elevation="0dp">
-            <android.support.v7.widget.CardView
-              app:cardBackgroundColor="@color/background"
-                android:id="@+id/card_view"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-               app:cardElevation="2.5dp"
-                app:contentPadding="1dp"
-                android:layout_margin="4dp"
-                app:cardCornerRadius="12dp"
-               app:cardUseCompatPadding="true"
-                >
-
-            <android.support.v7.widget.CardView
-                app:cardCornerRadius="12dp"
-                android:padding="16dp"
-               layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appboard"
                 android:layout_width="match_parent"
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+
+                android:background="@color/foreground"
+                android:elevation="0dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/card_view"
+                    android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:paddingLeft="15dp"
-                    android:layout_marginBottom="12dp"
-                    android:paddingRight="18dp"
-                    android:orientation="vertical">
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    app:cardBackgroundColor="@color/background"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2.5dp"
+                    app:cardUseCompatPadding="true"
+                    app:contentPadding="1dp">
 
-
-
-
-                    <TextView
+                    <android.support.v7.widget.CardView
+                        layout_width="match_parent"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textStyle="bold"
-                        android:id="@+id/notice_board_text"
-                        android:text="updating..."
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        app:cardCornerRadius="12dp">
 
-                        android:autoLink="web"
-
-                        android:textIsSelectable="true"
-
-
-
-                        android:textSize="18dp" />
-                </LinearLayout>
-
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="12dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="8dp"
+                            android:paddingRight="18dp">
 
 
-            </android.support.v7.widget.CardView>
-            </android.support.v7.widget.CardView>
+                            <TextView
+                                android:id="@+id/notice_board_text"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:autoLink="web"
+                                android:text="updating..."
+
+                                android:textIsSelectable="true"
+
+                                android:textSize="14sp"
 
 
-        </android.support.design.widget.AppBarLayout>
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+                </android.support.v7.widget.CardView>
+
+
+            </android.support.design.widget.AppBarLayout>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
@@ -628,11 +637,20 @@
             android:paddingTop="4dp"
             android:requiresFadingEdge="vertical"></View>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:id="@+id/menu_ll"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
         <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/menu_view"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:src="@drawable/menupic"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:src="@drawable/menupic" />
 
             />
 
@@ -656,17 +674,13 @@
             android:layout_alignWithParentIfMissing="true">
 
         </android.support.v4.view.ViewPager>
-
-
-
-
-
-
+</LinearLayout>
 
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/expense_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/foreground"
@@ -682,31 +696,32 @@
                 android:fadingEdge="vertical"
                 android:paddingTop="4dp"
                 android:requiresFadingEdge="vertical"></View>
+
             <android.support.v7.widget.AppCompatImageView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:src="@drawable/expenses"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY"
+                android:src="@drawable/expenses" />
+
             <android.support.v7.widget.CardView
-                app:cardBackgroundColor="@color/background"
                 android:id="@+id/card_view2"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                app:cardElevation="2.5dp"
-                app:contentPadding="1dp"
                 android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/background"
                 app:cardCornerRadius="12dp"
+                app:cardElevation="2.5dp"
                 app:cardUseCompatPadding="true"
-                >
+                app:contentPadding="1dp">
 
                 <android.support.v7.widget.CardView
-                    app:cardCornerRadius="12dp"
-                    android:padding="16dp"
                     layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_width="match_parent"
-                    >
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    app:cardCornerRadius="12dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -715,179 +730,194 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:paddingTop="12dp"
-                            android:paddingLeft="15dp"
                             android:layout_marginBottom="12dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="12dp"
                             android:paddingRight="18dp">
 
                             <TextView
+                                android:id="@+id/month"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/month"
 
                                 android:text="..."
 
                                 android:textColor="@android:color/black"
-                                android:textSize="30dp" />
+                                android:textSize="24sp" />
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Your Diets this month"/>
+                                android:text="Your Diets this month" />
+
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:paddingTop="8dp">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:gravity="start"
                                     android:text="Breakfast"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:gravity="start"/>
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
                                 <android.support.v7.widget.AppCompatImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:paddingLeft="2dp"
-                                    android:alpha=".2"
                                     android:id="@+id/info_bf"
-                                    android:src="@drawable/ic_info_black_24dp"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:id="@+id/diet_break"
-                                    android:textSize="18dp"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:layout_height="wrap_content"
-                                    android:text="NA"/>
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Lunch"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:gravity="start"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:id="@+id/diet_lunch"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:layout_height="wrap_content"
-                                    android:text="NA"/>
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Dinner"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:gravity="start"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:id="@+id/diet_dinner"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:layout_height="wrap_content"
-                                    android:text="NA"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Extras"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:gravity="start"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:id="@+id/extras"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:layout_height="wrap_content"
-                                    android:text="NA"/>
-
-                            </LinearLayout>
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Service Charge"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:gravity="start"/>
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="18dp"
-                                    android:id="@+id/service"
-                                    android:textColor="@android:color/holo_green_dark"
-                                    android:layout_height="wrap_content"
-                                    android:text="NA"/>
-
-                            </LinearLayout>
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:paddingTop="8dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Total Diets"
-                                    android:textStyle="bold"
-                                    android:textColor="@android:color/darker_gray"
-                                    android:textSize="20dp"
-                                    android:gravity="start"/>
-                                <android.support.v7.widget.AppCompatImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:alpha=".2"
                                     android:paddingLeft="2dp"
-                                    android:id="@+id/info_diets"
-                                    android:src="@drawable/ic_info_black_24dp"/>
+                                    android:src="@drawable/ic_info_black_24dp" />
+
                                 <TextView
+                                    android:id="@+id/diet_break"
                                     android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="20dp"
-                                    android:id="@+id/total_diets"
-                                    android:textColor="@android:color/darker_gray"
                                     android:layout_height="wrap_content"
-                                    android:text="NA"/>
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/holo_green_dark"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Lunch"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/diet_lunch"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/holo_green_dark"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Dinner"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/diet_dinner"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/holo_green_dark"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Extras"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/extras"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/holo_green_dark"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Service Charge"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/service"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/holo_green_dark"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="8dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="start"
+                                    android:text="Total Diets"
+                                    android:textColor="@android:color/darker_gray"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
+                                <android.support.v7.widget.AppCompatImageView
+                                    android:id="@+id/info_diets"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:alpha=".2"
+                                    android:paddingLeft="2dp"
+                                    android:src="@drawable/ic_info_black_24dp" />
+
+                                <TextView
+                                    android:id="@+id/total_diets"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/darker_gray"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
 
@@ -896,105 +926,111 @@
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:paddingTop="8dp">
+
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:gravity="start"
                                     android:text="Expense this month"
-                                    android:textStyle="bold"
                                     android:textColor="@android:color/darker_gray"
-                                    android:textSize="20dp"
-                                    android:gravity="start"/>
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
+
                                 <TextView
-                                    android:layout_width="match_parent"
-                                    android:gravity="end"
-                                    android:textStyle="bold"
-                                    android:textSize="20dp"
                                     android:id="@+id/eta_expense"
-                                    android:textColor="@android:color/darker_gray"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="NA"/>
+                                    android:gravity="end"
+                                    android:text="NA"
+                                    android:textColor="@android:color/darker_gray"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
-
 
 
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingTop="12dp"
-                            android:paddingLeft="15dp"
                             android:layout_marginBottom="12dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="12dp"
                             android:paddingRight="18dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Previous Expense"
-                                android:textStyle="bold"
-                                android:textSize="22dp"
-                                android:textColor="@color/cardview_dark_background"/>
+                                android:textColor="@color/cardview_dark_background"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
                             <android.support.v7.widget.AppCompatImageView
+                                android:id="@+id/info_prev"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingLeft="2dp"
                                 android:alpha=".2"
-                                android:id="@+id/info_prev"
-                                android:src="@drawable/ic_info_black_24dp"/>
+                                android:paddingLeft="2dp"
+                                android:src="@drawable/ic_info_black_24dp" />
+
                             <TextView
+                                android:id="@+id/prev_cost"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
-                                android:textStyle="bold"
-                                android:textSize="22dp"
+                                android:text="NA"
                                 android:textColor="@color/cardview_dark_background"
-                                android:id="@+id/prev_cost"
-                                android:text="NA"/>
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:background="@android:color/darker_gray" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:paddingTop="12dp"
-                            android:paddingLeft="15dp"
                             android:layout_marginBottom="12dp"
+                            android:orientation="horizontal"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="12dp"
                             android:paddingRight="18dp">
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Total Expense"
-                                android:textStyle="bold"
-                                android:textSize="22dp"
-                                android:textColor="@color/cardview_dark_background"/>
+                                android:textColor="@color/cardview_dark_background"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
 
                             <TextView
+                                android:id="@+id/total_expense"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="end"
-                                android:textStyle="bold"
-                                android:textSize="22dp"
+                                android:text="NA"
                                 android:textColor="@color/cardview_dark_background"
-                                android:id="@+id/total_expense"
-                                android:text="NA"/>
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
                     </LinearLayout>
 
 
-
                 </android.support.v7.widget.CardView>
             </android.support.v7.widget.CardView>
-
-
 
 
         </LinearLayout>
@@ -1006,3 +1042,83 @@
     </LinearLayout>
 
 </ScrollView>
+    <com.github.clans.fab.FloatingActionMenu
+
+        android:id="@+id/material_design_android_floating_action_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="11dp"
+        fab:menu_animationDelayPerItem="55"
+        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_buttonSpacing="0dp"
+        fab:menu_colorNormal="@color/background"
+        fab:menu_colorPressed="#CEEEAE"
+        fab:menu_colorRipple="#99d4d4d4"
+        fab:menu_fab_label="Dashboard"
+        fab:menu_fab_size="mini"
+        fab:menu_icon="@drawable/ic_dots"
+        fab:menu_labels_colorNormal="#333"
+        fab:menu_labels_colorPressed="#444"
+        fab:menu_labels_colorRipple="#66efecec"
+        fab:menu_labels_cornerRadius="3dp"
+        fab:menu_labels_ellipsize="none"
+        fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+        fab:menu_labels_margin="0dp"
+        fab:menu_labels_maxLines="-1"
+        fab:menu_labels_padding="8dp"
+        fab:menu_labels_position="left"
+        fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+        fab:menu_labels_showShadow="true"
+        fab:menu_labels_singleLine="false"
+        fab:menu_labels_textColor="#f2f1f1"
+        fab:menu_labels_textSize="15sp"
+        fab:menu_openDirection="up"
+        fab:menu_shadowColor="#66E9ECE9"
+        fab:menu_shadowRadius="4dp"
+        fab:menu_shadowXOffset="1dp"
+        fab:menu_shadowYOffset="4dp"
+        fab:menu_showShadow="true"
+        android:layout_alignParentEnd="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            fab:fab_colorNormal="@color/background"
+            android:src="@drawable/ic_date"
+            fab:fab_label="Notice"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            fab:fab_colorNormal="@color/background"
+            android:src="@drawable/ic_menu_black_24dp"
+            fab:fab_label="Menu"
+            fab:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/material_design_floating_action_menu_item3"
+            android:layout_width="wrap_content"
+            fab:fab_colorNormal="@color/background"
+
+            app:fab_colorPressed="@color/background"
+            app:fab_colorRipple="#99FFFFFF"
+            app:fab_progress_color="#FF009688"
+
+            android:background="@color/background"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_account_balance"
+            fab:fab_label="Expenses"
+            fab:fab_size="mini" />
+    </com.github.clans.fab.FloatingActionMenu>
+</android.support.design.widget.CoordinatorLayout>

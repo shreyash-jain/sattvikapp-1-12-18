@@ -218,7 +218,7 @@ public class FragmentCancel extends Fragment {
 
 
 
-        String[] texts = {"Click a date ","To cancel your meals"};
+        String[] texts = {"Select a Range ","To cancel your meals"};
         FadingTextView FTV = (FadingTextView) rootview.findViewById(R.id.fadingTextView);
         FTV.setTexts(texts);
         final boolean[] correct_date = new boolean[1];
@@ -333,8 +333,181 @@ public class FragmentCancel extends Fragment {
 
         }
         calendarView.setEvents(cancel_events);
-
+        Button range_confirm_btn=rootview.findViewById(R.id.dates_confirm_btn);
+        range_confirm_btn.setVisibility(View.INVISIBLE);
         calendarView.setOnDayClickListener(new OnDayClickListener() {
+            @Override
+            public void onDayClick(EventDay eventDay) {
+                range_confirm_btn.setVisibility(View.VISIBLE);
+            }
+        });
+
+        range_confirm_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                range_confirm_btn.setVisibility(View.INVISIBLE);
+                List<Calendar> calendars=calendarView.getSelectedDates();
+                Log.d("list_cal",calendars.size()+"");
+                offline_coloumn_list.clear();
+
+                num_dates=calendars.size();
+                off_dates = new String[num_dates];
+                off_day = new String[num_dates];
+                Boolean[] make_ck_set =new Boolean[num_dates];
+                Calendar calc = Calendar.getInstance();
+
+                calc.add(Calendar.DATE, 0);
+                int back_date=0;
+                Date today = calc.getTime();
+                Toast.makeText(getActivity(), String.valueOf(num_dates), Toast.LENGTH_SHORT).show();
+                for(int i = 0; i<num_dates; i++){
+
+                    Calendar thiscal= calendars.get(i);
+                    Date thisdate=thiscal.getTime();
+                    if(thisdate.before(today)){
+                        back_date=1;
+                    }
+                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                    DateFormat df_day = new SimpleDateFormat("dd");
+                    String get_only_day_string = df_day.format(thisdate);
+
+                    int this_day_of_month = Integer.valueOf(get_only_day_string);
+                    DateFormat df_month = new SimpleDateFormat("MM");
+                    String get_only_month_string=df_month.format(thisdate);
+                    int this_month = Integer.valueOf(get_only_month_string);
+                    String reportDate = df.format(thisdate);
+                    SimpleDateFormat formatter = new SimpleDateFormat("EEE");
+                    String this_day = formatter.format(thiscal.getTime());
+                    off_dates[i]=reportDate;
+                    off_day[i]=this_day;
+                    make_ck_set[i]=false;
+                    offline_coloumn_list.add(7+this_day_of_month+(this_month-1)*31);
+
+
+                    cancel_text.setText("Select meals to cancel");
+
+
+                }
+
+               if(back_date==1){
+                   Toast.makeText(getActivity(), "Uncheck past dates to proceed", Toast.LENGTH_SHORT).show();
+
+
+               }
+               else{
+                btnTag = new Button(getContext());
+
+                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+                params1.weight=1.0f;
+                params1.gravity= Gravity.RIGHT;
+                layout.removeAllViews();
+                listView.setAdapter(null);
+                btnTag.setLayoutParams(params1);
+                btnTag.setText("Continue");
+                btnTag.setId(0);
+                layout.addView(btnTag);
+                ViewGroup.LayoutParams params = listView.getLayoutParams();
+                params.height = (168)*num_dates;
+                OfflineCustomListAdapter whatever = new OfflineCustomListAdapter(getActivity(),off_dates,off_day, make_ck_set,make_ck_set,make_ck_set);
+                listView.setLayoutParams(params);
+                listView.requestLayout();
+                listView.setAdapter(whatever);
+                btnTag.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ListAdapter adapter = listView.getAdapter();
+                        uncheck_bk = ((OfflineCustomListAdapter) adapter).unchecked_bk;
+                        uncheck_ln = ((OfflineCustomListAdapter) adapter).unchecked_ln;
+                        uncheck_dn = ((OfflineCustomListAdapter) adapter).unchecked_dn;
+
+
+                        Log.i("BK: ", uncheck_bk.toString());
+                        Log.i("LN: ", uncheck_ln.toString());
+                        Log.i("DN: ", uncheck_dn.toString());
+                        int every_day = 0;
+                        int coinside = 0;
+                        for (int ind = 0; ind < num_dates; ind++) {
+                            if (!uncheck_bk.contains(ind) && !uncheck_ln.contains(ind) && !uncheck_dn.contains(ind)) {
+                                every_day = 1;
+                                break;
+                            }
+                            for (int i = 0; i < cancelDetailsArrayTemper.size(); i++) {
+
+
+                                String sdate = cancelDetailsArrayTemper.get(i).request_date.substring(0, cancelDetailsArrayTemper.get(i).request_date.length() - 12);
+                                SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                                DateFormat df_off_dates = new SimpleDateFormat("dd/MM/yyyy");
+                                Date qdate = new Date();
+                                try {
+                                    qdate = df_off_dates.parse(off_dates[ind]);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                try {
+                                    Date pdate = format.parse(sdate);
+                                    Calendar event_day = toCalendar(pdate);
+                                    String status = cancelDetailsArrayTemper.get(i).Acceptance;
+
+
+                                    boolean b = cancelDetailsArrayTemper.get(i).b.equals("1");
+                                    boolean l = cancelDetailsArrayTemper.get(i).l.equals("1");
+                                    boolean d = cancelDetailsArrayTemper.get(i).d.equals("1");
+
+                                    if (qdate.compareTo(pdate) == 0) {
+                                        Log.d("check_date", qdate.toString() + "  " + pdate.toString());
+                                        Log.e("check_diet", uncheck_bk.contains(ind) + "" + b + "");
+                                        if (uncheck_bk.contains(ind) && b) {
+                                            coinside = 1;
+                                            break;
+                                        }
+                                        if (uncheck_ln.contains(ind) && l) {
+                                            coinside = 1;
+                                            break;
+                                        }
+                                        if (uncheck_dn.contains(ind) && d) {
+                                            coinside = 1;
+                                            break;
+                                        }
+                                    }
+
+
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            }
+                        }
+                        if (every_day == 1){
+                            Toast.makeText(getActivity(), "Select meals to proceed", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if( coinside==1){
+                            Toast.makeText(getActivity(), "You have selected already requested meals", Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+                        else
+                        {
+                            Intent intent = new Intent(getActivity(), ConfirmCancel.class);
+                            // intent.putExtra("Cancel_diets", 1);
+
+
+                            startActivity(intent);
+                        }
+
+                    }
+                });}
+            }
+        });
+
+        List<Calendar> calendars=calendarView.getSelectedDates();
+
+
+
+  /*     calendarView.setOnDayClickListener(new OnDayClickListener() {
             @Override
             public void onDayClick(EventDay eventDay) {
                 Calendar clickedDayCalendar = eventDay.getCalendar();
@@ -377,7 +550,7 @@ public class FragmentCancel extends Fragment {
                     DatePicker datePicker = builder2.build();
                     datePicker.show();
 
-                /*
+                *//*
                 builder.setTitle("Select meals to cancel").setMultiChoiceItems(R.array.mealsCancel,
                         null, new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
@@ -452,8 +625,13 @@ public class FragmentCancel extends Fragment {
                 AlertDialog dialog = builder.create();
                 dialog.show();
 
-            */}}
-        });
+            *//*}}
+
+        });*/
+
+
+
+
 
 
 
@@ -504,6 +682,11 @@ public class FragmentCancel extends Fragment {
             off_dates = new String[num_dates];
             off_day = new String[num_dates];
             Boolean[] make_ck_set =new Boolean[num_dates];
+            Calendar calc = Calendar.getInstance();
+
+            calc.add(Calendar.DATE, 1);
+
+            Date today = calc.getTime();
             Toast.makeText(getActivity(), String.valueOf(num_dates), Toast.LENGTH_SHORT).show();
             for(int i = 0; i<num_dates; i++){
                 Calendar thiscal= calendars.get(i);
@@ -511,6 +694,7 @@ public class FragmentCancel extends Fragment {
                 DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
                 DateFormat df_day = new SimpleDateFormat("dd");
                 String get_only_day_string = df_day.format(thisdate);
+
 
                 int this_day_of_month = Integer.valueOf(get_only_day_string);
                 DateFormat df_month = new SimpleDateFormat("MM");
@@ -552,30 +736,36 @@ public class FragmentCancel extends Fragment {
                 @Override
                 public void onClick(View v) {
                     ListAdapter adapter = listView.getAdapter();
-                    uncheck_bk =((OfflineCustomListAdapter) adapter).unchecked_bk;
-                    uncheck_ln =((OfflineCustomListAdapter) adapter).unchecked_ln;
-                    uncheck_dn =((OfflineCustomListAdapter) adapter).unchecked_dn;
+                    uncheck_bk = ((OfflineCustomListAdapter) adapter).unchecked_bk;
+                    uncheck_ln = ((OfflineCustomListAdapter) adapter).unchecked_ln;
+                    uncheck_dn = ((OfflineCustomListAdapter) adapter).unchecked_dn;
 
 
-
-                    Log.i("BK: ",uncheck_bk.toString());
-                    Log.i("LN: ",uncheck_ln.toString());
-                    Log.i("DN: ",uncheck_dn.toString());
-                    int every_day=0;
-                    for(int ind=0;ind<num_dates;ind++){
-                        if (!uncheck_bk.contains(ind) && !uncheck_ln.contains(ind) && !uncheck_dn.contains(ind))
-                        {
-                            every_day=1;
+                    Log.i("BK: ", uncheck_bk.toString());
+                    Log.i("LN: ", uncheck_ln.toString());
+                    Log.i("DN: ", uncheck_dn.toString());
+                    int every_day = 0;
+                    int coinside = 0;
+                    for (int ind = 0; ind < num_dates; ind++) {
+                        if (!uncheck_bk.contains(ind) && !uncheck_ln.contains(ind) && !uncheck_dn.contains(ind)) {
+                            every_day = 1;
                             break;
                         }
-                        for(int i = 0; i< cancelDetailsArrayTemper.size();i++) {
+                        for (int i = 0; i < cancelDetailsArrayTemper.size(); i++) {
 
 
-                            String sdate= cancelDetailsArrayTemper.get(i).request_date.substring(0, cancelDetailsArrayTemper.get(i).request_date.length()-12);
+                            String sdate = cancelDetailsArrayTemper.get(i).request_date.substring(0, cancelDetailsArrayTemper.get(i).request_date.length() - 12);
                             SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+                            DateFormat df_off_dates = new SimpleDateFormat("dd/MM/yyyy");
+                            Date qdate = new Date();
+                            try {
+                                qdate = df_off_dates.parse(off_dates[ind]);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
                             try {
                                 Date pdate = format.parse(sdate);
-                                Calendar event_day=toCalendar(pdate);
+                                Calendar event_day = toCalendar(pdate);
                                 String status = cancelDetailsArrayTemper.get(i).Acceptance;
 
 
@@ -583,8 +773,22 @@ public class FragmentCancel extends Fragment {
                                 boolean l = cancelDetailsArrayTemper.get(i).l.equals("1");
                                 boolean d = cancelDetailsArrayTemper.get(i).d.equals("1");
 
-
-
+                                if (qdate.compareTo(pdate) == 0) {
+                                    Log.d("check_date", qdate.toString() + "  " + pdate.toString());
+                                    Log.e("check_diet", uncheck_bk.contains(ind) + "" + b + "");
+                                    if (uncheck_bk.contains(ind) && b) {
+                                        coinside = 1;
+                                        break;
+                                    }
+                                    if (uncheck_ln.contains(ind) && l) {
+                                        coinside = 1;
+                                        break;
+                                    }
+                                    if (uncheck_dn.contains(ind) && d) {
+                                        coinside = 1;
+                                        break;
+                                    }
+                                }
 
 
                             } catch (ParseException e) {
@@ -592,16 +796,18 @@ public class FragmentCancel extends Fragment {
                             }
 
 
-
-
-
                         }
                     }
-                    if (every_day==1){
+                    if (every_day == 1){
                         Toast.makeText(getActivity(), "Select meals to proceed", Toast.LENGTH_SHORT).show();
+
+                }
+                    else if( coinside==1){
+                        Toast.makeText(getActivity(), "You have selected already requested meals", Toast.LENGTH_SHORT).show();
 
 
                     }
+
                     else
                         {
                             Intent intent = new Intent(getActivity(), ConfirmCancel.class);

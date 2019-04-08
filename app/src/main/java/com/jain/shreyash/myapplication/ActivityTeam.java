@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatDelegate;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.Calendar;
@@ -15,12 +18,15 @@ import mehdi.sakout.aboutpage.Element;
 
 public class ActivityTeam extends AppCompatActivity {
 
+    private LinearLayout root;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         simulateDayNight(/* DAY */ 0);
         Element adsElement = new Element();
         adsElement.setTitle("Advertise with us");
+        root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
 
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
@@ -38,11 +44,16 @@ public class ActivityTeam extends AppCompatActivity {
 
                 .addPlayStore("com.jain.shreyash.myapplication")
 
-                .addGitHub("shreyash-jain")
+
                 .addItem(getCopyRightsElement())
                 .create();
 
-        setContentView(aboutPage);
+
+
+
+        root.addView(aboutPage);
+
+        setContentView(root);
     }
 
 

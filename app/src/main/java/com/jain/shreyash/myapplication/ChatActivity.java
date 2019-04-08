@@ -1,9 +1,29 @@
 package com.jain.shreyash.myapplication;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.ContentLoadingProgressBar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +36,12 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +51,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.StorageReference;
 import com.jain.shreyash.utils.Constants;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -49,35 +75,79 @@ import java.util.concurrent.TimeUnit;
 import static in.shadowfax.proswipebutton.UiUtils.dpToPx;
 
 public class ChatActivity extends AppCompatActivity {
-    private List<ChatMessage> chatList = new ArrayList<>();
+    private List<Object> chatList = new ArrayList<>();
     private RecyclerView recyclerView;
+    public static final String STORAGE_PATH_UPLOADS = "uploads/";
     private ChatAdapter mAdapter;
     private EditText message_edit_text;
-    private Button send_text;
+    private ImageView send_text;
     String chat_message;
+    private Uri filePath;
     SharedPreferences sharedPreferences;
     List<ChatMessage> chatDetailsArray;
     Boolean poll_active;
     TextView poll_title;
+    Intent intent;
     int count;
     int other;
     int limiter;
+    public static final int PICK_IMAGE = 1;
+    private ImageView simg;
+    final int IMAGE_REQUEST_CODE = 1;
+    private ProgressBar progressBar;
+    private Uri mimguri;
+    private StorageReference mStorageRef;
+    private DatabaseReference mDatabaseRef;
+    private ProgressBar uploadProgressBar;
 
 
+
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    ImageView photo_select;
+    private StorageTask mUploadTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference("images");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("iv");
         chatDetailsArray = new ArrayList<>();
         message_edit_text=findViewById(R.id.edittext_chatbox);
         send_text=findViewById(R.id.button_chatbox_send);
         setTitle("Feedback & Suggestions Group");
         recyclerView = (RecyclerView) findViewById(R.id.reyclerview_message_list);
+       /* recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Toast.makeText(getApplicationContext(),"short press",Toast.LENGTH_LONG).show();
 
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+
+                        Toast.makeText(getApplicationContext(),"long press",Toast.LENGTH_LONG).show();
+
+                    }
+                })
+        );*/
+
+        photo_select=findViewById(R.id.photo_select);
         LinearLayout layout = (LinearLayout) findViewById(R.id.ll_change_margin);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) layout.getLayoutParams();
 
 
+        photo_select.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                intent.setType("image/*");
+                startActivityForResult(Intent.createChooser(intent, "Select Picture"),IMAGE_REQUEST_CODE);
+
+            }
+        });
         SharedPreferences a_d = getSharedPreferences("your_prefs", Activity.MODE_PRIVATE);
         String activity_date_old= a_d.getString("visit_date", "2010-04-12");
         SharedPreferences.Editor editor = a_d.edit();
@@ -118,6 +188,18 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
+        uploadProgressBar = findViewById(R.id.progress_bar);
+        Handler handler = new Handler();
+        uploadProgressBar.setIndeterminate(true);
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                uploadProgressBar.setVisibility(View.VISIBLE);
+                uploadProgressBar.setIndeterminate(false);
+                uploadProgressBar.setProgress(0);
+            }
+        }, 1500);
+
         FirebaseDatabase BoardReference = FirebaseDatabase.getInstance();
 
         DatabaseReference mBoardReference = BoardReference.getReference("poll_sheet");
@@ -130,7 +212,7 @@ public class ChatActivity extends AppCompatActivity {
                 Log.e("current cancel stats",dataSnapshot.getKey());
                 poll_active=message.poll_bool;
                 Log.e("current cancel stats",poll_active+"");
-                float dip = 245f;
+                float dip = 215f;
                 Resources r = getResources();
                 float px = TypedValue.applyDimension(
                         TypedValue.COMPLEX_UNIT_DIP,
@@ -260,9 +342,21 @@ public class ChatActivity extends AppCompatActivity {
                         for (DataSnapshot child: dataSnapshot.getChildren()) {
                             Log.e("Count " ,""+child.getChildrenCount());
                             Log.e("please tell",""+ child.getKey());
+
+                            Log.e("please tell 2",""+ child.getValue(ChatMessage.class).getMsg_type());
+
+                           if(child.hasChild("iv")) {
+                               ImageMessage this_image=child.getValue(ImageMessage.class);
+                               if(child.getValue(ChatMessage.class).getname().equals(user_name)){
+                                   this_image.msg_type=false;
+                                   this_image.name="You";}
+                               if(!(this_image==null)) chatList.add(this_image);
+
+                           }
+                           else{
                             ChatMessage this_chat=child.getValue(ChatMessage.class);
-                           Log.e("please tell 2",""+ child.getValue(ChatMessage.class).getMsg_type());
-                            if(child.getValue(ChatMessage.class).getname().equals(user_name)){
+
+                               if(child.getValue(ChatMessage.class).getname().equals(user_name)){
                                this_chat.msg_type=false;
                             this_chat.name="You";}
                            chatDetailsArray.add(this_chat);
@@ -286,10 +380,13 @@ public class ChatActivity extends AppCompatActivity {
                         }
 
                       //  chat_text_end.setText("have your say...");
-                        if(!(that_chat==null)){chatList.add(that_chat);}
+                        if(!(that_chat==null)){chatList.add(that_chat);}}
+
+
+
 
                         Log.d("All chats",chatDetailsArray.toString());
-                        mAdapter = new ChatAdapter(chatList);
+                        mAdapter = new ChatAdapter(chatList,ChatActivity.this);
                         chatDetailsArray.clear();
 
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
@@ -319,6 +416,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 chat_message=message_edit_text.getText().toString();
+                chat_message=chat_message.trim();
                 if(!chat_message.equals(""))
                 {message_edit_text.getText().clear();
                 uploadCancelDetails(chat_message);
@@ -468,6 +566,159 @@ public class ChatActivity extends AppCompatActivity {
                         Log.w("cancel uplodaed or not", "loadPost:onCancelled", databaseError.toException());
                     }
                 });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        sharedPreferences = this.getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        final String user_name = sharedPreferences.getString(Constants.name,"");;
+
+        final DateFormat df = new SimpleDateFormat("yyyy/M/d h:mm:ss a");
+        //  final String request_date = df.format(rq_date);
+
+        final String email = sharedPreferences.getString(Constants.email,"");
+        final String email_refined = email.replaceAll("\\W+", "");
+
+
+        sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //Time from server
+        final Calendar calendar = Calendar.getInstance();
+        try {
+            if (resultCode == RESULT_OK) {
+                if (requestCode == IMAGE_REQUEST_CODE) {
+                    Uri selectedImageUri = data.getData();
+                    // Get the path from the Uri
+                    final String path = getPathFromURI(selectedImageUri);
+                    if (path != null) {
+                        File f = new File(path);
+                        selectedImageUri = Uri.fromFile(f);
+                    }
+                    // Set the image in ImageView
+                    mimguri=selectedImageUri;
+                    StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
+                            + "." + getFileExtension(mimguri));
+
+                    uploadProgressBar.setVisibility(View.VISIBLE);
+                    uploadProgressBar.setIndeterminate(true);
+                    mAuth.signInAnonymously().addOnSuccessListener(this, new  OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            mUploadTask = fileReference.putFile(mimguri)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    uploadProgressBar.setVisibility(View.VISIBLE);
+                                                    uploadProgressBar.setIndeterminate(false);
+                                                    uploadProgressBar.setProgress(0);
+                                                }
+                                            }, 500);
+                                            DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
+                                            offsetRef.addValueEventListener(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(DataSnapshot snapshot) {
+                                                    double offset = snapshot.getValue(Double.class);
+                                                    double estimatedServerTimeMs = System.currentTimeMillis() + offset;
+                                                    calendar.setTimeInMillis(((long) estimatedServerTimeMs));
+                                                    calendar.setTimeInMillis(((long) estimatedServerTimeMs));
+                                                    Log.d("inter",""+calendar.getTime());
+                                                }
+                                                @Override
+                                                public void onCancelled(DatabaseError error) {
+                                                    System.err.println("Listener was cancelled");
+
+                                                }
+                                            });
+
+                                            SimpleDateFormat format = new SimpleDateFormat("h:mm:ss a | d/M/yyyy");
+                                            Date date=calendar.getTime();
+
+                                            ImageMessage upload= new ImageMessage(user_name,taskSnapshot.getDownloadUrl().toString(),format.format(date),"",true);
+
+
+                                            FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
+                                            final DatabaseReference mPostReference = PostReference.getReference("chat_sheet");
+
+                                            String special_text="";
+                                            final String key = mPostReference.push().getKey();
+                                            //String finalSpecial_text = special_text;
+                                            mPostReference.
+                                                    addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                                            mPostReference.child(key).setValue(upload);
+
+                                                        }
+                                                        @Override
+                                                        public void onCancelled(DatabaseError databaseError) {
+                                                            Toast.makeText(ChatActivity.this, "Unable to send request", Toast.LENGTH_LONG).show();
+                                                            Log.w("cancel uplodaed or not", "loadPost:onCancelled", databaseError.toException());
+                                                        }
+                                                    });
+
+
+
+                                            uploadProgressBar.setVisibility(View.INVISIBLE);
+
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.e("yaha","ll");
+                                            uploadProgressBar.setVisibility(View.INVISIBLE);
+                                        }
+                                    })
+                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                            uploadProgressBar.setProgress((int) progress);
+                                            Log.e("vaha","ll");
+                                        }
+                                    });
+                        }
+                    })
+                            .addOnFailureListener(this, new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    Log.e("get", "signInAnonymously:FAILURE", exception);
+                                }
+                            });
+
+
+                }
+            }
+        } catch (Exception e) {
+            Log.e("FileSelectorActivity", "File select error", e);
+        }
+        }
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    public String getPathFromURI(Uri contentUri) {
+        String res = null;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(contentUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            res = cursor.getString(column_index);
+        }
+        cursor.close();
+        return res;
     }
 
 

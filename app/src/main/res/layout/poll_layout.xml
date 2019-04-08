@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                android:layout_marginTop="10dp"
 
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:gravity="center"
                 android:text="Polling"
 
@@ -35,7 +35,7 @@
                 android:textStyle="bold"
 
                 android:layout_margin="10dp"
-                android:textSize="16sp"
+                android:textSize="14sp"
                  />
 
             <Button
@@ -59,56 +59,134 @@
 
             <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radio_group"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:orientation="vertical"
                 >
 
+
                 <RadioButton
                     android:id="@+id/choice_1"
                     android:layout_width="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v4.widget.ContentLoadingProgressBar
+                        android:id="@+id/progress_choice_1"
+                        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginStart="10dp"
+                        android:max="100"
+                        android:layout_marginLeft="10dp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+
+                    android:layout_marginRight="10dp"
+
+                    android:layout_gravity="center_vertical"
+
+
+                    android:gravity="right"
+                    android:textSize="10sp"
+                    android:id="@+id/per1"
+                    android:textStyle="bold"
                     android:layout_height="wrap_content" />
 
-                <android.support.v4.widget.ContentLoadingProgressBar
-                    android:id="@+id/progress_choice_1"
-                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="170dp"
-                    android:layout_height="30dp"
 
-                    android:layout_marginStart="10dp"
-                    android:max="100"
-                    android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+
+
 
                 <RadioButton
                     android:id="@+id/choice_2"
 
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v4.widget.ContentLoadingProgressBar
+                        android:id="@+id/progress_choice_2"
+                        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
 
-                <android.support.v4.widget.ContentLoadingProgressBar
-                    android:id="@+id/progress_choice_2"
-                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="170dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
-                    android:max="100"
-                    android:layout_marginLeft="10dp" />
+                        android:layout_marginStart="10dp"
+                        android:max="100"
+                        android:layout_marginLeft="10dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_marginRight="10dp"
+
+                        android:layout_gravity="center_vertical"
+
+
+                        android:gravity="right"
+                        android:textSize="10sp"
+                        android:id="@+id/per2"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
+
+
+
 
                 <RadioButton
                     android:id="@+id/choice_3"
                     android:layout_width="wrap_content"
 
+                    android:textSize="14sp"
                     android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <android.support.v4.widget.ContentLoadingProgressBar
+                        android:id="@+id/progress_choice_3"
+                        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
 
-                <android.support.v4.widget.ContentLoadingProgressBar
-                    android:id="@+id/progress_choice_3"
-                    style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="170dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="10dp"
-                    android:max="100"
-                    android:layout_marginLeft="10dp" />
+                        android:layout_marginStart="10dp"
+                        android:max="100"
+                        android:layout_marginLeft="10dp" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+
+                        android:layout_marginRight="10dp"
+
+                        android:layout_gravity="center_vertical"
+
+
+                        android:gravity="right"
+                        android:textSize="10sp"
+                        android:id="@+id/per3"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content" />
+
+
+
+                </LinearLayout>
 
             </RadioGroup>
         </LinearLayout>

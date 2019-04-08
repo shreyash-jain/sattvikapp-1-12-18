@@ -6,39 +6,90 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="coor" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="signInAn" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java" line="74" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="9614c032-233d-41df-a320-ebbbb90572d4" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/about_icon_copy_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_send.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_team.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_team.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ImageMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MyViewHolder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/RecyclerItemClickListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ViewHolder2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/chat_selector.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_account_balance.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_camera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_date.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_format.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_menu_black_24dp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/image_view_chat.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/youtube_video.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_core_common_1_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_common_1_0_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/android_arch_lifecycle_runtime_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_animated_vector_drawable_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_appcompat_v7_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_cardview_v7_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_constraint_constraint_layout_1_0_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_constraint_constraint_layout_solver_1_0_2_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_design_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_recyclerview_v7_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_annotations_26_1_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_compat_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_ui_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_core_utils_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_fragment_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_media_compat_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_v4_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_support_vector_drawable_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_core_3_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_espresso_espresso_idling_resource_3_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_rules_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_test_runner_1_0_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_android_support_transition_26_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_basgeekball_awesome_validation_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_github_bumptech_glide_glide_3_7_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_basement_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_android_gms_play_services_tasks_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_code_findbugs_jsr305_2_0_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_impl_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_analytics_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_common_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_common_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_core_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_iid_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_firebase_firebase_iid_license_11_8_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_google_guava_guava_19_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/com_squareup_javawriter_2_1_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javax_inject_javax_inject_1_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_junit_4_12_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/net_sf_kxml_kxml2_2_3_0_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_hamcrest_hamcrest_core_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_hamcrest_hamcrest_integration_1_3_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_hamcrest_hamcrest_library_1_3_jar.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Dashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Dashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/fedback.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/fedback.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/poll_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/poll_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/activity_dashboard_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/activity_dashboard_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
@@ -102,9 +153,9 @@
     <session id="-199852373">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="3" />
+          <entry key="project.open.time.12" value="4" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="1" />
@@ -116,41 +167,48 @@
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="2" />
+          <entry key="project.open.time.41" value="1" />
           <entry key="project.open.time.46" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.51" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="24" />
+          <entry key="project.open.time.97" value="1" />
+          <entry key="project.opened" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gradle" value="16" />
-          <entry key="java" value="98" />
-          <entry key="jpg" value="2" />
-          <entry key="xml" value="63" />
+          <entry key="gradle" value="17" />
+          <entry key="java" value="117" />
+          <entry key="jpg" value="3" />
+          <entry key="png" value="2" />
+          <entry key="properties" value="1" />
+          <entry key="xml" value="87" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="16" />
-          <entry key="Image" value="2" />
-          <entry key="JAVA" value="98" />
-          <entry key="XML" value="63" />
+          <entry key="Groovy" value="17" />
+          <entry key="Image" value="5" />
+          <entry key="JAVA" value="117" />
+          <entry key="Properties" value="1" />
+          <entry key="XML" value="87" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="gradle" value="8" />
-          <entry key="java" value="218940" />
-          <entry key="xml" value="2418" />
+          <entry key="gradle" value="20" />
+          <entry key="java" value="221840" />
+          <entry key="txt" value="28" />
+          <entry key="xml" value="3375" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="8" />
-          <entry key="JAVA" value="218940" />
-          <entry key="XML" value="2418" />
+          <entry key="Groovy" value="20" />
+          <entry key="JAVA" value="221840" />
+          <entry key="PLAIN_TEXT" value="28" />
+          <entry key="XML" value="3375" />
         </counts>
       </usages-collector>
     </session>
@@ -161,10 +219,20 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Dashboard.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-880">
-              <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
+            <state relative-caret-position="-552">
+              <caret line="1062" column="31" selection-start-line="1062" selection-start-column="31" selection-end-line="1062" selection-end-column="31" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-291">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -173,64 +241,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="28" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="157" column="64" selection-start-line="157" selection-start-column="29" selection-end-line="157" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/poll_layout.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-106">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
-          <provider editor-type-id="android-designer2" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="51" column="18" selection-start-line="44" selection-start-column="3" selection-end-line="51" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ConfirmCancel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-15">
-              <caret line="267" selection-start-line="267" selection-end-line="267" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancelDetails.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="428">
-              <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+            <state relative-caret-position="251">
+              <caret line="56" column="58" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -238,17 +252,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="800">
-              <caret line="140" column="66" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1120">
-              <caret line="334" column="46" selection-start-line="334" selection-start-column="5" selection-end-line="334" selection-end-column="46" />
+            <state relative-caret-position="230">
+              <caret line="116" column="62" selection-start-line="116" selection-start-column="62" selection-end-line="116" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -257,13 +262,63 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml">
-          <provider editor-type-id="android-designer2" />
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="544" selection-start-line="544" selection-end-line="544" />
+            <state relative-caret-position="220">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ViewHolder2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ImageMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-401">
+              <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="740">
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/youtube_video.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
     </leaf>
@@ -273,28 +328,13 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>editTextyear</find>
-      <find>intent</find>
-      <find>upload</find>
-      <find>agee</find>
-      <find>array</find>
-      <find>ema</find>
-      <find>viewallcancel</find>
-      <find>textv</find>
-      <find>pre</find>
-      <find>email</find>
-      <find>isupdated</find>
-      <find>exampl</find>
-      <find>fire</find>
-      <find>listview</find>
-      <find>make_ck_set</find>
       <find>item</find>
       <find>adapter</find>
       <find>getc</find>
@@ -306,10 +346,25 @@
       <find>cancel_active</find>
       <find>setm</find>
       <find>about</find>
-      <find>toas</find>
       <find>cancel_dates_checker</find>
       <find>mBoardReference</find>
       <find>vote</find>
+      <find>date_saved</find>
+      <find>size</find>
+      <find>click</find>
+      <find>off_dates</find>
+      <find>sele</find>
+      <find>today</find>
+      <find>app</find>
+      <find>fab</find>
+      <find>toas</find>
+      <find>menu_vi</find>
+      <find>chatList</find>
+      <find>button</find>
+      <find>IMAGE_REQUEST_CODE</find>
+      <find>intent</find>
+      <find>image</find>
+      <find>images</find>
     </findStrings>
     <replaceStrings>
       <replace>float</replace>
@@ -2421,16 +2476,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentToday.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancelListItem.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/cancel_card.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Registration.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/IntroActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/RequestPassword.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Offline.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/AppRater.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CheckCancelActive.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/NoticeBoard.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/OfflineCustomListAdapter.java" />
@@ -2456,22 +2501,32 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CheckpollActive.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/getPollName.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/getPollDetails.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_dashboard_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Dashboard.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/RecyclerItemClickListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/chat_selector.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/image_view_chat.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MyViewHolder.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/poll_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ViewHolder2.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml" />
+        <option value="$PROJECT_DIR$/gradle.properties" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/youtube_video.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ImageMessage.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml" />
       </list>
     </option>
   </component>
@@ -2482,7 +2537,7 @@
       <facet id="app/invalid/Android-Gradle" />
     </ignored-facets>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1358" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -2516,67 +2571,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="jain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="jain" type="462c0819:PsiDirectoryNode" />
-              <item name="shreyash" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="com" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="jain" type="462c0819:PsiDirectoryNode" />
-              <item name="shreyash" type="462c0819:PsiDirectoryNode" />
-              <item name="myapplication" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
-              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -2594,6 +2588,21 @@
               <item name="MyApplication" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="MyApplication" type="1abcf292:AndroidViewProjectNode" />
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
@@ -2617,7 +2626,7 @@
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547994576398" />
     <property name="device.picker.selection" value="3da4ce3a" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/app" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/FirebaseRecyclerImagesUploadDownload-master" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
@@ -2940,8 +2949,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1358" y="-8" width="1382" height="784" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7054632" visible="true" weight="0.25567323" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7054632" visible="true" weight="0.25416037" />
       <window_info id="Structure" order="1" weight="0.24962178" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -2956,15 +2966,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32686085" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.4697428" weight="0.37846154" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49394855" weight="0.20226537" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32615384" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.47276855" weight="0.28923076" />
-      <window_info anchor="bottom" id="Gradle Console" order="12" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.53025717" side_tool="true" weight="0.42307693" />
-      <window_info active="true" anchor="bottom" id="Build" order="14" sideWeight="0.4591528" visible="true" weight="0.2753846" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32850242" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.4697428" weight="0.36923078" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49394855" weight="0.20226537" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32615384" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.47276855" weight="0.28923076" />
+      <window_info anchor="bottom" id="Gradle Console" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.53025717" side_tool="true" weight="0.42307693" />
+      <window_info anchor="bottom" id="Build" order="13" sideWeight="0.4591528" weight="0.28" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32850242" />
+      <window_info anchor="bottom" id="Android Profiler" order="15" weight="0.45846155" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -2975,10 +2985,10 @@
       <window_info anchor="right" id="Theme Preview" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Flutter Inspector" order="9" />
-      <window_info anchor="right" id="Device File Explorer" order="10" side_tool="true" weight="0.32954547" />
+      <window_info anchor="right" id="Device File Explorer" order="10" side_tool="true" weight="0.32928678" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7054632" visible="true" weight="0.25567323" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7054632" visible="true" weight="0.25493172" />
       <window_info id="Structure" order="1" weight="0.24962178" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -2993,15 +3003,15 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32686085" />
-      <window_info anchor="bottom" id="Android Profiler" order="7" />
-      <window_info anchor="bottom" id="Logcat" order="8" sideWeight="0.4697428" weight="0.37846154" />
-      <window_info anchor="bottom" id="Messages" order="9" sideWeight="0.49394855" weight="0.20226537" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32615384" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.47276855" weight="0.28923076" />
-      <window_info anchor="bottom" id="Gradle Console" order="12" side_tool="true" />
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.53025717" side_tool="true" weight="0.42307693" />
-      <window_info anchor="bottom" id="Build" order="14" sideWeight="0.4591528" visible="true" weight="0.2753846" />
-      <window_info anchor="bottom" id="Inspection Results" order="15" weight="0.32850242" />
+      <window_info anchor="bottom" id="Logcat" order="7" sideWeight="0.4697428" weight="0.37846154" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49394855" weight="0.20226537" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32615384" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.47276855" weight="0.28923076" />
+      <window_info anchor="bottom" id="Gradle Console" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.53025717" side_tool="true" weight="0.42307693" />
+      <window_info anchor="bottom" id="Build" order="13" sideWeight="0.4591528" visible="true" weight="0.2801252" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32850242" />
+      <window_info anchor="bottom" id="Android Profiler" order="15" show_stripe_button="false" weight="0.45846155" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -3019,114 +3029,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_green.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/PersonDetails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/AppRater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="826">
-          <caret line="63" column="138" selection-start-line="63" selection-start-column="138" selection-end-line="63" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Album.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="5" selection-start-line="20" selection-start-column="3" selection-end-line="22" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/SentMessageHolder.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MessageListAdapter.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancellationConfirmAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="75" selection-start-line="2" selection-end-line="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ReceivedMessageHolder.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_message_sent.xml" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/PrefManager.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/RequestPassword.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-100">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityWorkers.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="740">
-          <caret line="37" column="64" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/AlbumsAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_workers.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="75" column="21" selection-start-line="75" selection-start-column="21" selection-end-line="75" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Offline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="178" column="32" selection-start-line="178" selection-start-column="32" selection-end-line="178" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="92" column="85" selection-start-line="92" selection-start-column="85" selection-end-line="92" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_feedback.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_rectangle_blue.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatMessage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -3135,12 +3037,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_main_chat.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="393">
           <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancelListItem.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3172,35 +3074,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/NoticeBoard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="50" column="19" selection-start-line="50" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3212,18 +3089,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_team.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="35" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CheckCancelDate.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -3233,60 +3100,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_dashboard_drawer.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="31" column="41" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="41" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1060">
-          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="54" column="58" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/style.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="334" column="46" selection-start-line="334" selection-start-column="5" selection-end-line="334" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Dashboard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-880">
+        <state relative-caret-position="20">
           <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3294,39 +3117,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/title_page_3.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="49" />
+        </state>
+      </provider>
       <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="544" selection-start-line="544" selection-end-line="544" />
+        <state relative-caret-position="360">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/Feedback_Details.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="51" column="18" selection-start-line="44" selection-start-column="3" selection-end-line="51" selection-end-column="18" />
+        <state relative-caret-position="80">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancelDetails.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentFeedback.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="428">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
+        <state relative-caret-position="500">
+          <caret line="63" column="84" selection-start-line="62" selection-start-column="4" selection-end-line="63" selection-end-column="84" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/RecyclerItemClickListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="800">
-          <caret line="140" column="66" selection-start-line="140" selection-start-column="59" selection-end-line="140" selection-end-column="66" />
+        <state relative-caret-position="29">
+          <caret line="39" column="16" lean-forward="true" selection-start-line="39" selection-start-column="16" selection-end-line="39" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/style.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/drawables.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ConfirmCancel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
+        <state relative-caret-position="228">
           <caret line="267" selection-start-line="267" selection-end-line="267" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -3334,10 +3185,87 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/chat_selector.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/CancelDetails.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="14" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_today.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_dat.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_feedback.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_cancel.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="893">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="64" column="18" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentCancel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="359" column="32" selection-start-line="359" selection-start-column="32" selection-end-line="359" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_message_received.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="14" selection-end-line="75" selection-end-column="15" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/image_view_chat.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/MyViewHolder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-xhdpi/ic_dots.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/FragmentBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="157" column="64" selection-start-line="157" selection-start-column="29" selection-end-line="157" selection-end-column="64" />
+        <state relative-caret-position="1680">
+          <caret line="142" column="11" selection-start-line="142" selection-start-column="11" selection-end-line="142" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -3345,12 +3273,102 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/poll_layout.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="3300">
+          <caret line="165" column="1" selection-start-line="165" selection-start-column="1" selection-end-line="165" selection-end-column="1" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/youtube_video.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ActivityTeam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="740">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_board.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-552">
+          <caret line="1062" column="31" selection-start-line="1062" selection-start-column="31" selection-end-line="1062" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ViewHolder2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ImageMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="56" column="58" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-291">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/jain/shreyash/myapplication/ChatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="116" column="62" selection-start-line="116" selection-start-column="62" selection-end-line="116" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_chat.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-401">
+          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
 </project>

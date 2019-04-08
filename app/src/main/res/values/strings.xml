@@ -62,7 +62,7 @@
     </string-array>
 
     <string-array name="Cancel_text">
-        <item>Click on a Date</item>
+        <item>Select a Range</item>
         <item>To cancel your meal</item>
     </string-array>
 
