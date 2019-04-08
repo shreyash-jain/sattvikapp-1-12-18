@@ -25,9 +25,9 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private long startTime;
+
     SharedPreferences sharedPreferences;
-    final int active_fire=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startTime = System.currentTimeMillis();
+
                 //TODO: check if already login from local database. If data present go to Dashboard Else go to LoginActivity
                 sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
                 String mail = sharedPreferences.getString(Constants.email,"");
@@ -50,19 +50,21 @@ public class MainActivity extends AppCompatActivity {
                     finish();
                 }
                 else {
-                    final boolean[] isupdated = {false};
+                    final boolean[] is_updated = {false};
                     final String email = sharedPreferences.getString(Constants.email,"");
                     final String email_refined = email.replaceAll("\\W+", "");
 
 
                     sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
                     final SharedPreferences.Editor editor = sharedPreferences.edit();
+// from Firebase database data is taken from defined path
 
                     FirebaseDatabase PostReference = FirebaseDatabase.getInstance();
-
+//databaserefernce is used to locate path
                     DatabaseReference mPostReference = PostReference.getReference("student_sheet");
 
                     Log.i("here 1","in");
+                    //datasnashot takes the value(snapshot) of defined path but to take the value in proper way class has to declared in that manner and use getvalue
 
                     mPostReference.child("students").child(email_refined).
                             addValueEventListener(new ValueEventListener() {
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     Log.i("here 2","in");
                                     editor.apply();
-                                    isupdated[0] = true;
+                                    is_updated[0] = true;
                                 }
                                 @Override
                                 public void onCancelled(DatabaseError databaseError) {
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+//It is saving canceldata info of student is internalstorage and update it whenever in firebase it updates
                     DatabaseReference cPostReference = PostReference.getReference("cancel_sheet");
                     cPostReference.child(email_refined).
                             addValueEventListener(new ValueEventListener() {
@@ -122,8 +124,8 @@ public class MainActivity extends AppCompatActivity {
                             });
 
                     String active = sharedPreferences.getString(Constants.isactive,"0");
-                    //while(!isupdated[0]);
-                    nextPage(isupdated[0], active);
+                    //while(!is_updated[0]);
+                    nextPage(is_updated[0], active);
                 }
 
             }
@@ -132,6 +134,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * allowing the user to go on next page from splash screen by checking that is
+     * he active or not and if someone misuses the app then it get the value from firebase
+     * through Personaldetails and checks isactive
+     * possible nextpage: offline_activity, dashboard or login
+     * @param isupdated
+     * @param active
+     */
     void nextPage(boolean isupdated, String active)
     {
         if(!active.equals("0")){

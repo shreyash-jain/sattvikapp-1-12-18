@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/icon2"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChatActivity"></activity>
+        <activity android:name=".ChatActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -53,14 +54,19 @@
             android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ActivityAbout" />
-        <activity android:name=".ActivityTeam" />
+        <activity android:name=".ActivityAbout"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".ActivityTeam"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".ActivityWorkers"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RegistrationConfirmation"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".RequestPassword"

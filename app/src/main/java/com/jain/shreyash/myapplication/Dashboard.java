@@ -25,6 +25,9 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.jain.shreyash.myapplication.R;
 import com.jain.shreyash.utils.Constants;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -81,6 +84,12 @@ public class Dashboard extends AppCompatActivity
         FirebaseMessaging.getInstance().subscribeToTopic("notifications");
         Toast.makeText(this, emailRefined, Toast.LENGTH_LONG).show();
         FirebaseMessaging.getInstance().subscribeToTopic(emailRefined);
+
+
+
+
+
+
 
 
 

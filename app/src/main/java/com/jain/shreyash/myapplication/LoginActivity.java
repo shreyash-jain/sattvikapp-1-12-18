@@ -80,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * login - check the emailid and password from firebase and if correct then savs it in sharedpreference
+     * and if incorrect then either shows you are not register or invalid credentials
+     */
 
 
     public void login() {
@@ -92,9 +96,12 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setEnabled(false);
 
+        //Progress Dialogue - the symbol of loading(circle)
+
         final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this, R.style.MyAlertDialogStyle);
 
         //TODO: USe an appropriate style
+        //setindeterminate-it works(shows)figure continously till it completes  another way is loading percentage in progress dialogue
         progressDialog.setIndeterminate(true);
         progressDialog.setTitle("Authenticating...");
         progressDialog.setMessage("loading");
@@ -132,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                                 onLoginFailed();
                             }
                         }
+                        //Exception e - if on firebase it is unable to check as that it is not their
                         catch (Exception e){
                             Toast.makeText(LoginActivity.this, "You are not registered with this email id", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
@@ -148,11 +156,16 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    // movesTaskToBack - directly take out you from app on back button
     @Override
     public void onBackPressed() {
         // disable going back to the MainActivity
         moveTaskToBack(true);
     }
+
+    /**
+     * onlogin success it is storing canceldata of student in internal storage
+     */
 
     public void onLoginSuccess() {
         final String email = sharedPreferences.getString(Constants.email,"");
@@ -202,6 +215,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
+        //this is to understand and write why this has done
         else{
             Intent i = new Intent(LoginActivity.this, Dashboard.class);
             i.putExtra("EXTRA", "notopenFragment");
@@ -215,6 +229,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setEnabled(true);
     }
 
+    //checking the credentials
     public boolean validate() {
         boolean valid = true;
 
