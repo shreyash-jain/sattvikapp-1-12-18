@@ -385,109 +385,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:weightSum="2"
-                    android:orientation="horizontal">
 
-
-
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/cv"
-                    style="@style/CardViewStyle"
-                    android:layout_width="0dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-
-                    android:layout_height="40dp"
-                    android:layout_gravity="center"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/shape_bg_white_rounded_rect"
-                        android:orientation="vertical">
-
-
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="35dp"
-                            android:gravity="top"
-                            android:layout_gravity="top"
-                            android:layout_marginBottom="-8dp"
-                            android:padding="2dp"
-                            android:orientation="vertical"
-                          >
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="top"
-                                android:textStyle="bold"
-                                android:gravity="center"
-                                android:text="Cancel your meals"
-                                android:textColor="@color/grey_700"
-                                android:textSize="12sp" />
-
-
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/cv2"
-                        style="@style/CardViewStyle"
-                        android:layout_width="0dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_weight="1"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/shape_bg_white_rounded_rect"
-                            android:orientation="vertical">
-
-
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="35dp"
-                                android:gravity="top"
-                                android:layout_gravity="top"
-                                android:orientation="vertical"
-                                android:padding="2dp">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="top"
-                                    android:gravity="center"
-                                    android:textStyle="bold"
-                                    android:text="Give Feedback"
-                                    android:textColor="@color/grey_700"
-                                    android:textSize="12sp" />
-
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </android.support.v7.widget.CardView>
-                </LinearLayout>
 
         </LinearLayout>
 
@@ -510,16 +408,13 @@
                 android:background="@drawable/shape_bg_white_rounded_rect"
                 android:orientation="vertical">
 
-                <com.makeramen.roundedimageview.RoundedImageView
+                    <ImageView
                     android:id="@+id/iv3"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/fedback"
-                    app:riv_corner_radius_bottom_left="0dp"
-                    app:riv_corner_radius_bottom_right="0dp"
-                    app:riv_corner_radius_top_left="8dp"
-                    app:riv_corner_radius_top_right="8dp" />
+                    />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -534,7 +429,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:gravity="center"
-                        android:textStyle="bold"
+
                         android:text="Group Chat and Discussions"
                         android:textColor="@color/grey_700"
                         android:textSize="14sp" />
@@ -616,7 +511,7 @@
                                 android:textSize="14sp"
 
 
-                                android:textStyle="bold" />
+                                />
                         </LinearLayout>
 
 
@@ -763,7 +658,7 @@
                                     android:gravity="start"
                                     android:text="Breakfast"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                  />
 
                                 <android.support.v7.widget.AppCompatImageView
                                     android:id="@+id/info_bf"
@@ -781,7 +676,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/holo_green_dark"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                   />
 
                             </LinearLayout>
 
@@ -796,7 +691,7 @@
                                     android:gravity="start"
                                     android:text="Lunch"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                   />
 
                                 <TextView
                                     android:id="@+id/diet_lunch"
@@ -806,7 +701,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/holo_green_dark"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    />
 
                             </LinearLayout>
 
@@ -821,7 +716,7 @@
                                     android:gravity="start"
                                     android:text="Dinner"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                   />
 
                                 <TextView
                                     android:id="@+id/diet_dinner"
@@ -831,7 +726,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/holo_green_dark"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                 />
 
                             </LinearLayout>
 
@@ -846,7 +741,7 @@
                                     android:gravity="start"
                                     android:text="Extras"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    />
 
                                 <TextView
                                     android:id="@+id/extras"
@@ -856,7 +751,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/holo_green_dark"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    />
 
                             </LinearLayout>
 
@@ -871,7 +766,7 @@
                                     android:gravity="start"
                                     android:text="Service Charge"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                    />
 
                                 <TextView
                                     android:id="@+id/service"
@@ -881,7 +776,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/holo_green_dark"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                />
 
                             </LinearLayout>
 
@@ -899,7 +794,7 @@
                                     android:text="Total Diets"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                  />
 
                                 <android.support.v7.widget.AppCompatImageView
                                     android:id="@+id/info_diets"
@@ -917,7 +812,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                   />
 
                             </LinearLayout>
 
@@ -934,7 +829,7 @@
                                     android:text="Expense this month"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                  />
 
                                 <TextView
                                     android:id="@+id/eta_expense"
@@ -944,7 +839,7 @@
                                     android:text="NA"
                                     android:textColor="@android:color/darker_gray"
                                     android:textSize="14sp"
-                                    android:textStyle="bold" />
+                                   />
 
                             </LinearLayout>
 
@@ -971,7 +866,7 @@
                                 android:text="Previous Expense"
                                 android:textColor="@color/cardview_dark_background"
                                 android:textSize="16sp"
-                                android:textStyle="bold" />
+                                />
 
                             <android.support.v7.widget.AppCompatImageView
                                 android:id="@+id/info_prev"
@@ -989,7 +884,7 @@
                                 android:text="NA"
                                 android:textColor="@color/cardview_dark_background"
                                 android:textSize="16sp"
-                                android:textStyle="bold" />
+                               />
                         </LinearLayout>
 
                         <View
@@ -1012,7 +907,7 @@
                                 android:text="Total Expense"
                                 android:textColor="@color/cardview_dark_background"
                                 android:textSize="16sp"
-                                android:textStyle="bold" />
+                                 />
 
 
                             <TextView
@@ -1023,7 +918,7 @@
                                 android:text="NA"
                                 android:textColor="@color/cardview_dark_background"
                                 android:textSize="16sp"
-                                android:textStyle="bold" />
+                               />
 
                         </LinearLayout>
                     </LinearLayout>
@@ -1060,7 +955,7 @@
         fab:menu_colorPressed="#CEEEAE"
         fab:menu_colorRipple="#99d4d4d4"
         fab:menu_fab_label="Dashboard"
-        fab:menu_fab_size="mini"
+        fab:menu_fab_size="normal"
         fab:menu_icon="@drawable/ic_dots"
         fab:menu_labels_colorNormal="#333"
         fab:menu_labels_colorPressed="#444"
@@ -1091,19 +986,19 @@
             android:layout_height="wrap_content"
 
             fab:fab_colorNormal="@color/background"
-            android:src="@drawable/ic_date"
-            fab:fab_label="Notice"
+            android:src="@drawable/ic_cancel_full_24dp"
+            fab:fab_label="Cancel Meals"
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/material_design_floating_action_menu_item2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:background="@color/bg_screen3"
 
             fab:fab_colorNormal="@color/background"
-            android:src="@drawable/ic_menu_black_24dp"
-            fab:fab_label="Menu"
+            android:src="@drawable/ic_send"
+            fab:fab_label="Group Discussion"
             fab:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -1111,14 +1006,14 @@
             android:layout_width="wrap_content"
             fab:fab_colorNormal="@color/background"
 
-            app:fab_colorPressed="@color/background"
+            app:fab_colorPressed="@color/bg_screen1"
             app:fab_colorRipple="#99FFFFFF"
             app:fab_progress_color="#FF009688"
 
             android:background="@color/background"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_account_balance"
-            fab:fab_label="Expenses"
+            android:src="@drawable/about_icon_email"
+            fab:fab_label="Feedback"
             fab:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
 </android.support.design.widget.CoordinatorLayout>

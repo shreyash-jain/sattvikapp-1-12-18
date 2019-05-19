@@ -55,6 +55,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -114,7 +115,7 @@ public class FragmentBoard extends Fragment  {
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         String str = sdf.format(new Date());
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
         String str_tod = sdf2.format(new Date());
         String str_yes= sdf2.format(yesterday());
 
@@ -123,33 +124,9 @@ public class FragmentBoard extends Fragment  {
         floatingActionButton2 = (FloatingActionButton) rootview.findViewById(R.id.material_design_floating_action_menu_item2);
         floatingActionButton3 = (FloatingActionButton) rootview.findViewById(R.id.material_design_floating_action_menu_item3);
 
-        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                View targetView = rootview.findViewById(R.id.notice_ll);
-                targetView.getParent().requestChildFocus(targetView,targetView);
-                materialDesignFAM.close(true);
-                //TODO something when floating action menu first item clicked
 
-            }
-        });
-        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                View targetView = rootview.findViewById(R.id.menu_ll);
-                targetView.getParent().requestChildFocus(targetView,targetView);
-                materialDesignFAM.close(true);
-                //TODO something when floating action menu second item clicked
 
-            }
-        });
-        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                View targetView = rootview.findViewById(R.id.expense_ll);
-                targetView.getParent().requestChildFocus(targetView,targetView);
-                materialDesignFAM.close(true);
-                //TODO something when floating action menu third item clicked
 
-            }
-        });
         date = parseDate(str);
 
         dateCompareOne = parseDate(compareStringOne);
@@ -250,9 +227,17 @@ public class FragmentBoard extends Fragment  {
                         pb1.setProgress((int) a1);
                         pb2.setProgress((int) a2);
                         pb3.setProgress((int) a3);
-                        per1.setText(a1+"%");
-                        per2.setText(a2+"%");
-                        per3.setText(a3+"%");
+                        String b1,b2,b3;
+                        b1=a1+"";
+                        b2=a2+"";
+                        b3=a3+"";
+
+                        if(b1.length()>4) b1=b1.substring(0,4);
+                        per1.setText(b1+"%");
+                        if(b2.length()>4) b2=b2.substring(0,4);
+                        per2.setText(b2+"%");
+                        if(b3.length()>4) b3=b3.substring(0,4);
+                        per3.setText(b3+"%");
 
                         btn.setEnabled(false);
                     }
@@ -312,12 +297,18 @@ public class FragmentBoard extends Fragment  {
                             a3=((float)a3/(float)total)*100;
 
 
-                            pb1.setProgress((int) a1);
-                            pb2.setProgress((int) a2);
-                            pb3.setProgress((int) a3);
-                            per1.setText(a1+"%");
-                            per2.setText(a2+"%");
-                            per3.setText(a3+"%");
+                            String b1,b2,b3;
+                            b1=a1+"";
+                            b2=a2+"";
+                            b3=a3+"";
+
+                            if(b1.length()>4) b1=b1.substring(0,4);
+                            per1.setText(b1+"%");
+                            if(b2.length()>4) b2=b2.substring(0,4);
+                            per2.setText(b2+"%");
+                            if(b3.length()>4) b3=b3.substring(0,4);
+                            per3.setText(b3+"%");
+
 
                             SharedPreferences sp = getContext().getSharedPreferences("poll_compare_board", Activity.MODE_PRIVATE);
                             SharedPreferences.Editor editor = sp.edit();
@@ -459,8 +450,7 @@ public class FragmentBoard extends Fragment  {
         final ImageView info_bf=rootview.findViewById(R.id.info_bf);
         final ImageView info_prev=rootview.findViewById(R.id.info_prev);
         final ImageView info_diets=rootview.findViewById(R.id.info_diets);
-        final CardView card_cancel=rootview.findViewById(R.id.cv);
-        final CardView card_feedback=rootview.findViewById(R.id.cv2);
+
         final CardView card_chat=rootview.findViewById(R.id.cv3);
         final TextView month=rootview.findViewById(R.id.month);
         Calendar c = Calendar.getInstance();
@@ -478,7 +468,7 @@ public class FragmentBoard extends Fragment  {
                 startActivity(i);
             }
         });
-       card_cancel.setOnClickListener(new View.OnClickListener() {
+       floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FragmentCancel();
@@ -487,12 +477,22 @@ public class FragmentBoard extends Fragment  {
                 fragmentTransaction.replace(R.id.content_frame, fragment);
 
                 fragmentTransaction.commit();
+                materialDesignFAM.close(true);
 
 
 
             }
         });
-        card_feedback.setOnClickListener(new View.OnClickListener() {
+       floatingActionButton2.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent i = new Intent(getActivity(), ChatActivity.class);
+               startActivity(i);
+               materialDesignFAM.close(true);
+           }
+       });
+
+        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new FragmentFeedback();
@@ -501,6 +501,8 @@ public class FragmentBoard extends Fragment  {
                 fragmentTransaction.replace(R.id.content_frame, fragment);
 
                 fragmentTransaction.commit();
+                materialDesignFAM.close(true);
+
 
             }
         });
@@ -592,6 +594,8 @@ public class FragmentBoard extends Fragment  {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Snackbar.make(view, "Welcome to Sattvik App", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
         //you can set the title for your toolbar here for different fragments different titles
         getActivity().setTitle("Dashboard");
     }

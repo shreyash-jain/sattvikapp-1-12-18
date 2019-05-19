@@ -23,8 +23,7 @@ public class ActivityTeam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         simulateDayNight(/* DAY */ 0);
-        Element adsElement = new Element();
-        adsElement.setTitle("Advertise with us");
+
         root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
 
@@ -65,12 +64,7 @@ public class ActivityTeam extends AppCompatActivity {
         copyRightsElement.setIconTint(mehdi.sakout.aboutpage.R.color.about_item_icon_color);
         copyRightsElement.setIconNightTint(android.R.color.white);
         copyRightsElement.setGravity(Gravity.CENTER);
-        copyRightsElement.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(ActivityTeam.this, copyrights, Toast.LENGTH_SHORT).show();
-            }
-        });
+
         return copyRightsElement;
     }
 
@@ -92,4 +86,5 @@ public class ActivityTeam extends AppCompatActivity {
                     AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
         }
     }
+
 }

@@ -22,16 +22,13 @@
         <menu>
             <item
                 android:id="@+id/about"
-                android:icon="@drawable/ic_about"
+                android:icon="@drawable/ic_spa_black_24dp"
                 android:title="About Sattvik" />
             <item
                 android:id="@+id/team"
-                android:icon="@drawable/ic_team"
+                android:icon="@drawable/ic_wc_black_24dp"
                 android:title="Sattvik Team" />
-            <item
-                android:id="@+id/workers"
-                android:icon="@drawable/ic_worker"
-                android:title="Mess Workers" />
+
             <item
                 android:id="@+id/logout"
                 android:icon="@drawable/ic_send_black"

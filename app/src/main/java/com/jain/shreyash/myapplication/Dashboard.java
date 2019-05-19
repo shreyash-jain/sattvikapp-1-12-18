@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +25,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.jain.shreyash.myapplication.R;
 import com.jain.shreyash.utils.Constants;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -79,8 +84,14 @@ public class Dashboard extends AppCompatActivity
         email.setText(user_email);
         final String emailRefined = user_email.replaceAll("\\W+", "");
         FirebaseMessaging.getInstance().subscribeToTopic("notifications");
-        Toast.makeText(this, emailRefined, Toast.LENGTH_LONG).show();
+
         FirebaseMessaging.getInstance().subscribeToTopic(emailRefined);
+
+
+
+
+
+
 
 
 
@@ -143,9 +154,7 @@ public class Dashboard extends AppCompatActivity
         if (item.getItemId() == R.id.team) {
             Intent i = new Intent(Dashboard.this, ActivityTeam.class);
             startActivity(i);
-        } else if (item.getItemId() == R.id.workers) {
-            Intent i = new Intent(Dashboard.this, ActivityWorkers.class);
-            startActivity(i);}
+        }
             else if (item.getItemId() == R.id.about) {
                 Intent i = new Intent(Dashboard.this, ActivityAbout.class);
                 startActivity(i);

@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
+
+//in above import- external library is called and in this activity its functions are used for background email
 import com.jain.shreyash.myapplication.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,7 +31,7 @@ public class RequestPassword extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                final String[] passworded = new String[1];
+
                 final String emailed = get_email.getText().toString();
                 final String emailRefined =get_email.getText().toString().replaceAll("\\W+","");
                 FirebaseDatabase LoginReference = FirebaseDatabase.getInstance();

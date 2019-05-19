@@ -20,6 +20,12 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     private AutoCompleteTextView editTextHostel,editTextBranch;
     private Button buttonSubmit;
     private AwesomeValidation awesomeValidation;
+
+    /**
+     *
+     * @param savedInstanceState
+     *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +48,7 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         awesomeValidation.addValidation(this, R.id.input_email, ".*\\@iitbhu.ac.in$", R.string.emailerror);
         awesomeValidation.addValidation(this, R.id.input_phone, "^[0-9]{2}[0-9]{8}$", R.string.mobileerror);
         awesomeValidation.addValidation(this, R.id.input_year, "\\b\\d{8}\\b", R.string.ageerror);
-        String regexPassword = "^([a-zA-Z0-9@*#]{8,20})$";
+        String regexPassword = "^([a-zA-Z0-9@*#]{4,20})$";
         awesomeValidation.addValidation(this, R.id.input_password, regexPassword, R.string.error_invalid_password);
 
         //awesomeValidation.addValidation(this, R.id.input_confirm_password,s, R.string.err_password_confirmation);
@@ -65,6 +71,10 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
     }
 
 
+    /**
+     * here we are passing the details of a registered student to confirm registration activity
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if (v == buttonSubmit && awesomeValidation.validate()) {

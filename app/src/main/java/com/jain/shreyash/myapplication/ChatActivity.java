@@ -526,7 +526,7 @@ public class ChatActivity extends AppCompatActivity {
                         SimpleDateFormat format = new SimpleDateFormat("h:mm:ss a | d/M/yyyy");
 
                         String team="";
-                        if(user_name.equals("Shreyash Jain")||user_name.equals("Tanish Jain")||user_name.equals("Himanshu Jain")){team="Sattvik Team";}
+                        if(user_name.equals("Shreyash Jain")||user_name.equals("Tanish Jain")||user_name.equals("Himanshu Jain")||user_name.equals("Shreya Munshi")){team="Sattvik Team";}
                         chatDetails = new ChatMessage(user_name,chat_message,  format.format(d1), team, true);
                         mPostReference.child(key).setValue(chatDetails);
                         String filename = "ChatData";
