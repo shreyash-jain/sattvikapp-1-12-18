@@ -5,21 +5,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.jain.shreyash.myapplication.R;
 
-public class Registration extends AppCompatActivity  implements View.OnClickListener   {
+public class Registration extends AppCompatActivity  implements View.OnClickListener,AdapterView.OnItemSelectedListener   {
     private EditText editTextName, editTextEmail, editTextMobile,
             editTextyear, editTextdu,editTextPass,editTextRoom;
     private AutoCompleteTextView editTextHostel,editTextBranch;
+    private Spinner editTextMess;
     private Button buttonSubmit;
     private AwesomeValidation awesomeValidation;
+    private DatabaseReference mDatabaseRef;
 
     /**
      *
@@ -41,6 +51,7 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         editTextyear =  findViewById(R.id.input_year);
         editTextPass = findViewById(R.id.input_password);
         buttonSubmit = findViewById(R.id.button);
+        editTextMess=findViewById(R.id.input_mess);
 
 
 
@@ -64,10 +75,44 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, clg_hostels);
         editTextHostel.setAdapter(adapter2);
 
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Mess");
+        final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item);
+        mDatabaseRef.child("totalmess").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot postSnapshot:dataSnapshot.getChildren())
+                {
+                    String Mess = postSnapshot.getValue(String.class);
+                    //String Mess = postSnapshot.child("Mess").getValue(String.class);
+                    autoComplete.add(Mess);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        autoComplete.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        editTextMess.setAdapter(autoComplete);
+
         awesomeValidation.addValidation(this, R.id.input_hostel, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         awesomeValidation.addValidation(this, R.id.input_department, "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
         //TODO: awesome validation for confirm password and du number
         buttonSubmit.setOnClickListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
 
@@ -88,6 +133,7 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
             i.putExtra("Department",editTextBranch.getText().toString());
             i.putExtra("DU",editTextdu.getText().toString());
             i.putExtra("password",editTextPass.getText().toString());
+            i.putExtra("Mess",editTextMess.getSelectedItem().toString());
             startActivity(i);
         }
     }

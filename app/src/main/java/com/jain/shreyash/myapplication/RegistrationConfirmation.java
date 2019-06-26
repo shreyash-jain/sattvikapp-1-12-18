@@ -32,8 +32,8 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("student_sheet");
     SharedPreferences sharedPreferences;
-    TextView textName,textEmail,textPhone,textAddress,textYear,textDepartment,textDU;
-    String email,name,password,phone,room,hostel,year,dept,du;
+    TextView textName,textEmail,textPhone,textAddress,textYear,textDepartment,textDU,textMess;
+    String email,name,password,phone,room,hostel,year,dept,du,mess;
     Button confirm;
     private static Context mContext;
 
@@ -49,6 +49,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         textEmail = findViewById(R.id.text_view_email);
         textPhone = findViewById(R.id.text_view_phone);
         textAddress = findViewById(R.id.text_view_address);
+        textMess=findViewById(R.id.text_view_mess);
         textYear = findViewById(R.id.text_view_year);
         textDepartment = findViewById(R.id.text_view_department);
         textDU = findViewById(R.id.text_view_du);
@@ -60,11 +61,13 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         phone = i.getStringExtra("Phone");
         room = i.getStringExtra("Room");
         hostel = i.getStringExtra("Hostel");
+        mess=i.getStringExtra("Mess");
         year = i.getStringExtra("Year");
         dept = i.getStringExtra("Department");
         du = i.getStringExtra("DU");
 
         textName.setText("name: "+name);
+        textMess.setText("Mess:"+mess);
         textEmail.setText("email: "+email);
         textPhone.setText("Phone No.: "+phone);
         textAddress.setText("Address: "+room+", "+hostel);
