@@ -75,9 +75,9 @@ public class Registration extends AppCompatActivity  implements View.OnClickList
         ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, clg_hostels);
         editTextHostel.setAdapter(adapter2);
 
-        mDatabaseRef= FirebaseDatabase.getInstance().getReference("Mess");
+        mDatabaseRef= FirebaseDatabase.getInstance().getReference("totalmess");
         final ArrayAdapter<String> autoComplete = new ArrayAdapter<>(this,android.R.layout.simple_spinner_item);
-        mDatabaseRef.child("totalmess").addValueEventListener(new ValueEventListener() {
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot postSnapshot:dataSnapshot.getChildren())
