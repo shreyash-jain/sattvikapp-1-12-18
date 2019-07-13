@@ -51,7 +51,7 @@ public class RequestPassword extends AppCompatActivity {
                                                 .withMailto(emailed)
                                                 .withType(BackgroundMail.TYPE_PLAIN)
                                                 .withSubject("Sattvik Mess mobile application Password")
-                                                .withBody("Please do remember your password for using all the digital facilities provided by sattvik mess "+"\n"+"\n"+"Your password is : " + personDetails2.password)
+                                                .withBody("Please do remember your password for using all the digital facilities provided by sattvik mess "+"\n"+"\n"+"Your password is : " + personDetails2.pin)
                                                 .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
                                                     @Override
                                                     public void onSuccess() {

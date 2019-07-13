@@ -27,13 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import static com.jain.shreyash.utils.Constants.mess;
+
 public class RegistrationConfirmation extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("student_sheet");
     SharedPreferences sharedPreferences;
     TextView textName,textEmail,textPhone,textAddress,textYear,textDepartment,textDU;
-    String email,name,password,phone,room,hostel,year,dept,du;
+    String email,name,password,phone,room,hostel,year,dept,du,mess,roll_no;
     Button confirm;
     private static Context mContext;
 
@@ -63,6 +65,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         year = i.getStringExtra("Year");
         dept = i.getStringExtra("Department");
         du = i.getStringExtra("DU");
+        roll_no = i.getStringExtra("roll_no");
 
         textName.setText("name: "+name);
         textEmail.setText("email: "+email);
@@ -71,6 +74,7 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
         textYear.setText("Current Year: " +year);
         textDepartment.setText("Department: "+dept);
         textDU.setText("DU Number: "+du);
+        //textRollNumber.setText();
         confirm.setOnClickListener(this);
 
     }
@@ -144,10 +148,12 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                                 //Toast.makeText(Registration.this, ""+format.format(calendar.getTime()), Toast.LENGTH_SHORT).show();
 
                                 PersonDetails personDetails = new PersonDetails(
+                                        mess,
+                                        roll_no,
                                         format.format(calendar.getTime()),
                                         name,
-                                        dept,
-                                        year,
+                                       // dept,
+                                       //  year,
                                         room,
                                         hostel,
                                         phone,
@@ -161,8 +167,12 @@ public class RegistrationConfirmation extends AppCompatActivity implements View.
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString(Constants.name, name);
                                 editor.putString(Constants.email, email);
-                                editor.putString(Constants.password, password);
+                                editor.putString(Constants.pin, password);
                                 editor.putString(Constants.isactive, "0");
+                                editor.putString(Constants.mess, mess);
+                                editor.putString(Constants.rollNumber, mess);
+
+
                                 editor.apply();
                                 progressDialog.dismiss();
                                 Intent i = new Intent(RegistrationConfirmation.this, Offline.class);

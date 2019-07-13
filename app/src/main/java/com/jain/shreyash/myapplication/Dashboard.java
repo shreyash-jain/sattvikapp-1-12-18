@@ -143,7 +143,7 @@ public class Dashboard extends AppCompatActivity
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.remove(Constants.name);
                     editor.remove(Constants.email);
-                    editor.remove(Constants.password);
+                    editor.remove(Constants.pin);
                     editor.remove(Constants.isactive);
                     editor.apply();
 

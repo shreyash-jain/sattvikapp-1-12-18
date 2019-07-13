@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference miDatabase;
     private static final String TAG = "LoginActivity";
 
-    EditText emailText;
+    EditText rollNumberText;
     EditText passwordText;
     Button loginButton;
     TextView signupLink;
@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        emailText = findViewById(R.id.text_email);
+        rollNumberText = findViewById(R.id.text_rollNumber);
         passwordText = findViewById(R.id.text_password);
       password_forget =findViewById(R.id.forget_pass);
 
@@ -100,27 +100,31 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("loading");
         progressDialog.show();
 
-        final String email = emailText.getText().toString();
+        final String rollNumber = rollNumberText.getText().toString();
         final String password = passwordText.getText().toString();
-        final String emailRefined = emailText.getText().toString().replaceAll("\\W+","");
+       // final String emailRefined = emailText.getText().toString().replaceAll("\\W+","");
 
         FirebaseDatabase LoginReference = FirebaseDatabase.getInstance();
-        DatabaseReference mLoginReference = LoginReference.getReference("student_sheet");
-        mLoginReference.child("students").child(emailRefined).
+        DatabaseReference mLoginReference = LoginReference.getReference("Student");
+        mLoginReference.child("students").child(rollNumber).
                 addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         PersonDetails personDetails2 = dataSnapshot.getValue(PersonDetails.class);
+                        String pinFirebase = dataSnapshot.child("pin").getValue(String.class);
                         try {
                             //checking if already registered or not
-                            if(personDetails2.email.equals(email) && personDetails2.password.equals(password) )
+                            if(/*personDetails2.email.equals(email) &&*/ pinFirebase.equals(password) )
                             {
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 sharedPreferences = getSharedPreferences(Constants.MY_PREFERENCE, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString(Constants.name, personDetails2.name);
-                                editor.putString(Constants.email, email);
-                                editor.putString(Constants.password,password);
+                                editor.putString(Constants.email, personDetails2.email);
+                                editor.putString(Constants.pin,password);
+                                editor.putString(Constants.mess,personDetails2.mess);
+                                editor.putString(Constants.rollNumber,rollNumber);
+
                                 editor.putString(Constants.isactive,personDetails2.isactive);
                                 editor.apply();
                                 progressDialog.dismiss();
@@ -218,14 +222,14 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String email = emailText.getText().toString();
+        String rollNumber = rollNumberText.getText().toString();
         String password = passwordText.getText().toString();
 
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailText.setError("enter a valid email address");
+        if (rollNumber.isEmpty() /*|| !android.util.Patterns.EMAIL_ADDRESS.matcher(rollNumber).matches()*/) {
+            rollNumberText.setError("enter a valid email address");
             valid = false;
         } else {
-            emailText.setError(null);
+            rollNumberText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 20) {
